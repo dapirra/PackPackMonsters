@@ -1,0 +1,1 @@
+Place mockup related files in this folder.
