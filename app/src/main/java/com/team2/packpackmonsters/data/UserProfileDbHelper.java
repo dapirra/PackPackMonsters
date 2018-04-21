@@ -23,8 +23,8 @@ public class UserProfileDbHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)//We are creating the database for the first time here...
     {
-        String SQL_CREATE_USERPROFILE_TABLE = "CREATE TABLE" + PacPacMonstersContract.UserProfileEntry.TABLE_NAME +//Created table for User Profile
-                "(" + PacPacMonstersContract.UserProfileEntry._ID + " INTEGER PRIMARY KEY AUTO INCREMENT, " +//ID field row
+        String SQL_CREATE_USERPROFILE_TABLE = "CREATE TABLE " + PacPacMonstersContract.UserProfileEntry.TABLE_NAME +//Created table for User Profile
+                "(" + PacPacMonstersContract.UserProfileEntry._ID + " INTEGER AUTO INCREMENT, " +//ID field row
                 PacPacMonstersContract.UserProfileEntry.COLUMN_NAME + " TEXT NOT NULL, " + //Name field, can't be null
                 PacPacMonstersContract.UserProfileEntry.COLUMN_WINS + " INTEGER NOT NULL DEFAULT 0, " +//Wins field, can't be null and = 0 to start
                 PacPacMonstersContract.UserProfileEntry.COLUMN_LOSSES + " INTEGER NOT NULL DEFAULT 0, " +//Losses
