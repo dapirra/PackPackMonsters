@@ -25,7 +25,7 @@ public class MovesDbHelper extends SQLiteOpenHelper
         String SQL_CREATE_MOVES_TABLE = "CREATE TABLE " + PacPacMonstersContract.MovesEntry.TABLE_NAME +//Created table for User Profile
                 "(" + PacPacMonstersContract.MovesEntry._ID + " INTEGER AUTO INCREMENT, " +//ID field row
                 PacPacMonstersContract.MovesEntry.COLUMN_MOVE_NAME + " TEXT NOT NULL, " + //Name field, can't be null
-                PacPacMonstersContract.MovesEntry.COLUMN_MOVE_DAMAGE + " INTEGER NOT NULL DEFAULT 50, " +//Move Damage
+                PacPacMonstersContract.MovesEntry.COLUMN_MOVE_DAMAGE + " INTEGER NOT NULL, " +//Move Damage
                 PacPacMonstersContract.MovesEntry.COLUMN_IS_MOVE_BUFF + " INTEGER);";//Move Buff
 
         db.execSQL(SQL_CREATE_MOVES_TABLE);//Actually creates the table using the execSQL method, takes the db variable

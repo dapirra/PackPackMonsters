@@ -26,8 +26,8 @@ public class MonstersDbHelper extends SQLiteOpenHelper
                 "(" + PacPacMonstersContract.PacPacMonsterEntry._ID + " INTEGER AUTO INCREMENT, " +//ID field row
                 PacPacMonstersContract.PacPacMonsterEntry.COLUMN_NAME + " TEXT NOT NULL, " + //Name field, can't be null
                 PacPacMonstersContract.PacPacMonsterEntry.COLUMN_HP + " INTEGER NOT NULL DEFAULT 50, " +//Hp field
-                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_TYPE + " INTEGER, " +//Type for monster
-                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_IMAGE + " BLOB);";//Monster Image
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_TYPE + " INTEGER);";  //Type for monster
+                //PacPacMonstersContract.PacPacMonsterEntry.COLUMN_IMAGE + " BLOB);";//Monster Image
 
         db.execSQL(SQL_CREATE_MONSTERS_TABLE);//Actually creates the table using the execSQL method, takes the db variable
         // In the constructor for onCreate to operate on the non static method execSQL and we

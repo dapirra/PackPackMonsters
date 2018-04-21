@@ -28,8 +28,7 @@ public class UserProfileDbHelper extends SQLiteOpenHelper
                 PacPacMonstersContract.UserProfileEntry.COLUMN_NAME + " TEXT NOT NULL, " + //Name field, can't be null
                 PacPacMonstersContract.UserProfileEntry.COLUMN_WINS + " INTEGER NOT NULL DEFAULT 0, " +//Wins field, can't be null and = 0 to start
                 PacPacMonstersContract.UserProfileEntry.COLUMN_LOSSES + " INTEGER NOT NULL DEFAULT 0, " +//Losses
-                PacPacMonstersContract.UserProfileEntry.COLUMN_FAV_MONSTER + " TEXT, " +//Favorite Monster
-                PacPacMonstersContract.UserProfileEntry.COLUMN_SURRENDERS + " INTEGER NOT NULL DEFAULT 0);";//Surrendurs
+                PacPacMonstersContract.UserProfileEntry.COLUMN_SURRENDERS + " INTEGER NOT NULL DEFAULT 0);";//Surrenders
 
         db.execSQL(SQL_CREATE_USERPROFILE_TABLE);//Actually creates the table using the execSQL method, takes the db variable
         // In the constructor for onCreate to operate on the non static method execSQL and we

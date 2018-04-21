@@ -21,7 +21,6 @@ public final class PacPacMonstersContract//Contract class, allows easier way to 
         public final static String COLUMN_NAME = "name";//Name of user
         public final static String COLUMN_WINS = "wins";//Amount of wins for user
         public final static String COLUMN_LOSSES = "loss";//Losses
-        public final static String COLUMN_FAV_MONSTER = "favorite monster";//Favorite monster they used constantly
         public final static String COLUMN_SURRENDERS = "surrender";//Surrenders
 
     }
@@ -33,7 +32,7 @@ public final class PacPacMonstersContract//Contract class, allows easier way to 
         public final static String COLUMN_NAME = "name";//Name of monster
         public final static String COLUMN_HP = "hp";//Health for monster
         public final static String COLUMN_TYPE = "type";//Type for monster, grass, water, etc. Might make this an integer where 1 = water 2 = fire etc.
-        public final static String COLUMN_IMAGE = "image";//Picture of monster, might need to remove...
+        //public final static String COLUMN_IMAGE = "image";//Picture of monster, might need to remove...
     }
 
     public static final class MovesEntry implements BaseColumns//Data Table for PAC PAC Monsters moves
