@@ -12,6 +12,7 @@ public class MovesDbHelper extends SQLiteOpenHelper
     private static final String DATABASE_NAME = "Moves.db";//Name of the database
 
     private static final int DATABASE_VERSION = 1;//Don't worry about
+    private static boolean loadDataOnce = false;
 
     public MovesDbHelper(Context context)//Constructor for MonsterHelperDb Class
     {
@@ -22,15 +23,16 @@ public class MovesDbHelper extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)//We are creating the database for the first time here...
     {
-        String SQL_CREATE_MOVES_TABLE = "CREATE TABLE " + PacPacMonstersContract.MovesEntry.TABLE_NAME +//Created table for User Profile
-                "(" + PacPacMonstersContract.MovesEntry._ID + " INTEGER AUTO INCREMENT, " +//ID field row
-                PacPacMonstersContract.MovesEntry.COLUMN_MOVE_NAME + " TEXT NOT NULL, " + //Name field, can't be null
-                PacPacMonstersContract.MovesEntry.COLUMN_MOVE_DAMAGE + " INTEGER NOT NULL, " +//Move Damage
-                PacPacMonstersContract.MovesEntry.COLUMN_IS_MOVE_BUFF + " INTEGER);";//Move Buff
 
-        db.execSQL(SQL_CREATE_MOVES_TABLE);//Actually creates the table using the execSQL method, takes the db variable
-        // In the constructor for onCreate to operate on the non static method execSQL and we
-        //pass it our data table
+            String SQL_CREATE_MOVES_TABLE = "CREATE TABLE " + PacPacMonstersContract.MovesEntry.TABLE_NAME +//Created table for User Profile
+                    "(" + PacPacMonstersContract.MovesEntry._ID + " INTEGER AUTO INCREMENT, " +//ID field row
+                    PacPacMonstersContract.MovesEntry.COLUMN_MOVE_NAME + " TEXT NOT NULL, " + //Name field, can't be null
+                    PacPacMonstersContract.MovesEntry.COLUMN_MOVE_DAMAGE + " INTEGER NOT NULL, " +//Move Damage
+                    PacPacMonstersContract.MovesEntry.COLUMN_IS_MOVE_BUFF + " INTEGER);";//Move Buff
+
+            db.execSQL(SQL_CREATE_MOVES_TABLE);//Actually creates the table using the execSQL method, takes the db variable
+            // In the constructor for onCreate to operate on the non static method execSQL and we
+            //pass it our data table
 
     }
 

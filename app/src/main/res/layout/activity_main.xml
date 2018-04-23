@@ -55,4 +55,22 @@
         android:layout_below="@+id/text_view_test"
         android:text="This will display username from dialog" />
 
+    <TextView
+        android:id="@+id/text_view_test4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/text_view_username"
+        android:layout_alignStart="@+id/text_view_username"
+        android:layout_below="@+id/text_view_username"
+        android:text="Test for Items Database" />
+
+    <TextView
+        android:id="@+id/text_view_test5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/text_view_test4"
+        android:layout_alignStart="@+id/text_view_test4"
+        android:layout_below="@+id/text_view_test4"
+        android:text="Test for monstermove database table" />
+
 </RelativeLayout>

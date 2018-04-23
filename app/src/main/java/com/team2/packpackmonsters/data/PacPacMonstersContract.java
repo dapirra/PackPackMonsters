@@ -44,4 +44,23 @@ public final class PacPacMonstersContract//Contract class, allows easier way to 
         public final static String COLUMN_IS_MOVE_BUFF = "IsMoveBuff";
     }
 
+    public static final class MonsterMoveEntry implements BaseColumns//Data table for monster's specific moves
+    {
+        public final static String TABLE_NAME = "MonsterMoves";
+        public final static String COLUMN_MONSTER_ID = "MonsterID";//This is monsters ID basically
+        public final static String COLUMN_MOVE_ID = "MoveID";//ID for the moves should be the same
+    }
+
+    public static final class ItemsEntry implements BaseColumns//Data table for items, Do we have to add to it????
+    {
+        public final static String TABLE_NAME = "Items";
+        public final static String _ID = BaseColumns._ID;
+        public final static String COLUMN_ITEM_NAME = "name";
+    }
+
+
+
+
+
+
 }

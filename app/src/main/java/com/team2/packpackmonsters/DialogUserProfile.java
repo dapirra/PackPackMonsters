@@ -40,7 +40,9 @@ public class DialogUserProfile extends AppCompatDialogFragment
                         @Override
                         public void onClick(DialogInterface dialog, int which)
                         {
-
+                            String name1 = "Player 1";
+                            String username = name1.toString();
+                            editTextUsername.setText(username);
                         }
                     })
                     .setPositiveButton("Confirm", new DialogInterface.OnClickListener()
@@ -50,16 +52,6 @@ public class DialogUserProfile extends AppCompatDialogFragment
                         {
                             String username = editTextUsername.getText().toString();
                             listener.applyTexts(username);
-
-                            /*SQLiteDatabase db = MDbHelper.getWritableDatabase();//Write mode is to CREATE, UPDATE, & DELETE
-
-                            ContentValues values = new ContentValues();//Content Values object Column names are keys and attributes in "" are values
-                            values.put(PacPacMonstersContract.UserProfileEntry.COLUMN_NAME, username);
-                            values.put(PacPacMonstersContract.UserProfileEntry.COLUMN_WINS, "0");
-                            values.put(PacPacMonstersContract.UserProfileEntry.COLUMN_LOSSES, "0");
-                            values.put(PacPacMonstersContract.UserProfileEntry.COLUMN_SURRENDERS, "0");
-
-                            long newRowId = db.insert(PacPacMonstersContract.UserProfileEntry.TABLE_NAME, null, values);*/
                         }
                     });
 
