@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Pack Pack Monsters</string>
+
+    <string name="fight">Fight</string>
+    <string name="items">Items</string>
+    <string name="run">Run</string>
+    <string name="party">Party</string>
+    <string name="health">Health</string>
+    <string name="default_health_text">-</string>
+    <string name="forward_slash">/</string>
+
+    <string name="default_item_name">Item</string>
+    <string name="default_item_description">Description</string>
 </resources>

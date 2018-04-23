@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="battle_btn_margin_vertical">0dp</dimen>
+    <dimen name="battle_btn_margin_vertical_between_parent">0dp</dimen>
+    <dimen name="battle_btn_margin_horizontal_between_parent">0dp</dimen>
+    <dimen name="battle_txt_health_label_margin_top">8dp</dimen>
+    <dimen name="battle_btn_margin_horizontal">4dp</dimen>
+    <dimen name="battle_img_margin_vertical">12dp</dimen>
+    <dimen name="battle_img_margin_horizontal_between_parent">12dp</dimen>
+    <dimen name="battle_img_margin_horizontal">12dp</dimen>
+    <dimen name="battle_gdl_percent">0.4</dimen>
+    <dimen name="battle_clo_player">0.35</dimen>
+    <dimen name="battle_clo_buttons">0.3</dimen>
+
+    <dimen name="battle_btn_text_size">24sp</dimen>
+    <dimen name="battle_txt_text_size">24sp</dimen>
+
+    <dimen name="items_txt_margin_vertical_between_parent">8dp</dimen>
+    <dimen name="items_txt_margin_vertical">8dp</dimen>
+    <dimen name="items_txt_description_margin_horizontal">4dp</dimen>
+    <dimen name="items_img_margin_vertical">8dp</dimen>
+    <dimen name="items_img_margin_horizontal_between_parent">12dp</dimen>
+    <dimen name="items_img_margin_horizontal">4dp</dimen>
+    <dimen name="items_gdl_percent">0.7</dimen>
+
+    <dimen name="items_txt_name_text_size">24sp</dimen>
+    <dimen name="items_txt_description_text_size">16sp</dimen>
+    <dimen name="items_img_width">100dp</dimen>
+    <dimen name="items_img_height">100dp</dimen>
+
+</resources>
