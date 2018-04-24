@@ -1,6 +1,7 @@
 package com.team2.packpackmonsters;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -29,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
     static String dataUserName;
     static String dataMonsterName;
     static String dataItem;
-
 
 
     @Override
