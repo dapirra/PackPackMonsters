@@ -22,7 +22,7 @@
     <dimen name="items_img_width">100dp</dimen>
     <dimen name="items_img_height">100dp</dimen>
     <dimen name="main_txt_margin_vertical_between_parent">16dp</dimen>
-    <dimen name="main_btn_margin_vertical">0dp</dimen>
+    <dimen name="main_btn_margin_vertical">8dp</dimen>
     <dimen name="main_btn_margin_vertical_between_parent">0dp</dimen>
     <dimen name="main_btn_margin_horizontal_between_parent">0dp</dimen>
     <dimen name="main_btn_margin_horizontal">4dp</dimen>
@@ -49,4 +49,7 @@
     <dimen name="party_txt_text_size">16sp</dimen>
     <dimen name="player_items_txt_text_size">16sp</dimen>
     <dimen name="moves_btn_text_size">24sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

@@ -19,5 +19,10 @@
         <activity android:name=".BattleActivity" />
         <activity android:name=".ItemsActivity" />
         <activity android:name=".NameActivity" />
+        <activity android:name=".PackPackActivity" />
+        <activity android:name=".IndividualPackPackActivity"/>
+        <activity android:name=".HelpActivity" />
+        <activity android:name=".BattleResultActivity"></activity>
     </application>
+
 </manifest>
