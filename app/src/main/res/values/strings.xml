@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">Pack Pack Monsters</string>
+
+    <string name="fight">Fight</string>
+    <string name="items">Items</string>
+    <string name="run">Run</string>
+    <string name="party">Party</string>
+    <string name="health">Health</string>
+    <string name="health_shorthand">HP:</string>
+    <string name="faq">Help</string>
+    <string name="battle">Battle</string>
+    <string name="pack">Pack Pack</string>
+    <string name="type">Type:</string>
+    <string name="default_type_text">-</string>
+    <string name="default_health_text">-</string>
+    <string name="forward_slash">/</string>
+    <string name="default_item_name">Item</string>
+    <string name="default_item_description">Description</string>
+    <string name="default_hello_message">Hello</string>
+    <string name="welcome_message">Welcome to\nPack Pack Monsters!</string>
+    <string name="name_edit_hint">Enter your name.</string>
+    <string name="name_txt_label">What is your name?</string>
+    <string name="ele_gen">Ele Gen</string>
+    <string name="gen">Gen</string>
+    <string name="sp">SP</string>
+    <string name="sp_2">SP 2</string>
 </resources>
