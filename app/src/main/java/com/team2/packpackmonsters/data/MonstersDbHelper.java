@@ -26,7 +26,19 @@ public class MonstersDbHelper extends SQLiteOpenHelper
                 "(" + PacPacMonstersContract.PacPacMonsterEntry._ID + " INTEGER AUTO INCREMENT, " +//ID field row
                 PacPacMonstersContract.PacPacMonsterEntry.COLUMN_NAME + " TEXT NOT NULL, " + //Name field, can't be null
                 PacPacMonstersContract.PacPacMonsterEntry.COLUMN_HP + " INTEGER NOT NULL DEFAULT 50, " +//Hp field
-                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_TYPE + " INTEGER);";  //Type for monster
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_TYPE + " INTEGER, "  +//Type for monster
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_ONE + " TEXT NOT NULL, " +
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_ONE_DAMAGE + " INTEGER, " +
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_ONE_BUFF + " INTEGER, " +
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_TWO + " TEXT NOT NULL, " +
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_TWO_DAMAGE + " INTEGER, " +
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_TWO_BUFF + " INTEGER, " +
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_THREE + " TEXT NOT NULL, " +
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_THREE_DAMAGE + " INTEGER, " +
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_THREE_BUFF + " INTEGER, " +
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_FOUR + " TEXT NOT NULL, " +
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_FOUR_DAMAGE + " INTEGER, " +
+                PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_FOUR_BUFF + " INTEGER);";
                 //PacPacMonstersContract.PacPacMonsterEntry.COLUMN_IMAGE + " BLOB);";//Monster Image
 
         db.execSQL(SQL_CREATE_MONSTERS_TABLE);//Actually creates the table using the execSQL method, takes the db variable
