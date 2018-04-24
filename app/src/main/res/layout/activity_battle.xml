@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/battle_clo_top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/battle_clo_mid"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:id="@+id/battle_img_top_player"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/battle_img_margin_vertical"
+            android:layout_marginBottom="@dimen/battle_img_margin_vertical"
+            android:layout_marginRight="@dimen/battle_img_margin_horizontal_between_parent"
+            android:layout_marginLeft="@dimen/battle_img_margin_horizontal"
+            app:layout_constraintRight_toLeftOf="@id/battle_gdl_top_player"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/battle_gdl_top_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="@dimen/battle_gdl_top_percent" />
+
+        <TextView
+            android:id="@+id/battle_txt_top_player_health_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_txt_text_size"
+            android:text="@string/health"
+            android:gravity="center"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/battle_gdl_top_player"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/battle_txt_top_player_current_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_txt_text_size"
+            android:text="@string/default_health_text"
+            app:layout_constraintLeft_toRightOf="@id/battle_txt_top_player_slash"
+            app:layout_constraintTop_toBottomOf="@id/battle_txt_top_player_health_label"/>
+
+        <TextView
+            android:id="@+id/battle_txt_top_player_slash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_txt_text_size"
+            android:text="@string/forward_slash"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/battle_gdl_top_player"
+            app:layout_constraintTop_toBottomOf="@id/battle_txt_top_player_health_label"/>
+
+        <TextView
+            android:id="@+id/battle_txt_top_player_max_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_txt_text_size"
+            android:text="@string/default_health_text"
+            app:layout_constraintRight_toLeftOf="@id/battle_txt_top_player_slash"
+            app:layout_constraintTop_toBottomOf="@id/battle_txt_top_player_health_label"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/battle_clo_mid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/battle_clo_top"
+        app:layout_constraintBottom_toTopOf="@id/battle_clo_bot"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <Button
+            android:id="@+id/battle_btn_top_left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_btn_text_size"
+            android:text="@string/fight"
+            android:textAllCaps="false"
+            android:layout_marginLeft="@dimen/battle_btn_margin_horizontal_between_parent"
+            android:layout_marginRight="@dimen/battle_btn_margin_horizontal"
+            android:layout_marginTop="@dimen/battle_btn_margin_vertical_between_parent"
+            android:layout_marginBottom="@dimen/battle_btn_margin_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/battle_btn_bot_left"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/battle_btn_top_right"/>
+
+        <Button
+            android:id="@+id/battle_btn_top_right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_btn_text_size"
+            android:text="@string/items"
+            android:textAllCaps="false"
+            android:layout_marginRight="@dimen/battle_btn_margin_horizontal_between_parent"
+            android:layout_marginLeft="@dimen/battle_btn_margin_horizontal"
+            android:layout_marginTop="@dimen/battle_btn_margin_vertical_between_parent"
+            android:layout_marginBottom="@dimen/battle_btn_margin_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/battle_btn_bot_right"
+            app:layout_constraintLeft_toRightOf="@id/battle_btn_top_left"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <Button
+            android:id="@+id/battle_btn_bot_left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_btn_text_size"
+            android:text="@string/party"
+            android:textAllCaps="false"
+            android:layout_marginLeft="@dimen/battle_btn_margin_horizontal_between_parent"
+            android:layout_marginRight="@dimen/battle_btn_margin_horizontal"
+            android:layout_marginTop="@dimen/battle_btn_margin_vertical"
+            android:layout_marginBottom="@dimen/battle_btn_margin_vertical_between_parent"
+            app:layout_constraintTop_toBottomOf="@id/battle_btn_top_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/battle_btn_bot_right"/>
+
+        <Button
+            android:id="@+id/battle_btn_bot_right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_btn_text_size"
+            android:text="@string/run"
+            android:textAllCaps="false"
+            android:layout_marginRight="@dimen/battle_btn_margin_horizontal_between_parent"
+            android:layout_marginLeft="@dimen/battle_btn_margin_horizontal"
+            android:layout_marginTop="@dimen/battle_btn_margin_vertical"
+            android:layout_marginBottom="@dimen/battle_btn_margin_vertical_between_parent"
+            app:layout_constraintTop_toBottomOf="@id/battle_btn_top_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/battle_btn_bot_left"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/battle_clo_bot"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/battle_clo_mid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        
+        <TextView
+            android:id="@+id/battle_txt_bot_player_health_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_txt_text_size"
+            android:text="@string/health"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/battle_gdl_bot_player"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/battle_txt_bot_player_current_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_txt_text_size"
+            android:text="@string/default_health_text"
+            app:layout_constraintRight_toLeftOf="@id/battle_txt_bot_player_slash"
+            app:layout_constraintTop_toBottomOf="@id/battle_txt_bot_player_health_label"/>
+
+        <TextView
+            android:id="@+id/battle_txt_bot_player_slash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_txt_text_size"
+            android:text="@string/forward_slash"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/battle_gdl_bot_player"
+            app:layout_constraintTop_toBottomOf="@id/battle_txt_bot_player_health_label"/>
+
+        <TextView
+            android:id="@+id/battle_txt_bot_player_max_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/battle_txt_text_size"
+            android:text="@string/default_health_text"
+            app:layout_constraintLeft_toRightOf="@id/battle_txt_bot_player_slash"
+            app:layout_constraintTop_toBottomOf="@id/battle_txt_bot_player_health_label"/>
+
+        <android.support.constraint.Guideline
+            android:id="@+id/battle_gdl_bot_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="@dimen/battle_gdl_bot_percent" />
+
+        <ImageView
+            android:id="@+id/battle_img_bot_player"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/battle_img_margin_vertical"
+            android:layout_marginBottom="@dimen/battle_img_margin_vertical"
+            android:layout_marginRight="@dimen/battle_img_margin_horizontal_between_parent"
+            android:layout_marginLeft="@dimen/battle_img_margin_horizontal"
+            app:layout_constraintLeft_toRightOf="@id/battle_gdl_bot_player"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
