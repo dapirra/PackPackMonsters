@@ -11,7 +11,9 @@
     <string name="party">Party</string>
     <string name="health">Health</string>
     <string name="health_enemy">Enemy Health</string>
-    <string name="health_shorthand">HP:</string>
+    <string name="health_shorthand_with_colon">HP:</string>
+    <string name="base_health_with_colon">Base Health:</string>
+    <string name="moves_underlined"><u>Moves</u></string>
     <string name="faq">Help</string>
     <string name="battle">Battle</string>
     <string name="pack">Pack Pack</string>
@@ -19,6 +21,8 @@
     <string name="type">Type</string>
     <string name="default_type_text">-</string>
     <string name="default_health_text">-</string>
+    <string name="default_move_text">Move</string>
+    <string name="bullet">&#8226;</string>
     <string name="forward_slash">/</string>
     <string name="default_item_name">Item</string>
     <string name="default_item_description">Description</string>
