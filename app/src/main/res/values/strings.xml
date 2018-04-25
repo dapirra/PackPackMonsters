@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Pack Pack Monsters</string>
+    <string name="pack_pack_activity_title">Pack Pack</string>
+    <string name="battle_activity_title">Battle</string>
+    <string name="items_activity_title">Items</string>
+    <string name="help_activity_title">FAQ</string>
 
     <string name="fight">Fight</string>
     <string name="items">Items</string>
@@ -11,7 +15,8 @@
     <string name="faq">Help</string>
     <string name="battle">Battle</string>
     <string name="pack">Pack Pack</string>
-    <string name="type">Type:</string>
+    <string name="type_with_colon">Type:</string>
+    <string name="type">Type</string>
     <string name="default_type_text">-</string>
     <string name="default_health_text">-</string>
     <string name="forward_slash">/</string>

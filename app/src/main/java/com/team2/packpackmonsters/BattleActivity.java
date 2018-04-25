@@ -19,6 +19,7 @@ public class BattleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
+        setTitle(getResources().getString(R.string.battle_activity_title));
 
         battleVfp = findViewById(R.id.battle_vfp);
 
