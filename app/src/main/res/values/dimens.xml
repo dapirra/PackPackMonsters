@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="battle_btn_margin_vertical">0dp</dimen>
+    <dimen name="battle_btn_margin_vertical">8dp</dimen>
     <dimen name="battle_btn_margin_vertical_between_parent">0dp</dimen>
     <dimen name="battle_btn_margin_horizontal_between_parent">0dp</dimen>
     <dimen name="battle_btn_margin_horizontal">4dp</dimen>
@@ -25,7 +25,7 @@
     <dimen name="party_margin_vertical">4dp</dimen>
     <dimen name="party_type_margin_top">12dp</dimen>
     <dimen name="party_img_margin_horizontal">4dp</dimen>
-    <dimen name="moves_btn_margin_vertical">0dp</dimen>
+    <dimen name="moves_btn_margin_vertical">8dp</dimen>
     <dimen name="moves_btn_margin_vertical_between_parent">0dp</dimen>
     <dimen name="moves_btn_margin_horizontal_between_parent">0dp</dimen>
     <dimen name="moves_btn_margin_horizontal">4dp</dimen>
