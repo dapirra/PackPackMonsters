@@ -1,12 +1,16 @@
 package com.team2.packpackmonsters;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
@@ -14,6 +18,12 @@ import java.util.ArrayList;
 public class BattleActivity extends AppCompatActivity {
 
     private ViewFlipper battleVfp;
+    private ImageView battleImgTopPlayer;
+    private ImageView battleImgBotPlayer;
+    private ConstraintLayout battleCloTopHealth;
+    private ConstraintLayout battleCloTop;
+    private ConstraintLayout battleCloBotHealth;
+    private ConstraintLayout battleCloBot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +32,17 @@ public class BattleActivity extends AppCompatActivity {
         setTitle(getResources().getString(R.string.battle_activity_title));
 
         battleVfp = findViewById(R.id.battle_vfp);
+        battleImgTopPlayer = findViewById(R.id.battle_img_top_player);
+        battleImgBotPlayer = findViewById(R.id.battle_img_bot_player);
+        battleCloTopHealth = findViewById(R.id.battle_clo_top_health);
+        battleCloTop = findViewById(R.id.battle_clo_top);
+        battleCloBotHealth = findViewById(R.id.battle_clo_bot_health);
+        battleCloBot = findViewById(R.id.battle_clo_bot);
+
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+        {
+            adjustLayoutToLandscape();
+        }
 
         initializeOnClickListeners();
     }
@@ -82,6 +103,57 @@ public class BattleActivity extends AppCompatActivity {
         {
             battleVfp.setDisplayedChild(0);
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE)
+        {
+            adjustLayoutToLandscape();
+        }
+        else if(newConfig.orientation == Configuration.ORIENTATION_PORTRAIT)
+        {
+            adjustLayoutToPortrait();
+        }
+    }
+
+    private void adjustLayoutToLandscape()
+    {
+        battleImgTopPlayer.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width_landscape);
+        battleImgTopPlayer.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height_landscape);
+        battleImgBotPlayer.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width_landscape);
+        battleImgBotPlayer.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height_landscape);
+
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(battleCloTop);
+        constraintSet.clear(battleCloTopHealth.getId(), ConstraintSet.BOTTOM);
+        constraintSet.applyTo(battleCloTop);
+
+        constraintSet = new ConstraintSet();
+        constraintSet.clone(battleCloBot);
+        constraintSet.clear(battleCloBotHealth.getId(), ConstraintSet.TOP);
+        constraintSet.applyTo(battleCloBot);
+    }
+
+    private void adjustLayoutToPortrait()
+    {
+        battleImgTopPlayer.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width);
+        battleImgTopPlayer.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height);
+        battleImgBotPlayer.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width);
+        battleImgBotPlayer.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height);
+
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(battleCloTop);
+        constraintSet.connect(battleCloTopHealth.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM);
+        constraintSet.applyTo(battleCloTop);
+
+        constraintSet = new ConstraintSet();
+        constraintSet.clone(battleCloBot);
+        constraintSet.connect(battleCloBotHealth.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
+        constraintSet.applyTo(battleCloBot);
     }
 
     private class BattleBtnOnClickListener implements View.OnClickListener
