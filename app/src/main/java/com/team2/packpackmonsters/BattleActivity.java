@@ -2,6 +2,7 @@ package com.team2.packpackmonsters;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.media.Image;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,8 @@ public class BattleActivity extends AppCompatActivity {
     private ConstraintLayout battleCloTop;
     private ConstraintLayout battleCloBotHealth;
     private ConstraintLayout battleCloBot;
+    private ArrayList<ImageView> itemImgs;
+    private ArrayList<ImageView> partyImgs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,16 @@ public class BattleActivity extends AppCompatActivity {
         battleCloTop = findViewById(R.id.battle_clo_top);
         battleCloBotHealth = findViewById(R.id.battle_clo_bot_health);
         battleCloBot = findViewById(R.id.battle_clo_bot);
+
+        itemImgs = new ArrayList<>();
+        itemImgs.add((ImageView)findViewById(R.id.player_items_img_first));
+        itemImgs.add((ImageView)findViewById(R.id.player_items_img_second));
+        itemImgs.add((ImageView)findViewById(R.id.player_items_img_third));
+
+        partyImgs = new ArrayList<>();
+        partyImgs.add((ImageView)findViewById(R.id.party_img_first));
+        partyImgs.add((ImageView)findViewById(R.id.party_img_second));
+        partyImgs.add((ImageView)findViewById(R.id.party_img_third));
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
         {
@@ -127,6 +140,18 @@ public class BattleActivity extends AppCompatActivity {
         battleImgBotPlayer.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width_landscape);
         battleImgBotPlayer.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height_landscape);
 
+        for(ImageView img: itemImgs)
+        {
+            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.player_items_img_width_landscape);
+            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.player_items_img_height_landscape);
+        }
+
+        for(ImageView img: partyImgs)
+        {
+            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.party_img_width_landscape);
+            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.party_img_height_landscape);
+        }
+
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(battleCloTop);
         constraintSet.clear(battleCloTopHealth.getId(), ConstraintSet.BOTTOM);
@@ -144,6 +169,18 @@ public class BattleActivity extends AppCompatActivity {
         battleImgTopPlayer.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height);
         battleImgBotPlayer.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width);
         battleImgBotPlayer.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height);
+
+        for(ImageView img: itemImgs)
+        {
+            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.player_items_img_width);
+            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.player_items_img_height);
+        }
+
+        for(ImageView img: partyImgs)
+        {
+            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.party_img_width);
+            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.party_img_height);
+        }
 
         ConstraintSet constraintSet = new ConstraintSet();
         constraintSet.clone(battleCloTop);

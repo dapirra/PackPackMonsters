@@ -83,11 +83,13 @@ public class PackAdapter extends BaseAdapter
             TextView txtBullet = new TextView(context);
             txtBullet.setTextSize(TEXT_SIZE);
             txtBullet.setText("\u2022 ");
+            txtBullet.setTextColor(Color.BLACK);
             txtBullet.setGravity(Gravity.CENTER);
 
             TextView txtPack = new TextView(context);
             txtPack.setTextSize(TEXT_SIZE);
             txtPack.setText(context.getResources().getString(R.string.pack)); //TODO Temporary used for testing individual pack pack screen
+            txtPack.setTextColor(Color.BLACK);
             txtPack.setGravity(Gravity.CENTER);
 
             llo.addView(txtBullet);
