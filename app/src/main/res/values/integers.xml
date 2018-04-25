@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="pack_text_size">24</integer>
+    <integer name="pack_padding">4</integer>
+    <integer name="pack_margin">8</integer>
+    <integer name="pack_img_size">50</integer>
+</resources>

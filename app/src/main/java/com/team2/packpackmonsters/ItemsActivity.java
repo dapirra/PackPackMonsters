@@ -9,5 +9,6 @@ public class ItemsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_items);
+        setTitle(getResources().getString(R.string.items_activity_title));
     }
 }

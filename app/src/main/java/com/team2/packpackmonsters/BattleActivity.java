@@ -19,6 +19,7 @@ public class BattleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
+        setTitle(getResources().getString(R.string.battle_activity_title));
 
         battleVfp = findViewById(R.id.battle_vfp);
 
@@ -100,7 +101,7 @@ public class BattleActivity extends AppCompatActivity {
                     battleVfp.setDisplayedChild(3);
                     break;
                 case R.id.battle_btn_bot_right:
-                    //Replace with BattleResultActivity
+                    //TODO Replace with BattleResultActivity
                     startActivity(new Intent(v.getContext(), MainActivity.class));
                     break;
             }
