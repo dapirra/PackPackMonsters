@@ -23,7 +23,7 @@
             android:scaleType="centerCrop"
             android:layout_width="@dimen/ind_pack_img_width"
             android:layout_height="@dimen/ind_pack_img_height"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_large"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"/>
@@ -280,12 +280,14 @@
             android:id="@+id/ind_pack_txt_move_4_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/ind_pack_margin_vertical_large"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
             android:text="@string/type_with_colon"
             android:gravity="center"
             app:layout_constraintLeft_toLeftOf="@id/ind_pack_txt_move_4"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_4_bullet"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_4_bullet"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/ind_pack_txt_move_4_type"
