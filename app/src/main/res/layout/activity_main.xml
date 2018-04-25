@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -93,10 +93,9 @@
         android:id="@+id/text_view_test2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/main_clo"
-        android:layout_marginTop="89dp"
+        android:layout_above="@+id/text_view_test4"
+        android:layout_alignLeft="@+id/text_view_test4"
+        android:layout_alignStart="@+id/text_view_test4"
         android:text="Test for Monsters database"
         tools:layout_editor_absoluteX="163dp"
         tools:layout_editor_absoluteY="35dp" />
@@ -106,10 +105,12 @@
         android:id="@+id/text_view_test4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/text_view_test2"
-        android:layout_alignRight="@+id/text_view_test2"
-        android:layout_below="@+id/text_view_test2"
-        android:layout_marginTop="52dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="47dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp"
         android:text="Test for Items Database" />
 
 

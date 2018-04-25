@@ -1,17 +1,24 @@
 package com.team2.packpackmonsters;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
+
+import com.team2.packpackmonsters.data.MonstersDbHelper;
+import com.team2.packpackmonsters.data.PacPacMonstersContract;
 
 import java.util.ArrayList;
 
 public class BattleActivity extends AppCompatActivity {
 
     private ViewFlipper battleVfp;
+    private MonstersDbHelper MonDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,38 +28,32 @@ public class BattleActivity extends AppCompatActivity {
         battleVfp = findViewById(R.id.battle_vfp);
 
         ArrayList<Button> battleBtns = new ArrayList<>();
-        battleBtns.add((Button)findViewById(R.id.battle_btn_top_left));
-        battleBtns.add((Button)findViewById(R.id.battle_btn_top_right));
-        battleBtns.add((Button)findViewById(R.id.battle_btn_bot_left));
-        battleBtns.add((Button)findViewById(R.id.battle_btn_bot_right));
+        battleBtns.add((Button) findViewById(R.id.battle_btn_top_left));
+        battleBtns.add((Button) findViewById(R.id.battle_btn_top_right));
+        battleBtns.add((Button) findViewById(R.id.battle_btn_bot_left));
+        battleBtns.add((Button) findViewById(R.id.battle_btn_bot_right));
 
-        for(Button btn: battleBtns)
-        {
+        for (Button btn : battleBtns) {
             btn.setOnClickListener(new BattleBtnOnClickListener());
         }
+
+
     }
 
     @Override
-    public void onBackPressed()
-    {
-        if(battleVfp.getDisplayedChild() == 0)
-        {
+    public void onBackPressed() {
+        if (battleVfp.getDisplayedChild() == 0) {
             super.onBackPressed();
-        }
-        else
-        {
+        } else {
             battleVfp.setDisplayedChild(0);
         }
     }
 
-    private class BattleBtnOnClickListener implements View.OnClickListener
-    {
+    private class BattleBtnOnClickListener implements View.OnClickListener {
         @Override
-        public void onClick(View v)
-        {
-            switch(v.getId())
-            {
-                case R.id.battle_btn_top_left:
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.battle_btn_top_left://Battle button
                     battleVfp.setDisplayedChild(1);
                     break;
                 case R.id.battle_btn_top_right:
@@ -67,4 +68,6 @@ public class BattleActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }
