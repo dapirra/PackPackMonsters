@@ -12,7 +12,7 @@
     <string name="pack">Pack Pack</string>
     <string name="type">Type:</string>
     <string name="default_type_text">-</string>
-    <string name="default_health_text">134</string>
+    <string name="default_health_text">-</string>
     <string name="forward_slash">/</string>
     <string name="default_item_name">Item</string>
     <string name="default_item_description">Description</string>

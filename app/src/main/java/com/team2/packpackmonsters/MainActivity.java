@@ -44,16 +44,7 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Button> mainBtns = new ArrayList<>();
-        mainBtns.add((Button) findViewById(R.id.main_btn_top_left));
-        mainBtns.add((Button) findViewById(R.id.main_btn_top_right));
-        mainBtns.add((Button) findViewById(R.id.main_btn_bot_left));
-        mainBtns.add((Button) findViewById(R.id.main_btn_bot_right));
-
-        for (Button btn : mainBtns)
-        {
-            btn.setOnClickListener(new MainBtnOnClickListener());
-        }
+        initializeOnClickListeners();
 
         MonDbHelper = new MonstersDbHelper(this);
         UsDbHelper = new UserProfileDbHelper(this);
@@ -73,6 +64,20 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
         for(int i = 0; i <= 3; i++)
         {
             openDialog();
+        }
+    }
+
+    private void initializeOnClickListeners()
+    {
+        ArrayList<Button> mainBtns = new ArrayList<>();
+        mainBtns.add((Button) findViewById(R.id.main_btn_top_left));
+        mainBtns.add((Button) findViewById(R.id.main_btn_top_right));
+        mainBtns.add((Button) findViewById(R.id.main_btn_bot_left));
+        mainBtns.add((Button) findViewById(R.id.main_btn_bot_right));
+
+        for (Button btn : mainBtns)
+        {
+            btn.setOnClickListener(new MainBtnOnClickListener());
         }
     }
 
