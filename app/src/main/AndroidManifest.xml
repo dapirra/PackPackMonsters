@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BattleActivity" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".BattleActivity" android:parentActivityName=".MainActivity" android:configChanges="orientation|screenSize"/>
         <activity android:name=".ItemsActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".NameActivity" />
         <activity android:name=".PackPackActivity" android:parentActivityName=".MainActivity"/>
