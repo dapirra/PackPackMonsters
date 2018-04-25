@@ -45,8 +45,6 @@
     <dimen name="items_gdl_percent">0.7</dimen>
     <dimen name="battle_gdl_top_percent">0.6</dimen>
     <dimen name="battle_gdl_bot_percent">0.4</dimen>
-    <dimen name="battle_clo_player">0.35</dimen>
-    <dimen name="battle_clo_buttons">0.3</dimen>
 
     <dimen name="items_txt_name_text_size">24sp</dimen>
     <dimen name="items_txt_description_text_size">16sp</dimen>
