@@ -16,13 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BattleActivity" />
-        <activity android:name=".ItemsActivity" />
+        <activity android:name=".BattleActivity" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".ItemsActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".NameActivity" />
-        <activity android:name=".PackPackActivity" />
-        <activity android:name=".IndividualPackPackActivity"/>
-        <activity android:name=".HelpActivity" />
-        <activity android:name=".BattleResultActivity"></activity>
+        <activity android:name=".PackPackActivity" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".IndividualPackPackActivity" android:parentActivityName=".PackPackActivity"/>
+        <activity android:name=".HelpActivity" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".BattleResultActivity" />
     </application>
 
 </manifest>
