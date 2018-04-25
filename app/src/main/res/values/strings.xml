@@ -6,6 +6,7 @@
     <string name="run">Run</string>
     <string name="party">Party</string>
     <string name="health">Health</string>
+    <string name="health_enemy">Enemy Health</string>
     <string name="health_shorthand">HP:</string>
     <string name="faq">Help</string>
     <string name="battle">Battle</string>
