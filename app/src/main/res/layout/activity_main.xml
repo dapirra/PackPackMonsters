@@ -117,3 +117,34 @@
         app:headerLayout="@layout/main_nav_header"/>
 
 </android.support.v4.widget.DrawerLayout>
+<!--
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/text_view_test2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/main_clo"
+        android:layout_marginTop="89dp"
+        android:text="Test for Monsters database"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="35dp" />
+
+
+    <TextView
+        android:id="@+id/text_view_test4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/text_view_test2"
+        android:layout_alignRight="@+id/text_view_test2"
+        android:layout_below="@+id/text_view_test2"
+        android:layout_marginTop="52dp"
+        android:text="Test for Items Database" />
+
+
+
+</RelativeLayout>-->
