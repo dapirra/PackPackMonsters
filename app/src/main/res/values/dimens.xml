@@ -36,6 +36,7 @@
     <dimen name="ind_pack_margin_horizontal">8dp</dimen>
     <dimen name="ind_pack_margin_horizontal_short">4dp</dimen>
     <dimen name="pack_margin">8dp</dimen>
+    <dimen name="battle_result_margin_vertical">32dp</dimen>
 
     <dimen name="border_padding">1dp</dimen>
     <dimen name="pack_lst_padding">12dp</dimen>
@@ -63,6 +64,7 @@
     <dimen name="battle_gdl_top_percent">0.5</dimen>
     <dimen name="battle_gdl_bot_percent">0.5</dimen>
     <dimen name="ind_pack_gdl_percent">0.1</dimen>
+    <dimen name="battle_result_gdl_percent">0.3</dimen>
 
     <dimen name="items_txt_name_text_size">24sp</dimen>
     <dimen name="items_txt_description_text_size">16sp</dimen>
@@ -78,6 +80,7 @@
     <dimen name="moves_btn_text_size">24sp</dimen>
     <dimen name="pack_text_size">16sp</dimen>
     <dimen name="ind_pack_text_size">24sp</dimen>
+    <dimen name="battle_result_text_size">24sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>

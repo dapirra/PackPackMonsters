@@ -210,8 +210,10 @@ public class BattleActivity extends AppCompatActivity {
                     battleVfp.setDisplayedChild(3);
                     break;
                 case R.id.battle_btn_bot_right:
-                    //TODO Replace with BattleResultActivity
-                    startActivity(new Intent(v.getContext(), MainActivity.class));
+                    Intent intent = new Intent(v.getContext(), BattleResultActivity.class);
+                    intent.putExtra(BattleResultActivity.WINNER_KEY, false);
+
+                    startActivity(intent);
                     break;
             }
         }

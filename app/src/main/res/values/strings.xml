@@ -17,6 +17,7 @@
     <string name="faq">Help</string>
     <string name="battle">Battle</string>
     <string name="pack">Pack Pack</string>
+    <string name="home">Home</string>
     <string name="type_with_colon">Type:</string>
     <string name="type">Type</string>
     <string name="default_type_text">-</string>
@@ -34,6 +35,8 @@
     <string name="gen">Gen</string>
     <string name="sp">SP</string>
     <string name="sp_2">SP 2</string>
+    <string name="victory_text">You\nWon!</string>
+    <string name="lose_text">You\nLost...</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
