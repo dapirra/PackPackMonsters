@@ -5,8 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
     static String dataUserName;
     static String dataMonsterName;
     static String dataItem;
+    private MonsterMoveDbHelper MonMovDbHelper;
+    private DrawerLayout drawer;
 
 
     @Override
@@ -38,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        drawer = findViewById(R.id.main_dwr);
+
+        initializeToolbar();
         initializeOnClickListeners();
 
         MonDbHelper = new MonstersDbHelper(this);
@@ -54,20 +65,6 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
         //{
           //  openDialog();
         //}
-    }
-
-    private void initializeOnClickListeners()
-    {
-        ArrayList<Button> mainBtns = new ArrayList<>();
-        mainBtns.add((Button) findViewById(R.id.main_btn_top_left));
-        mainBtns.add((Button) findViewById(R.id.main_btn_top_right));
-        mainBtns.add((Button) findViewById(R.id.main_btn_bot_left));
-        mainBtns.add((Button) findViewById(R.id.main_btn_bot_right));
-
-        for (Button btn : mainBtns)
-        {
-            btn.setOnClickListener(new MainBtnOnClickListener());
-        }
     }
 
     public void openDialog()
@@ -436,6 +433,9 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
                 displayDatabaseInfoUserProfile();
                 //displayStats(); method which will display stats
                 return true;
+            case android.R.id.home:
+                drawer.openDrawer(GravityCompat.START);
+                return true;
         }
         return super.onOptionsItemSelected(item);
 
@@ -513,6 +513,34 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
                 }*/
     }
 
+    private void initializeToolbar()
+    {
+        Toolbar toolbar = findViewById(R.id.main_tbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+    }
+
+    private void initializeOnClickListeners()
+    {
+        ArrayList<Button> mainBtns = new ArrayList<>();
+        mainBtns.add((Button) findViewById(R.id.main_btn_top_left));
+        mainBtns.add((Button) findViewById(R.id.main_btn_top_right));
+        mainBtns.add((Button) findViewById(R.id.main_btn_bot_left));
+        mainBtns.add((Button) findViewById(R.id.main_btn_bot_right));
+
+        for (Button btn : mainBtns)
+        {
+            btn.setOnClickListener(new MainBtnOnClickListener());
+        }
+    }
+
     private class MainBtnOnClickListener implements View.OnClickListener
     {
         @Override
@@ -533,6 +561,23 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
                     startActivity(new Intent(v.getContext(), HelpActivity.class));
                     break;
             }
+        }
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(drawer.isDrawerOpen(GravityCompat.START))
+        {
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
         }
     }
 }
