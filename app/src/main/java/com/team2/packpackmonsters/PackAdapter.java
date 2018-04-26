@@ -88,7 +88,7 @@ public class PackAdapter extends BaseAdapter
 
             TextView txtPack = new TextView(context);
             txtPack.setTextSize(TEXT_SIZE);
-            txtPack.setText(context.getResources().getString(R.string.pack)); //TODO Temporary used for testing individual pack pack screen
+            txtPack.setText(context.getResources().getString(R.string.pack));
             txtPack.setTextColor(Color.BLACK);
             txtPack.setGravity(Gravity.CENTER);
 

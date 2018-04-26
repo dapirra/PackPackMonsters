@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="battle_btn_margin_vertical">0dp</dimen>
+    <dimen name="battle_btn_margin_vertical">4dp</dimen>
     <dimen name="battle_btn_margin_vertical_between_parent">0dp</dimen>
     <dimen name="battle_btn_margin_horizontal_between_parent">0dp</dimen>
     <dimen name="battle_btn_margin_horizontal">4dp</dimen>
@@ -10,12 +10,12 @@
     <dimen name="battle_img_margin_horizontal">12dp</dimen>
     <dimen name="items_txt_margin_vertical_between_parent">8dp</dimen>
     <dimen name="items_txt_margin_vertical">8dp</dimen>
-    <dimen name="items_txt_description_margin_horizontal">4dp</dimen>
+    <dimen name="items_txt_description_margin_horizontal">8dp</dimen>
     <dimen name="items_img_margin_vertical">8dp</dimen>
     <dimen name="items_img_margin_horizontal_between_parent">12dp</dimen>
     <dimen name="items_img_margin_horizontal">4dp</dimen>
     <dimen name="main_txt_margin_vertical_between_parent">16dp</dimen>
-    <dimen name="main_btn_margin_vertical">8dp</dimen>
+    <dimen name="main_btn_margin_vertical">4dp</dimen>
     <dimen name="main_btn_margin_vertical_between_parent">0dp</dimen>
     <dimen name="main_btn_margin_horizontal_between_parent">0dp</dimen>
     <dimen name="main_btn_margin_horizontal">4dp</dimen>
@@ -25,7 +25,7 @@
     <dimen name="party_margin_vertical">4dp</dimen>
     <dimen name="party_type_margin_top">12dp</dimen>
     <dimen name="party_img_margin_horizontal">4dp</dimen>
-    <dimen name="moves_btn_margin_vertical">0dp</dimen>
+    <dimen name="moves_btn_margin_vertical">4dp</dimen>
     <dimen name="moves_btn_margin_vertical_between_parent">0dp</dimen>
     <dimen name="moves_btn_margin_horizontal_between_parent">0dp</dimen>
     <dimen name="moves_btn_margin_horizontal">4dp</dimen>
@@ -36,6 +36,7 @@
     <dimen name="ind_pack_margin_horizontal">8dp</dimen>
     <dimen name="ind_pack_margin_horizontal_short">4dp</dimen>
     <dimen name="pack_margin">8dp</dimen>
+    <dimen name="battle_result_margin_vertical">32dp</dimen>
 
     <dimen name="border_padding">1dp</dimen>
     <dimen name="pack_lst_padding">12dp</dimen>
@@ -59,10 +60,11 @@
     <dimen name="ind_pack_img_height">125dp</dimen>
     <dimen name="pack_img_size">50dp</dimen>
 
-    <dimen name="items_gdl_percent">0.7</dimen>
+    <dimen name="items_gdl_percent">0.6</dimen>
     <dimen name="battle_gdl_top_percent">0.5</dimen>
     <dimen name="battle_gdl_bot_percent">0.5</dimen>
     <dimen name="ind_pack_gdl_percent">0.1</dimen>
+    <dimen name="battle_result_gdl_percent">0.3</dimen>
 
     <dimen name="items_txt_name_text_size">24sp</dimen>
     <dimen name="items_txt_description_text_size">16sp</dimen>
@@ -76,8 +78,9 @@
     <dimen name="party_txt_value_text_size">16sp</dimen>
     <dimen name="player_items_txt_text_size">16sp</dimen>
     <dimen name="moves_btn_text_size">24sp</dimen>
-    <dimen name="pack_text_size">24sp</dimen>
+    <dimen name="pack_text_size">16sp</dimen>
     <dimen name="ind_pack_text_size">24sp</dimen>
+    <dimen name="battle_result_text_size">24sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
