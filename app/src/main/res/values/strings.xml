@@ -5,6 +5,9 @@
     <string name="items_activity_title">Items</string>
     <string name="help_activity_title">FAQ</string>
 
+    <string name="navigation_drawer_open">Opening navigation drawer.</string>
+    <string name="navigation_drawer_close">Closing navigation drawer.</string>
+
     <string name="fight">Fight</string>
     <string name="items">Items</string>
     <string name="run">Run</string>
@@ -18,11 +21,16 @@
     <string name="battle">Battle</string>
     <string name="pack">Pack Pack</string>
     <string name="home">Home</string>
+    <string name="stats_underlined"><u>Stats</u></string>
+    <string name="wins_with_colon">Wins:</string>
+    <string name="losses_with_colon">Losses:</string>
+    <string name="surrenders_with_colon">Surrenders:</string>
     <string name="type_with_colon">Type:</string>
     <string name="type">Type</string>
     <string name="default_type_text">-</string>
     <string name="default_health_text">-</string>
     <string name="default_move_text">Move</string>
+    <string name="default_stat_text">-</string>
     <string name="bullet">&#8226;</string>
     <string name="forward_slash">/</string>
     <string name="default_item_name">Item</string>
