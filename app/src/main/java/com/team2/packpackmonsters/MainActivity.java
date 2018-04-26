@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
     static String dataUserName;
     static String dataMonsterName;
     static String dataItem;
-    private MonsterMoveDbHelper MonMovDbHelper;
     private DrawerLayout drawer;
 
 
@@ -54,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
         MonDbHelper = new MonstersDbHelper(this);
         //UsDbHelper = new UserProfileDbHelper(this);
         ItDbHelper = new ItemsDbHelper(this);
-        insertMonsters();
-        insertItems();
-        displayDatabaseInfoItems();
-        displayDatabaseInfoMonster();
+        //insertMonsters();
+        //insertItems();
+        //displayDatabaseInfoItems();
+        //displayDatabaseInfoMonster();
 
         //UserProfile displaying name activity
         //textViewUsername = findViewById(R.id.text_view_username);
@@ -97,8 +96,8 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
         Cursor cursor = db.rawQuery("SELECT * FROM " + PacPacMonstersContract.PacPacMonsterEntry.TABLE_NAME, null);
         try
         {
-            TextView displayView = (TextView) findViewById(R.id.text_view_test2);
-            displayView.setText("Number of rows in Monster database table: " + cursor.getCount());
+            //TextView displayView = (TextView) findViewById(R.id.text_view_test2);
+            //displayView.setText("Number of rows in Monster database table: " + cursor.getCount());
         } finally
         {
             cursor.close();
@@ -113,8 +112,8 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
         Cursor cursor = db.rawQuery("SELECT * FROM " + PacPacMonstersContract.ItemsEntry.TABLE_NAME, null);
         try
         {
-            TextView displayView = (TextView) findViewById(R.id.text_view_test4);
-            displayView.setText("Number of rows in Items database table: " + cursor.getCount());
+            //TextView displayView = (TextView) findViewById(R.id.text_view_test4);
+            //displayView.setText("Number of rows in Items database table: " + cursor.getCount());
         } finally
         {
             cursor.close();
