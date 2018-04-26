@@ -19,13 +19,6 @@ public class ItemsActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_items);
-
-        //Revive Header
-        TextView displayViewRevive = findViewById(R.id.items_txt_top_item_name);
-        displayViewRevive.setText("Revive");
-
-        TextView displayViewReviveDesc = findViewById(R.id.items_txt_top_item_description);
-        displayViewReviveDesc.setText("You can use the revive item to bring back to life a Pack Pack Monster who has lost all it's hp!");
-
+        setTitle(getResources().getString(R.string.items_activity_title));
     }
 }

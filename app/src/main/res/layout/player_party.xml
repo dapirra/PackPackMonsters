@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
+    android:id="@+id/party_main_clo"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,17 +8,24 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/party_clo_first"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/border"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintRight_toLeftOf="@id/party_clo_second"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
             android:id="@+id/party_img_first"
             android:layout_width="@dimen/party_img_width"
             android:layout_height="@dimen/party_img_height"
             android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/party_margin_vertical"
+            android:layout_marginLeft="@dimen/party_img_margin_horizontal"
+            android:layout_marginRight="@dimen/party_img_margin_horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
@@ -25,52 +33,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
-            android:text="@string/health_shorthand"
+            android:textSize="@dimen/party_txt_label_text_size"
+            android:text="@string/health_shorthand_with_colon"
             android:gravity="center"
-            app:layout_constraintLeft_toRightOf="@id/party_img_first"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_marginLeft="@dimen/party_margin_left"
+            android:layout_marginTop="@dimen/party_margin_vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/party_img_first"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_first_type"/>
 
         <TextView
             android:id="@+id/party_txt_first_current_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/default_health_text"
-            android:layout_marginLeft="@dimen/party_txt_margin_left_between_label"
+            android:layout_marginLeft="@dimen/party_margin_left"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_first_health_label"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/party_img_first"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_first_type"/>
 
         <TextView
             android:id="@+id/party_txt_first_slash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/forward_slash"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_first_current_health"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/party_img_first"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_first_type"/>
 
         <TextView
             android:id="@+id/party_txt_first_max_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/default_health_text"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_first_slash"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/party_img_first"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_first_type"/>
 
         <TextView
             android:id="@+id/party_txt_first_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
-            android:text="@string/type"
+            android:textSize="@dimen/party_txt_label_text_size"
+            android:text="@string/type_with_colon"
+            android:layout_marginTop="@dimen/party_margin_vertical"
+            android:layout_marginBottom="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/party_img_first"
+            app:layout_constraintTop_toBottomOf="@id/party_txt_first_health_label"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
@@ -78,27 +97,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/default_type_text"
-            android:layout_marginLeft="@dimen/party_txt_margin_left_between_label"
+            android:layout_marginLeft="@dimen/party_margin_left"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_first_type_label"
-            app:layout_constraintTop_toBottomOf="@id/party_img_first"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="@id/party_txt_first_type_label"
+            app:layout_constraintBottom_toBottomOf="@id/party_txt_first_type_label"/>
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/party_clo_second"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/border"
         app:layout_constraintLeft_toRightOf="@id/party_clo_first"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintRight_toLeftOf="@id/party_clo_third"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
             android:id="@+id/party_img_second"
             android:layout_width="@dimen/party_img_width"
             android:layout_height="@dimen/party_img_height"
             android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/party_margin_vertical"
+            android:layout_marginLeft="@dimen/party_img_margin_horizontal"
+            android:layout_marginRight="@dimen/party_img_margin_horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
@@ -106,53 +133,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
-            android:text="@string/health_shorthand"
+            android:textSize="@dimen/party_txt_label_text_size"
+            android:text="@string/health_shorthand_with_colon"
             android:gravity="center"
-            app:layout_constraintLeft_toRightOf="@id/party_img_second"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_marginLeft="@dimen/party_margin_left"
+            android:layout_marginTop="@dimen/party_margin_vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/party_img_second"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_second_type"/>
 
         <TextView
             android:id="@+id/party_txt_second_current_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/default_health_text"
-            android:layout_marginLeft="@dimen/party_txt_margin_left_between_label"
+            android:layout_marginLeft="@dimen/party_margin_left"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_second_health_label"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/party_img_second"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_second_type"/>
 
         <TextView
             android:id="@+id/party_txt_second_slash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/forward_slash"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_second_current_health"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/party_img_second"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_second_type"/>
 
         <TextView
             android:id="@+id/party_txt_second_max_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/default_health_text"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_second_slash"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/party_img_second"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_second_type"/>
 
         <TextView
             android:id="@+id/party_txt_second_type_label"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
-            android:text="@string/type"
+            android:textSize="@dimen/party_txt_label_text_size"
+            android:text="@string/type_with_colon"
+            android:layout_marginTop="@dimen/party_margin_vertical"
+            android:layout_marginBottom="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/party_img_second"
+            app:layout_constraintTop_toBottomOf="@id/party_txt_second_health_label"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
@@ -160,27 +197,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/default_type_text"
-            android:layout_marginLeft="@dimen/party_txt_margin_left_between_label"
+            android:layout_marginLeft="@dimen/party_margin_left"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_second_type_label"
-            app:layout_constraintTop_toBottomOf="@id/party_img_second"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="@id/party_txt_second_type_label"
+            app:layout_constraintBottom_toBottomOf="@id/party_txt_second_type_label"/>
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/party_clo_third"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/border"
         app:layout_constraintLeft_toRightOf="@id/party_clo_second"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
             android:id="@+id/party_img_third"
             android:layout_width="@dimen/party_img_width"
             android:layout_height="@dimen/party_img_height"
             android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/party_margin_vertical"
+            android:layout_marginLeft="@dimen/party_img_margin_horizontal"
+            android:layout_marginRight="@dimen/party_img_margin_horizontal"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
@@ -188,53 +233,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
-            android:text="@string/health_shorthand"
+            android:textSize="@dimen/party_txt_label_text_size"
+            android:text="@string/health_shorthand_with_colon"
             android:gravity="center"
-            app:layout_constraintLeft_toRightOf="@id/party_img_third"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_marginLeft="@dimen/party_margin_left"
+            android:layout_marginTop="@dimen/party_margin_vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/party_img_third"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_third_type"/>
 
         <TextView
             android:id="@+id/party_txt_third_current_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/party_txt_margin_left_between_label"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/default_health_text"
+            android:layout_marginLeft="@dimen/party_margin_left"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_third_health_label"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/party_img_third"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_third_type"/>
 
         <TextView
             android:id="@+id/party_txt_third_slash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/forward_slash"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_third_current_health"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/party_img_third"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_third_type"/>
 
         <TextView
             android:id="@+id/party_txt_third_max_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/default_health_text"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_third_slash"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/party_img_third"
+            app:layout_constraintBottom_toTopOf="@id/party_txt_third_type"/>
 
         <TextView
             android:id="@+id/party_txt_third_type_label"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
-            android:text="@string/type"
+            android:textSize="@dimen/party_txt_label_text_size"
+            android:text="@string/type_with_colon"
+            android:layout_marginTop="@dimen/party_margin_vertical"
+            android:layout_marginBottom="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/party_img_third"
+            app:layout_constraintTop_toBottomOf="@id/party_txt_third_health_label"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
@@ -242,12 +297,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_text_size"
+            android:textSize="@dimen/party_txt_value_text_size"
             android:text="@string/default_type_text"
-            android:layout_marginLeft="@dimen/party_txt_margin_left_between_label"
+            android:layout_marginLeft="@dimen/party_margin_left"
+            android:layout_marginTop="@dimen/party_margin_vertical"
             app:layout_constraintLeft_toRightOf="@id/party_txt_third_type_label"
-            app:layout_constraintTop_toBottomOf="@id/party_img_third"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="@id/party_txt_third_type_label"
+            app:layout_constraintBottom_toBottomOf="@id/party_txt_third_type_label"/>
     </android.support.constraint.ConstraintLayout>
 
 
