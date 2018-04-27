@@ -304,5 +304,4 @@
             app:layout_constraintLeft_toRightOf="@id/party_txt_third_type_label"
             app:layout_constraintTop_toTopOf="@id/party_txt_third_type_label" />
     </android.support.constraint.ConstraintLayout>
-
 </android.support.constraint.ConstraintLayout>
