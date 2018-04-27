@@ -1,11 +1,11 @@
 package com.team2.packpackmonsters;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -39,9 +39,20 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
     static String dataMonsterName;
     static String dataItem;
     private MonstersInfo MonsterOne;
-
+    private DrawerLayout drawer;
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        drawer = findViewById(R.id.main_dwr);
+
+
+
+    }
+
+    /*@Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -52,26 +63,45 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
         initializeToolbar();
         initializeOnClickListeners();
 
-        MonDbHelper = new MonstersDbHelper(this);
+
         //UsDbHelper = new UserProfileDbHelper(this);
         ItDbHelper = new ItemsDbHelper(this);
-        insertMonsters();//Inserts monsters
+
         insertItems();
         displayDatabaseInfoItems();
-        displayDatabaseInfoMonster();
+        //displayDatabaseInfoMonster();
+        MonstersInfo MonsterTwo;
 
+        MonsterTwo = new MonstersInfo();//Monster object in MonsterInfo class
+        //MonsterTwo.insertMonsters();
+//        MonsterTwo.createMonsterOne();
+        //String s1 = MonsterTwo.getMonsterOneName();
+        //System.out.println(s1);
+        //MonsterOne.createMonsterOne();//Might be able to create one method for each monster, like createMonster, setMonsterName etc..
 
-        MonsterOne = new MonstersInfo();//Monster object in MonsterInfo class
-        //MonsterOne.createMonsterOne();//Might be able to create one method for each monster, like createMonster, setMonsterName etc...
+    }*/
 
+    private void initializeOnClickListeners()
+    {
+        ArrayList<Button> mainBtns = new ArrayList<>();
+        mainBtns.add((Button) findViewById(R.id.main_btn_top_left));
+        mainBtns.add((Button) findViewById(R.id.main_btn_top_right));
+        mainBtns.add((Button) findViewById(R.id.main_btn_bot_left));
+        mainBtns.add((Button) findViewById(R.id.main_btn_bot_right));
 
+        for (Button btn : mainBtns)
+        {
+            btn.setOnClickListener(new MainBtnOnClickListener());
+        }
+    }
 
-            //UserProfile displaying name activity
-        //textViewUsername = findViewById(R.id.text_view_username);
-        //for(int i = 0; i <= 3; i++)
-        //{
-          //  openDialog();
-        //}
+    public ArrayList<MonstersInfo> createoneMonster()
+    {
+        SQLiteDatabase db = MonDbHelper.getReadableDatabase();//Opening the database or creating a new one
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + PacPacMonstersContract.ItemsEntry.TABLE_NAME, null);
+
+        return null;
     }
 
     public void openDialog()
@@ -210,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
 
 
             //Pevero Fire Monster #1
-            values.put(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_NAME, "Fire One");
+            values.put(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_NAME, "Pevero");
             values.put(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_HP, "16");
             values.put(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_TYPE, "1");//Fire is Type 1
             //Move 1 - Fire Ball - Fire Monster #1
@@ -629,20 +659,6 @@ public class MainActivity extends AppCompatActivity implements DialogUserProfile
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-    }
-
-    private void initializeOnClickListeners()
-    {
-        ArrayList<Button> mainBtns = new ArrayList<>();
-        mainBtns.add((Button) findViewById(R.id.main_btn_top_left));
-        mainBtns.add((Button) findViewById(R.id.main_btn_top_right));
-        mainBtns.add((Button) findViewById(R.id.main_btn_bot_left));
-        mainBtns.add((Button) findViewById(R.id.main_btn_bot_right));
-
-        for (Button btn : mainBtns)
-        {
-            btn.setOnClickListener(new MainBtnOnClickListener());
-        }
     }
 
     private class MainBtnOnClickListener implements View.OnClickListener

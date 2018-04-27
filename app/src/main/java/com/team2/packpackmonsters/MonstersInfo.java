@@ -1,10 +1,13 @@
 package com.team2.packpackmonsters;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.team2.packpackmonsters.data.MonstersDbHelper;
 import com.team2.packpackmonsters.data.PacPacMonstersContract;
+
+import java.util.ArrayList;
 
 /**
  * Created by Owner on 4/24/2018.
@@ -29,11 +32,13 @@ public class MonstersInfo
     private String monsterOneMoveFour;
     private int monsterOneMoveFourDamage;
     private int monsterOneMoveFourBuff;
+    private String dataMonsterName;
 
 
 
     public MonstersInfo()
     {
+
 
     }
 
@@ -103,7 +108,7 @@ public class MonstersInfo
                 monsterOneMoveFour = c.getString(monOne_MFour_CI);
                 monsterOneMoveFourDamage = c.getInt(monOne_MFourDamage_CI);
                 monsterOneMoveFourBuff = c.getInt(monOne_MFourBuff_CI);
-                System.out.println(monsterOneName + " " + monsterOneMoveFourDamage);
+
             }
 
 
@@ -114,10 +119,21 @@ public class MonstersInfo
                 c.close();
             }
 
-
+        System.out.println(monsterOneName + " " + monsterOneMoveFourDamage);
     }
                                                                     //This is passed to a method that wants the Id. Now with this Id it can then call the other methods, getMonsterMoves, get MonsterName
                                                                  //and use this Id to get the specific items it calls for
+
+    /*public ArrayList<MonstersInfo> createMonsterOne()
+    {
+        SQLiteDatabase db = MonDbHelper.getReadableDatabase();//Opening the database or creating a new one
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + PacPacMonstersContract.ItemsEntry.TABLE_NAME, null);
+        try
+        {
+
+        }
+    }*/
 
     public int getMonsterIdOne()
     {
@@ -178,6 +194,116 @@ public class MonstersInfo
     {
         this.monsterOneMoveOneDamage = monsterOneMoveOneDamage;
     }
+
+    public int getMonsterOneBuff()
+    {
+        return monsterOneMoveOneBuff;
+    }
+
+    public void setMonsterOneMoveBuff(int monsterOneMoveOneBuff)
+    {
+        this.monsterOneMoveOneBuff = monsterOneMoveOneBuff;
+    }
+
+    public String getMonsterOneMoveTwo()
+    {
+        return monsterOneMoveTwo;
+    }
+
+    public void setMonsterOneMoveTwo(String monsterOneMoveTwo)
+    {
+        this.monsterOneMoveTwo = monsterOneMoveTwo;
+    }
+
+    public int getMonsterOneMoveTwoDamage()
+    {
+        return monsterOneMoveTwoDamage;
+    }
+
+    public void setMonsterOneMoveTwoDamage(int monsterOneMoveTwoDamage)
+    {
+        this.monsterOneMoveTwoDamage = monsterOneMoveTwoDamage;
+    }
+
+    public int getMonsterOneMOveTwoBuff()
+    {
+        return monsterOneMoveTwoBuff;
+    }
+
+    public void setMonsterOneMoveTwoBuff(int monsterOneMoveTwoBuff)
+    {
+        this.monsterOneMoveTwoBuff = monsterOneMoveTwoBuff;
+    }
+
+    public String getMonsterOneMoveThree()
+    {
+        return monsterOneMoveThree;
+    }
+
+    public void setMonsterOneMoveThree(String monsterOneMoveThree)
+    {
+        this.monsterOneMoveThree = monsterOneMoveThree;
+    }
+
+    public int getMonsterOneMoveThreeDamage()
+    {
+        return monsterOneMoveThreeDamage;
+    }
+
+    public void setMonsterOneMoveThreeDamage(int monsterOneMoveThreeDamage)
+    {
+        this.monsterOneMoveThreeDamage = monsterOneMoveThreeDamage;
+    }
+
+    public int getMonsterOneMoveThreeBuff()
+    {
+        return monsterOneMoveThreeBuff;
+    }
+
+    public void setMonsterOneMoveThreeBuff(int monsterOneMoveThreeBuff)
+    {
+        this.monsterOneMoveThreeBuff = monsterOneMoveThreeBuff;
+    }
+
+    public String getMonsterOneMoveFour()
+    {
+        return monsterOneMoveFour;
+    }
+
+    public void setMonsterOneMoveFour(String monsterOneMoveFour)
+    {
+        this.monsterOneMoveFour = monsterOneMoveFour;
+    }
+
+    public int getMonsterOneMoveFourDamage()
+    {
+        return monsterOneMoveFourDamage;
+    }
+
+    public void setMonsterOneMoveFourDamage(int monsterOneMoveFourDamage)
+    {
+        this.monsterOneMoveFourDamage = monsterOneMoveFourDamage;
+    }
+
+    public int getMonsterOneMoveFourBuff()
+    {
+        return monsterOneMoveFourBuff;
+    }
+
+    public void setMonsterOneMoveFourBuff(int monsterOneMoveFourBuff)
+    {
+        this.monsterOneMoveFourBuff = monsterOneMoveFourBuff;
+    }
+
+
+
+
+
+
+
+
+
+
 
 }
 
