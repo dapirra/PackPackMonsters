@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BattleResultActivity">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/battle_result_gdl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="@dimen/battle_result_gdl_percent"/>
+
+    <TextView
+        android:id="@+id/battle_result_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/battle_result_text_size"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/battle_result_gdl"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/battle_result_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/battle_result_margin_vertical"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/battle_result_text_size"
+        android:text="@string/home"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/battle_result_txt"/>
+
+</android.support.constraint.ConstraintLayout>
