@@ -67,7 +67,8 @@
                 app:layout_constraintLeft_toRightOf="@id/items_gdl_top_item"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/revive_icon"/>
 
         </android.support.constraint.ConstraintLayout>
 
