@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,24 +8,24 @@
         android:id="@+id/battle_clo_top"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/battle_vfp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/battle_img_top_player"
             android:layout_width="@dimen/battle_img_width"
             android:layout_height="@dimen/battle_img_height"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="@dimen/battle_img_margin_vertical"
             android:layout_marginBottom="@dimen/battle_img_margin_vertical"
-            android:layout_marginRight="@dimen/battle_img_margin_horizontal"
             android:layout_marginLeft="@dimen/battle_img_margin_horizontal_between_parent"
-            app:layout_constraintRight_toLeftOf="@id/battle_gdl_top_player"
+            android:layout_marginRight="@dimen/battle_img_margin_horizontal"
+            android:layout_marginTop="@dimen/battle_img_margin_vertical"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintRight_toLeftOf="@id/battle_gdl_top_player"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.constraint.Guideline
             android:id="@+id/battle_gdl_top_player"
@@ -40,59 +38,57 @@
             android:id="@+id/battle_clo_top_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/battle_gdl_top_player"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/battle_txt_top_player_current_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/default_health_text"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/battle_txt_text_size"
-                android:text="@string/default_health_text"
+                app:layout_constraintBottom_toBottomOf="@id/battle_txt_top_player_slash"
                 app:layout_constraintLeft_toRightOf="@id/battle_txt_top_player_slash"
-                app:layout_constraintTop_toTopOf="@id/battle_txt_top_player_slash"
-                app:layout_constraintBottom_toBottomOf="@id/battle_txt_top_player_slash"/>
+                app:layout_constraintTop_toTopOf="@id/battle_txt_top_player_slash" />
 
             <TextView
                 android:id="@+id/battle_txt_top_player_slash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/forward_slash"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/battle_txt_text_size"
-                android:text="@string/forward_slash"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/battle_txt_top_player_max_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/default_health_text"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/battle_txt_text_size"
-                android:text="@string/default_health_text"
+                app:layout_constraintBottom_toBottomOf="@id/battle_txt_top_player_slash"
                 app:layout_constraintRight_toLeftOf="@id/battle_txt_top_player_slash"
-                app:layout_constraintTop_toTopOf="@id/battle_txt_top_player_slash"
-                app:layout_constraintBottom_toBottomOf="@id/battle_txt_top_player_slash"/>
+                app:layout_constraintTop_toTopOf="@id/battle_txt_top_player_slash" />
 
             <TextView
                 android:id="@+id/battle_txt_top_player_health_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/health_enemy"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/battle_txt_text_size"
-                android:text="@string/health_enemy"
-                android:gravity="center"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/battle_txt_top_player_slash"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/battle_txt_top_player_slash" />
 
         </android.support.constraint.ConstraintLayout>
-
-
 
     </android.support.constraint.ConstraintLayout>
 
@@ -101,119 +97,119 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:measureAllChildren="false"
-        app:layout_constraintTop_toBottomOf="@id/battle_clo_top"
         app:layout_constraintBottom_toTopOf="@id/battle_clo_bot"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/battle_clo_top">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/battle_clo_mid"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <Button
                 android:id="@+id/battle_btn_top_left"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/battle_btn_text_size"
-                android:text="@string/fight"
-                android:textAllCaps="false"
+                android:layout_marginBottom="@dimen/battle_btn_margin_vertical"
                 android:layout_marginLeft="@dimen/battle_btn_margin_horizontal_between_parent"
                 android:layout_marginRight="@dimen/battle_btn_margin_horizontal"
                 android:layout_marginTop="@dimen/battle_btn_margin_vertical_between_parent"
-                android:layout_marginBottom="@dimen/battle_btn_margin_vertical"
-                app:layout_constraintTop_toTopOf="parent"
+                android:text="@string/fight"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/battle_btn_text_size"
                 app:layout_constraintBottom_toTopOf="@id/battle_btn_bot_left"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/battle_btn_top_right"/>
+                app:layout_constraintRight_toLeftOf="@id/battle_btn_top_right"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/battle_btn_top_right"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/battle_btn_text_size"
+                android:layout_marginBottom="@dimen/battle_btn_margin_vertical"
+                android:layout_marginLeft="@dimen/battle_btn_margin_horizontal"
+                android:layout_marginRight="@dimen/battle_btn_margin_horizontal_between_parent"
+                android:layout_marginTop="@dimen/battle_btn_margin_vertical_between_parent"
                 android:text="@string/items"
                 android:textAllCaps="false"
-                android:layout_marginRight="@dimen/battle_btn_margin_horizontal_between_parent"
-                android:layout_marginLeft="@dimen/battle_btn_margin_horizontal"
-                android:layout_marginTop="@dimen/battle_btn_margin_vertical_between_parent"
-                android:layout_marginBottom="@dimen/battle_btn_margin_vertical"
-                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/battle_btn_text_size"
                 app:layout_constraintBottom_toTopOf="@id/battle_btn_bot_right"
                 app:layout_constraintLeft_toRightOf="@id/battle_btn_top_left"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/battle_btn_bot_left"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/battle_btn_text_size"
-                android:text="@string/party"
-                android:textAllCaps="false"
+                android:layout_marginBottom="@dimen/battle_btn_margin_vertical_between_parent"
                 android:layout_marginLeft="@dimen/battle_btn_margin_horizontal_between_parent"
                 android:layout_marginRight="@dimen/battle_btn_margin_horizontal"
                 android:layout_marginTop="@dimen/battle_btn_margin_vertical"
-                android:layout_marginBottom="@dimen/battle_btn_margin_vertical_between_parent"
-                app:layout_constraintTop_toBottomOf="@id/battle_btn_top_left"
+                android:text="@string/party"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/battle_btn_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/battle_btn_bot_right"/>
+                app:layout_constraintRight_toLeftOf="@id/battle_btn_bot_right"
+                app:layout_constraintTop_toBottomOf="@id/battle_btn_top_left" />
 
             <Button
                 android:id="@+id/battle_btn_bot_right"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/battle_btn_text_size"
+                android:layout_marginBottom="@dimen/battle_btn_margin_vertical_between_parent"
+                android:layout_marginLeft="@dimen/battle_btn_margin_horizontal"
+                android:layout_marginRight="@dimen/battle_btn_margin_horizontal_between_parent"
+                android:layout_marginTop="@dimen/battle_btn_margin_vertical"
                 android:text="@string/run"
                 android:textAllCaps="false"
-                android:layout_marginRight="@dimen/battle_btn_margin_horizontal_between_parent"
-                android:layout_marginLeft="@dimen/battle_btn_margin_horizontal"
-                android:layout_marginTop="@dimen/battle_btn_margin_vertical"
-                android:layout_marginBottom="@dimen/battle_btn_margin_vertical_between_parent"
-                app:layout_constraintTop_toBottomOf="@id/battle_btn_top_right"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/battle_btn_text_size"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/battle_btn_bot_left"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/battle_btn_top_right" />
 
         </android.support.constraint.ConstraintLayout>
 
         <include
             android:id="@+id/battle_ctn_moves"
+            layout="@layout/moves"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            layout="@layout/moves"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <include
             android:id="@+id/battle_ctn_player_items"
+            layout="@layout/player_items"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            layout="@layout/player_items"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <include
             android:id="@+id/battle_ctn_player_party"
+            layout="@layout/player_party"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            layout="@layout/player_party"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </ViewFlipper>
 
@@ -221,64 +217,64 @@
         android:id="@+id/battle_clo_bot"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/battle_vfp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/battle_vfp">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/battle_clo_bot_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/battle_gdl_bot_player"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/battle_txt_bot_player_health_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/health"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/battle_txt_text_size"
-                android:text="@string/health"
-                android:gravity="center"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/battle_txt_bot_player_current_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/default_health_text"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/battle_txt_text_size"
-                android:text="@string/default_health_text"
+                app:layout_constraintBottom_toBottomOf="@id/battle_txt_bot_player_slash"
                 app:layout_constraintRight_toLeftOf="@id/battle_txt_bot_player_slash"
-                app:layout_constraintTop_toTopOf="@id/battle_txt_bot_player_slash"
-                app:layout_constraintBottom_toBottomOf="@id/battle_txt_bot_player_slash"/>
+                app:layout_constraintTop_toTopOf="@id/battle_txt_bot_player_slash" />
 
             <TextView
                 android:id="@+id/battle_txt_bot_player_slash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/forward_slash"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/battle_txt_text_size"
-                android:text="@string/forward_slash"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/battle_txt_bot_player_health_label"/>
+                app:layout_constraintTop_toBottomOf="@id/battle_txt_bot_player_health_label" />
 
             <TextView
                 android:id="@+id/battle_txt_bot_player_max_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/default_health_text"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/battle_txt_text_size"
-                android:text="@string/default_health_text"
+                app:layout_constraintBottom_toBottomOf="@id/battle_txt_bot_player_slash"
                 app:layout_constraintLeft_toRightOf="@id/battle_txt_bot_player_slash"
-                app:layout_constraintTop_toTopOf="@id/battle_txt_bot_player_slash"
-                app:layout_constraintBottom_toBottomOf="@id/battle_txt_bot_player_slash"/>
+                app:layout_constraintTop_toTopOf="@id/battle_txt_bot_player_slash" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -293,15 +289,15 @@
             android:id="@+id/battle_img_bot_player"
             android:layout_width="@dimen/battle_img_width"
             android:layout_height="@dimen/battle_img_height"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="@dimen/battle_img_margin_vertical"
             android:layout_marginBottom="@dimen/battle_img_margin_vertical"
-            android:layout_marginRight="@dimen/battle_img_margin_horizontal_between_parent"
             android:layout_marginLeft="@dimen/battle_img_margin_horizontal"
+            android:layout_marginRight="@dimen/battle_img_margin_horizontal_between_parent"
+            android:layout_marginTop="@dimen/battle_img_margin_vertical"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/battle_gdl_bot_player"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -7,300 +7,300 @@
     tools:context=".IndividualPackPackActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
 
         <android.support.constraint.Guideline
             android:id="@+id/ind_pack_gdl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="@dimen/ind_pack_gdl_percent"/>
+            app:layout_constraintGuide_percent="@dimen/ind_pack_gdl_percent" />
 
         <ImageView
             android:id="@+id/ind_pack_img"
-            android:scaleType="centerCrop"
             android:layout_width="@dimen/ind_pack_img_width"
             android:layout_height="@dimen/ind_pack_img_height"
             android:layout_marginTop="@dimen/ind_pack_margin_vertical_large"
-            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/ind_pack_txt_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:gravity="center"
+            android:text="@string/pack"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/pack"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_img"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_img" />
 
         <TextView
             android:id="@+id/ind_pack_txt_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:gravity="center"
+            android:text="@string/type_with_colon"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/type_with_colon"
-            android:gravity="center"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_name"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_name" />
 
         <TextView
             android:id="@+id/ind_pack_txt_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ind_pack_margin_horizontal"
+            android:gravity="center"
+            android:text="@string/default_type_text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/default_type_text"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_type_label"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_type_label"
-            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_type_label"
-            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_type_label"/>
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_type_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_health_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:gravity="center"
+            android:text="@string/base_health_with_colon"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/base_health_with_colon"
-            android:gravity="center"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_type"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_type" />
 
         <TextView
             android:id="@+id/ind_pack_txt_health"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ind_pack_margin_horizontal"
+            android:gravity="center"
+            android:text="@string/default_health_text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/default_health_text"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_health_label"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_health_label"
-            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_health_label"
-            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_health_label"/>
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_health_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_moves_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ind_pack_margin_vertical_large"
+            android:gravity="center"
+            android:text="@string/moves_underlined"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/moves_underlined"
-            android:gravity="center"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_health_label"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_health_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_1_bullet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:gravity="center"
+            android:text="@string/bullet"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/bullet"
-            android:gravity="center"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_moves_label"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_moves_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ind_pack_margin_horizontal_short"
+            android:gravity="center"
+            android:text="@string/default_move_text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/default_move_text"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_1_bullet"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_1_bullet"
-            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_1_bullet"
-            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_1_bullet"/>
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_1_bullet" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_1_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/type_with_colon"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/type_with_colon"
-            android:gravity="center"
             app:layout_constraintLeft_toLeftOf="@id/ind_pack_txt_move_1"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_1_bullet"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_1_bullet" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_1_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ind_pack_margin_horizontal"
+            android:gravity="center"
+            android:text="@string/default_type_text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/default_type_text"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_1_type_label"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_1_type_label"
-            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_1_type_label"
-            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_1_type_label"/>
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_1_type_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_2_bullet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:gravity="center"
+            android:text="@string/bullet"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/bullet"
-            android:gravity="center"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_1_type_label"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_1_type_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ind_pack_margin_horizontal_short"
+            android:gravity="center"
+            android:text="@string/default_move_text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/default_move_text"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_2_bullet"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_2_bullet"
-            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_2_bullet"
-            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_2_bullet"/>
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_2_bullet" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_2_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/type_with_colon"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/type_with_colon"
-            android:gravity="center"
             app:layout_constraintLeft_toLeftOf="@id/ind_pack_txt_move_2"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_2_bullet"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_2_bullet" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_2_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ind_pack_margin_horizontal"
+            android:gravity="center"
+            android:text="@string/default_type_text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/default_type_text"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_2_type_label"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_2_type_label"
-            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_2_type_label"
-            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_2_type_label"/>
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_2_type_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_3_bullet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:gravity="center"
+            android:text="@string/bullet"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/bullet"
-            android:gravity="center"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_2_type_label"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_2_type_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ind_pack_margin_horizontal_short"
+            android:gravity="center"
+            android:text="@string/default_move_text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/default_move_text"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_3_bullet"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_3_bullet"
-            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_3_bullet"
-            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_3_bullet"/>
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_3_bullet" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_3_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/type_with_colon"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/type_with_colon"
-            android:gravity="center"
             app:layout_constraintLeft_toLeftOf="@id/ind_pack_txt_move_3"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_3_bullet"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_3_bullet" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_3_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ind_pack_margin_horizontal"
+            android:gravity="center"
+            android:text="@string/default_type_text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/default_type_text"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_3_type_label"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_3_type_label"
-            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_3_type_label"
-            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_3_type_label"/>
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_3_type_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_4_bullet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:gravity="center"
+            android:text="@string/bullet"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/bullet"
-            android:gravity="center"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_3_type_label"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_3_type_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ind_pack_margin_horizontal_short"
+            android:gravity="center"
+            android:text="@string/default_move_text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/default_move_text"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_4_bullet"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_4_bullet"
-            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_4_bullet"
-            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_4_bullet"/>
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_4_bullet" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_4_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/ind_pack_margin_vertical_large"
+            android:gravity="center"
+            android:text="@string/type_with_colon"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/type_with_colon"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/ind_pack_txt_move_4"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_4_bullet"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_4_bullet" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_4_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ind_pack_margin_horizontal"
+            android:gravity="center"
+            android:text="@string/default_type_text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            android:text="@string/default_type_text"
-            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_4_type_label"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_4_type_label"
-            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_4_type_label"
-            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_4_type_label"/>
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_4_type_label" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
