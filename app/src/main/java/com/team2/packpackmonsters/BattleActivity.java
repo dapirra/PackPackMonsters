@@ -2,16 +2,13 @@ package com.team2.packpackmonsters;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.media.Image;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.team2.packpackmonsters.data.MonstersDbHelper;
@@ -60,10 +57,10 @@ public class BattleActivity extends AppCompatActivity {
             adjustLayoutToLandscape();
         }
 
-        initializeOnClickListeners();
+        initializeListeners();
     }
 
-    private void initializeOnClickListeners()
+    private void initializeListeners()
     {
         ArrayList<Button> battleBtns = new ArrayList<>();
         battleBtns.add((Button) findViewById(R.id.battle_btn_top_left));
