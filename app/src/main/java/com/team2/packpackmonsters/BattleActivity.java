@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.team2.packpackmonsters.data.MonstersDbHelper;
@@ -33,6 +34,7 @@ public class BattleActivity extends AppCompatActivity {
     private ConstraintLayout battleCloBot;
     private ArrayList<ImageView> itemImgs;
     private ArrayList<ImageView> partyImgs;
+    ArrayList<Button> moveBtns;
     private Monster currentPlayerMonster;
     private Monster currentOpponentMonster;
 
@@ -121,7 +123,7 @@ public class BattleActivity extends AppCompatActivity {
             clo.setOnClickListener(new PlayerItemsCloOnClickListener());
         }
 
-        ArrayList<Button> moveBtns = new ArrayList<>();
+        moveBtns = new ArrayList<>();
         moveBtns.add((Button)findViewById(R.id.moves_btn_top_left));
         moveBtns.add((Button)findViewById(R.id.moves_btn_top_right));
         moveBtns.add((Button)findViewById(R.id.moves_btn_bot_left));
@@ -261,11 +263,19 @@ public class BattleActivity extends AppCompatActivity {
 
             currentOpponentMonster = opponentMonsters.get(0);
 
+            Toast.makeText(BattleActivity.this, currentPlayerMonster.getName() + "\n" + currentOpponentMonster.getName(), Toast.LENGTH_LONG).show();
+            Log.e("Monsters", currentPlayerMonster.getName() + "\n" + currentOpponentMonster.getName());
+
             ((TextView) findViewById(R.id.battle_txt_bot_player_current_health)).setText(currentPlayerMonster.getHp() + "");
             ((TextView) findViewById(R.id.battle_txt_bot_player_max_health)).setText(currentPlayerMonster.getHp() + "");
 
             ((TextView) findViewById(R.id.battle_txt_top_player_current_health)).setText(currentOpponentMonster.getHp() + "");
             ((TextView) findViewById(R.id.battle_txt_top_player_max_health)).setText(currentOpponentMonster.getHp() + "");
+
+            moveBtns.get(0).setText(currentPlayerMonster.getMoves().get(0).getName());
+            moveBtns.get(1).setText(currentPlayerMonster.getMoves().get(1).getName());
+            moveBtns.get(2).setText(currentPlayerMonster.getMoves().get(3).getName());
+            moveBtns.get(3).setText(currentPlayerMonster.getMoves().get(2).getName());
         }
     }
 
@@ -294,14 +304,20 @@ public class BattleActivity extends AppCompatActivity {
             switch(v.getId())
             {
                 case R.id.moves_btn_top_left:
+                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(0));
                     break;
                 case R.id.moves_btn_top_right:
+                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(1));
                     break;
                 case R.id.moves_btn_bot_left:
+                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(2));
                     break;
                 case R.id.moves_btn_bot_right:
+                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(3));
                     break;
             }
+
+            ((TextView) findViewById(R.id.battle_txt_top_player_current_health)).setText(currentOpponentMonster.getHp() + "");
         }
     }
 }

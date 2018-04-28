@@ -27,10 +27,10 @@ public class Settings {
         SQLiteDatabase db = (new AllMonstersDb(context)).getReadableDatabase();
         Cursor c = db.query(PacPacMonstersContract.PacPacMonsterEntry.TABLE_NAME, null, null, null, null, null, null);
         allMonsters = new ArrayList<>();
-        ArrayList<Move> moves = new ArrayList<>();
+        ArrayList<Move> moves;
 
         while (c.moveToNext()) {
-            moves.clear();
+            moves = new ArrayList<>();
             moves.add(new Move(c.getString(5), c.getString(6), c.getInt(7), c.getInt(8) == 1));
             moves.add(new Move(c.getString(9), c.getString(10), c.getInt(11), c.getInt(12) == 1));
             moves.add(new Move(c.getString(13), c.getString(14), c.getInt(15), c.getInt(16) == 1));
