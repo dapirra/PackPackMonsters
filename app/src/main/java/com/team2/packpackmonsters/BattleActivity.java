@@ -6,15 +6,21 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.team2.packpackmonsters.data.MonstersDbHelper;
 import com.team2.packpackmonsters.data.PacPacMonstersContract;
 
 import java.util.ArrayList;
+
+import static com.team2.packpackmonsters.Settings.allMonsters;
+import static com.team2.packpackmonsters.Settings.opponentMonsters;
+import static com.team2.packpackmonsters.Settings.playerMonsters;
 
 public class BattleActivity extends AppCompatActivity {
 
@@ -27,12 +33,35 @@ public class BattleActivity extends AppCompatActivity {
     private ConstraintLayout battleCloBot;
     private ArrayList<ImageView> itemImgs;
     private ArrayList<ImageView> partyImgs;
+    private Monster currentPlayerMonster;
+    private Monster currentOpponentMonster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
         setTitle(getResources().getString(R.string.battle_activity_title));
+
+        playerMonsters = new ArrayList<>();
+        opponentMonsters = new ArrayList<>();
+
+        Settings.loadData(this);
+
+        playerMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
+        playerMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
+        playerMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
+
+        opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
+        opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
+        opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
+
+        ((TextView) findViewById(R.id.party_txt_first_health_label)).setText("HP: " + playerMonsters.get(0).getHp());
+        ((TextView) findViewById(R.id.party_txt_second_health_label)).setText("HP: " + playerMonsters.get(1).getHp());
+        ((TextView) findViewById(R.id.party_txt_third_health_label)).setText("HP: " + playerMonsters.get(2).getHp());
+
+        ((TextView) findViewById(R.id.party_txt_first_type)).setText(playerMonsters.get(0).getTypeString());
+        ((TextView) findViewById(R.id.party_txt_second_type)).setText(playerMonsters.get(1).getTypeString());
+        ((TextView) findViewById(R.id.party_txt_third_type)).setText(playerMonsters.get(2).getTypeString());
 
         battleVfp = findViewById(R.id.battle_vfp);
         battleImgTopPlayer = findViewById(R.id.battle_img_top_player);
@@ -220,12 +249,23 @@ public class BattleActivity extends AppCompatActivity {
             switch(v.getId())
             {
                 case R.id.party_clo_first:
+                    currentPlayerMonster = playerMonsters.get(0);
                     break;
                 case R.id.party_clo_second:
+                    currentPlayerMonster = playerMonsters.get(1);
                     break;
                 case R.id.party_clo_third:
+                    currentPlayerMonster = playerMonsters.get(2);
                     break;
             }
+
+            currentOpponentMonster = opponentMonsters.get(0);
+
+            ((TextView) findViewById(R.id.battle_txt_bot_player_current_health)).setText(currentPlayerMonster.getHp() + "");
+            ((TextView) findViewById(R.id.battle_txt_bot_player_max_health)).setText(currentPlayerMonster.getHp() + "");
+
+            ((TextView) findViewById(R.id.battle_txt_top_player_current_health)).setText(currentOpponentMonster.getHp() + "");
+            ((TextView) findViewById(R.id.battle_txt_top_player_max_health)).setText(currentOpponentMonster.getHp() + "");
         }
     }
 

@@ -29,7 +29,18 @@ public class Monster {
     public void doMove (Monster opponent, Move selectedMove) {
         if (!selectedMove.isBuff()) {
             if (this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.WATER) {
-                opponent.setHp(opponent.getHp() - selectedMove.getDamage()  - 10);
+                opponent.setHp(opponent.getHp() - selectedMove.getDamage()  - 3);
+            }
+            else if(this.getType() == PacPacMonsterEntry.WATER && opponent.getType() == PacPacMonsterEntry.FIRE) {
+                opponent.setHp(opponent.getHp() - selectedMove.getDamage() + 3);
+            }
+            else if(this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.EARTH) {
+                opponent.setHp(opponent.getHp() - selectedMove.getDamage() + 3);
+            }
+            else if(this.getType() == PacPacMonsterEntry.EARTH && opponent.getType() == PacPacMonsterEntry.FIRE) {
+                opponent.setHp(opponent.getHp() - selectedMove.getDamage() - 3);
+            } else {
+                opponent.setHp(opponent.getHp() - selectedMove.getDamage());
             }
             // TODO finish all conditions
         } else {
@@ -65,6 +76,21 @@ public class Monster {
         return type;
     }
 
+    public String getTypeString() {
+        switch (type) {
+            case 1:
+                return "Fire";
+            case 2:
+                return "Water";
+            case 3:
+                return "Wind";
+            case 4:
+                return "Earth";
+            default:
+                return null;
+        }
+    }
+
     public void setType(int type) {
         this.type = type;
     }
@@ -87,5 +113,10 @@ public class Monster {
 
     public boolean isAlive () {
         return this.hp > 0;
+    }
+
+    @Override
+    protected Monster clone() {
+        return new Monster(name, description, hp, type, imagePath, moves);
     }
 }
