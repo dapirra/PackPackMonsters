@@ -9,21 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name=".BattleActivity" android:parentActivityName=".MainActivity" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".ItemsActivity" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".NameActivity" >
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BattleActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ItemsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".NameActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PackPackActivity" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".IndividualPackPackActivity" android:parentActivityName=".PackPackActivity"/>
-        <activity android:name=".HelpActivity" android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".PackPackActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".IndividualPackPackActivity"
+            android:parentActivityName=".PackPackActivity" />
+        <activity
+            android:name=".HelpActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".BattleResultActivity" />
     </application>
-
 </manifest>
