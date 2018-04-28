@@ -23,7 +23,7 @@
             android:layout_width="@dimen/ind_pack_img_width"
             android:layout_height="@dimen/ind_pack_img_height"
             android:layout_marginTop="@dimen/ind_pack_margin_vertical_large"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

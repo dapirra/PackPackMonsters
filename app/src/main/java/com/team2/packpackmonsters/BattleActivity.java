@@ -2,6 +2,7 @@ package com.team2.packpackmonsters;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AppCompatActivity;
@@ -9,18 +10,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import com.team2.packpackmonsters.data.MonstersDbHelper;
-import com.team2.packpackmonsters.data.PacPacMonstersContract;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class BattleActivity extends AppCompatActivity {
 
     private ViewFlipper battleVfp;
-    private ImageView battleImgTopPlayer;
-    private ImageView battleImgBotPlayer;
+    private ArrayList<ImageView> battleImgs;
+    private ArrayList<TextView> txtsCurrentHealth;
+    private ArrayList<TextView> txtsMaxHealth;
     private ConstraintLayout battleCloTopHealth;
     private ConstraintLayout battleCloTop;
     private ConstraintLayout battleCloBotHealth;
@@ -35,8 +37,22 @@ public class BattleActivity extends AppCompatActivity {
         setTitle(getResources().getString(R.string.battle_activity_title));
 
         battleVfp = findViewById(R.id.battle_vfp);
-        battleImgTopPlayer = findViewById(R.id.battle_img_top_player);
-        battleImgBotPlayer = findViewById(R.id.battle_img_bot_player);
+
+        //TODO Use these to initialize image for first monster sent out and when another monster is selected using party button.
+        battleImgs = new ArrayList<>();
+        battleImgs.add((ImageView) findViewById(R.id.battle_img_top_player));
+        battleImgs.add((ImageView) findViewById(R.id.battle_img_bot_player));
+
+        //TODO Use these to initialize current health and when a monster's health changes.
+        txtsCurrentHealth = new ArrayList<>();
+        txtsCurrentHealth.add((TextView) findViewById(R.id.battle_txt_top_player_current_health));
+        txtsCurrentHealth.add((TextView) findViewById(R.id.battle_txt_bot_player_current_health));
+
+        //TODO Use these to initialize max health.
+        txtsMaxHealth = new ArrayList<>();
+        txtsMaxHealth.add((TextView) findViewById(R.id.battle_txt_top_player_max_health));
+        txtsMaxHealth.add((TextView) findViewById(R.id.battle_txt_bot_player_max_health));
+
         battleCloTopHealth = findViewById(R.id.battle_clo_top_health);
         battleCloTop = findViewById(R.id.battle_clo_top);
         battleCloBotHealth = findViewById(R.id.battle_clo_bot_health);
@@ -47,6 +63,7 @@ public class BattleActivity extends AppCompatActivity {
         itemImgs.add((ImageView)findViewById(R.id.player_items_img_second));
         itemImgs.add((ImageView)findViewById(R.id.player_items_img_third));
 
+        //TODO Use these to initialize party's images.
         partyImgs = new ArrayList<>();
         partyImgs.add((ImageView)findViewById(R.id.party_img_first));
         partyImgs.add((ImageView)findViewById(R.id.party_img_second));
@@ -58,6 +75,7 @@ public class BattleActivity extends AppCompatActivity {
         }
 
         initializeListeners();
+        setPartyImages();
     }
 
     private void initializeListeners()
@@ -130,10 +148,11 @@ public class BattleActivity extends AppCompatActivity {
 
     private void adjustLayoutToLandscape()
     {
-        battleImgTopPlayer.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width_landscape);
-        battleImgTopPlayer.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height_landscape);
-        battleImgBotPlayer.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width_landscape);
-        battleImgBotPlayer.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height_landscape);
+        for(ImageView img:  battleImgs)
+        {
+            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width_landscape);
+            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height_landscape);
+        }
 
         for(ImageView img: itemImgs)
         {
@@ -160,10 +179,11 @@ public class BattleActivity extends AppCompatActivity {
 
     private void adjustLayoutToPortrait()
     {
-        battleImgTopPlayer.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width);
-        battleImgTopPlayer.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height);
-        battleImgBotPlayer.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width);
-        battleImgBotPlayer.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height);
+        for(ImageView img:  battleImgs)
+        {
+            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width);
+            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height);
+        }
 
         for(ImageView img: itemImgs)
         {
@@ -196,13 +216,13 @@ public class BattleActivity extends AppCompatActivity {
                 case R.id.battle_btn_top_left://Battle button
                     battleVfp.setDisplayedChild(1);
                     break;
-                case R.id.battle_btn_top_right:
+                case R.id.battle_btn_top_right: //Items
                     battleVfp.setDisplayedChild(2);
                     break;
-                case R.id.battle_btn_bot_left:
+                case R.id.battle_btn_bot_left: //Party
                     battleVfp.setDisplayedChild(3);
                     break;
-                case R.id.battle_btn_bot_right:
+                case R.id.battle_btn_bot_right: //Run
                     Intent intent = new Intent(v.getContext(), BattleResultActivity.class);
                     intent.putExtra(BattleResultActivity.WINNER_KEY, false);
 
@@ -217,6 +237,7 @@ public class BattleActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
+            //TODO Party OnClickListener() functionality, including changing images
             switch(v.getId())
             {
                 case R.id.party_clo_first:
@@ -234,13 +255,14 @@ public class BattleActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
+            //TODO Item OnClickListener() functionality
             switch(v.getId())
             {
-                case R.id.player_items_clo_first:
+                case R.id.player_items_clo_first: //Revive
                     break;
-                case R.id.player_items_clo_second:
+                case R.id.player_items_clo_second: //Attack up
                     break;
-                case R.id.player_items_clo_third:
+                case R.id.player_items_clo_third: //Heal
                     break;
             }
         }
@@ -251,17 +273,30 @@ public class BattleActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
+            //TODO Move OnClickListener() functionality
             switch(v.getId())
             {
-                case R.id.moves_btn_top_left:
+                case R.id.moves_btn_top_left: //Ele gen
                     break;
-                case R.id.moves_btn_top_right:
+                case R.id.moves_btn_top_right: //SP
                     break;
-                case R.id.moves_btn_bot_left:
+                case R.id.moves_btn_bot_left: //Gen
                     break;
-                case R.id.moves_btn_bot_right:
+                case R.id.moves_btn_bot_right: //SP 2
                     break;
             }
+        }
+    }
+
+    private void setPartyImages()
+    {
+        //TODO Add party images.
+
+        ArrayList<Drawable> images = new ArrayList<>(partyImgs.size());
+
+        for(int i = 0; i < images.size(); i++)
+        {
+            partyImgs.get(i).setImageDrawable(images.get(i));
         }
     }
 }
