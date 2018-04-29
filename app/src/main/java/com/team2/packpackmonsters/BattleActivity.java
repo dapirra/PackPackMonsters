@@ -9,6 +9,8 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -41,11 +43,12 @@ public class BattleActivity extends AppCompatActivity {
     private ArrayList<TextView> partyTxtsMaxHealth;
     private ArrayList<TextView> partyTxtsType;
     private ArrayList<TextView> partyTxtsName;
-    ArrayList<Button> moveBtns;
+    private ArrayList<Button> moveBtns;
     private Monster currentPlayerMonster;
     private Monster currentOpponentMonster;
     private boolean monsterSelected;
     private boolean isEnemyTurn;
+    private boolean isInitialPartySelection = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,25 +77,17 @@ public class BattleActivity extends AppCompatActivity {
         opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
         opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
 
-        partyTxtsName.get(0).setText(playerMonsters.get(0).getName());
-        partyTxtsName.get(1).setText(playerMonsters.get(1).getName());
-        partyTxtsName.get(2).setText(playerMonsters.get(2).getName());
+        for (int i = 0; i < playerMonsters.size(); i++)
+        {
+            partyTxtsName.get(i).setText(playerMonsters.get(i).getName());
+            partyImgs.get(i).setImageResource(playerMonsters.get(i).getImage());
+            partyTxtsCurrentHealth.get(i).setText(playerMonsters.get(i).getCurrentHp() + "");
+            partyTxtsMaxHealth.get(i).setText(playerMonsters.get(i).getMaxHp() + "");
+            partyTxtsType.get(i).setText(playerMonsters.get(i).getTypeString());
+        }
 
-        partyImgs.get(0).setImageResource(playerMonsters.get(0).getImage());
-        partyImgs.get(1).setImageResource(playerMonsters.get(1).getImage());
-        partyImgs.get(2).setImageResource(playerMonsters.get(2).getImage());
-
-        partyTxtsCurrentHealth.get(0).setText(playerMonsters.get(0).getCurrentHp() + "");
-        partyTxtsCurrentHealth.get(1).setText(playerMonsters.get(1).getCurrentHp() + "");
-        partyTxtsCurrentHealth.get(2).setText(playerMonsters.get(2).getCurrentHp() + "");
-
-        partyTxtsMaxHealth.get(0).setText(playerMonsters.get(0).getMaxHp() + "");
-        partyTxtsMaxHealth.get(1).setText(playerMonsters.get(1).getMaxHp() + "");
-        partyTxtsMaxHealth.get(2).setText(playerMonsters.get(2).getMaxHp() + "");
-
-        partyTxtsType.get(0).setText(playerMonsters.get(0).getTypeString());
-        partyTxtsType.get(1).setText(playerMonsters.get(1).getTypeString());
-        partyTxtsType.get(2).setText(playerMonsters.get(2).getTypeString());
+        Button btnParty = findViewById(R.id.battle_btn_bot_left);
+        btnParty.callOnClick();
     }
 
     private void initializeViews()
@@ -100,22 +95,18 @@ public class BattleActivity extends AppCompatActivity {
 
         battleVfp = findViewById(R.id.battle_vfp);
 
-        //TODO Use these to initialize image for first monster sent out and when another monster is selected using party button.
         battleImgs = new ArrayList<>();
         battleImgs.add((ImageView) findViewById(R.id.battle_img_top_player));
         battleImgs.add((ImageView) findViewById(R.id.battle_img_bot_player));
 
-        //TODO Use these to initialize monster's name.
         battleTxtsHealthLabel = new ArrayList<>();
         battleTxtsHealthLabel.add((TextView) findViewById(R.id.battle_txt_top_player_health_label));
         battleTxtsHealthLabel.add((TextView) findViewById(R.id.battle_txt_bot_player_health_label));
 
-        //TODO Use these to initialize current health and when a monster's health changes.
         battleTxtsCurrentHealth = new ArrayList<>();
         battleTxtsCurrentHealth.add((TextView) findViewById(R.id.battle_txt_top_player_current_health));
         battleTxtsCurrentHealth.add((TextView) findViewById(R.id.battle_txt_bot_player_current_health));
 
-        //TODO Use these to initialize max health.
         battleTxtsMaxHealth = new ArrayList<>();
         battleTxtsMaxHealth.add((TextView) findViewById(R.id.battle_txt_top_player_max_health));
         battleTxtsMaxHealth.add((TextView) findViewById(R.id.battle_txt_bot_player_max_health));
@@ -134,37 +125,31 @@ public class BattleActivity extends AppCompatActivity {
         itemImgs.add((ImageView)findViewById(R.id.player_items_img_second));
         itemImgs.add((ImageView)findViewById(R.id.player_items_img_third));
 
-        //TODO Use these to initialize item names
         itemTxtsName = new ArrayList<>();
         itemTxtsName.add((TextView) findViewById(R.id.player_items_txt_first));
         itemTxtsName.add((TextView) findViewById(R.id.player_items_txt_second));
         itemTxtsName.add((TextView) findViewById(R.id.player_items_txt_third));
 
-        //TODO Use these to initialize party's images.
         partyImgs = new ArrayList<>();
         partyImgs.add((ImageView)findViewById(R.id.party_img_first));
         partyImgs.add((ImageView)findViewById(R.id.party_img_second));
         partyImgs.add((ImageView)findViewById(R.id.party_img_third));
 
-        //TODO Use these to initialize party current health.
         partyTxtsCurrentHealth = new ArrayList<>();
         partyTxtsCurrentHealth.add((TextView) findViewById(R.id.party_txt_first_current_health));
         partyTxtsCurrentHealth.add((TextView) findViewById(R.id.party_txt_second_current_health));
         partyTxtsCurrentHealth.add((TextView) findViewById(R.id.party_txt_third_current_health));
 
-        //TODO Use these to initialize party max health
         partyTxtsMaxHealth = new ArrayList<>();
         partyTxtsMaxHealth.add((TextView) findViewById(R.id.party_txt_first_max_health));
         partyTxtsMaxHealth.add((TextView) findViewById(R.id.party_txt_second_max_health));
         partyTxtsMaxHealth.add((TextView) findViewById(R.id.party_txt_third_max_health));
 
-        //TODO Use these to initialize party types
         partyTxtsType = new ArrayList<>();
         partyTxtsType.add((TextView) findViewById(R.id.party_txt_first_type));
         partyTxtsType.add((TextView) findViewById(R.id.party_txt_second_type));
         partyTxtsType.add((TextView) findViewById(R.id.party_txt_third_type));
 
-        //TODO Use these to initialize party names
         partyTxtsName = new ArrayList<>();
         partyTxtsName.add((TextView) findViewById(R.id.party_txt_first_name));
         partyTxtsName.add((TextView) findViewById(R.id.party_txt_second_name));
@@ -217,6 +202,12 @@ public class BattleActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if (isInitialPartySelection)
+        {
+            Toast.makeText(this, "You must select a party member first.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (battleVfp.getDisplayedChild() == 0) {
             showRunAlertDialog();
         } else {
@@ -241,14 +232,13 @@ public class BattleActivity extends AppCompatActivity {
 
     private void adjustLayoutToLandscape()
     {
-        float density = getResources().getDisplayMetrics().density;
         int imageWidth;
         int imageHeight;
 
         for(ImageView img:  battleImgs)
         {
-            imageWidth = (int) (getResources().getDimension(R.dimen.battle_img_width_landscape) / density);
-            imageHeight = (int) (getResources().getDimension(R.dimen.battle_img_height_landscape) / density);
+            imageWidth = (int) (getResources().getDimension(R.dimen.battle_img_width_landscape));
+            imageHeight = (int) (getResources().getDimension(R.dimen.battle_img_height_landscape));
 
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
@@ -256,8 +246,8 @@ public class BattleActivity extends AppCompatActivity {
 
         for(ImageView img: itemImgs)
         {
-            imageWidth = (int) (getResources().getDimension(R.dimen.player_items_img_width_landscape) / density);
-            imageHeight = (int) (getResources().getDimension(R.dimen.player_items_img_height_landscape) / density);
+            imageWidth = (int) (getResources().getDimension(R.dimen.player_items_img_width_landscape));
+            imageHeight = (int) (getResources().getDimension(R.dimen.player_items_img_height_landscape));
 
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
@@ -265,14 +255,14 @@ public class BattleActivity extends AppCompatActivity {
 
         for(ImageView img: partyImgs)
         {
-            imageWidth = (int) (getResources().getDimension(R.dimen.party_img_width_landscape) / density);
-            imageHeight = (int) (getResources().getDimension(R.dimen.party_img_height_landscape) / density);
+            imageWidth = (int) (getResources().getDimension(R.dimen.party_img_width_landscape));
+            imageHeight = (int) (getResources().getDimension(R.dimen.party_img_height_landscape));
 
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
         }
 
-        float textSize = getResources().getDimension(R.dimen.battle_txt_text_size_landscape) / density;
+        float textSize = getResources().getDimension(R.dimen.battle_txt_text_size_landscape) / getResources().getDisplayMetrics().scaledDensity;
 
         for (TextView txt : battleTxtsHealthLabel)
         {
@@ -312,29 +302,37 @@ public class BattleActivity extends AppCompatActivity {
 
     private void adjustLayoutToPortrait()
     {
-        float density = getResources().getDisplayMetrics().density;
-        int imageWidth = (int) (getResources().getDimension(R.dimen.battle_img_width) / density);
-        int imageHeight = (int) (getResources().getDimension(R.dimen.battle_img_height) / density);
+        int imageWidth;
+        int imageHeight;
 
         for(ImageView img:  battleImgs)
         {
+            imageWidth = (int) (getResources().getDimension(R.dimen.battle_img_width));
+            imageHeight = (int) (getResources().getDimension(R.dimen.battle_img_height));
+
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
         }
 
         for(ImageView img: itemImgs)
         {
+            imageWidth = (int) (getResources().getDimension(R.dimen.player_items_img_width));
+            imageHeight = (int) (getResources().getDimension(R.dimen.player_items_img_height));
+
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
         }
 
         for(ImageView img: partyImgs)
         {
+            imageWidth = (int) (getResources().getDimension(R.dimen.party_img_width));
+            imageHeight = (int) (getResources().getDimension(R.dimen.party_img_height));
+
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
         }
 
-        float textSize = getResources().getDimension(R.dimen.battle_txt_text_size) / density;
+        float textSize = getResources().getDimension(R.dimen.battle_txt_text_size) / getResources().getDisplayMetrics().scaledDensity;
 
         for (TextView txt : battleTxtsHealthLabel)
         {
@@ -385,6 +383,9 @@ public class BattleActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
+            isInitialPartySelection = false;
+            battleVfp.setDisplayedChild(0);
+
             switch(v.getId())
             {
                 case R.id.party_clo_first:
@@ -399,6 +400,12 @@ public class BattleActivity extends AppCompatActivity {
             }
 
             currentOpponentMonster = opponentMonsters.get(0);
+
+            String healthLabelText = currentPlayerMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
+            battleTxtsHealthLabel.get(1).setText(healthLabelText);
+
+            healthLabelText = v.getContext().getResources().getString(R.string.enemy) + " " + currentOpponentMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
+            battleTxtsHealthLabel.get(0).setText(healthLabelText);
 
             battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
             battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
