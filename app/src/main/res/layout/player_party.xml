@@ -28,81 +28,114 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/party_txt_first_health_label"
-            android:layout_width="wrap_content"
+            android:id="@+id/party_txt_first_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/party_margin_left"
             android:layout_marginTop="@dimen/party_margin_vertical"
             android:gravity="center"
-            android:text="@string/health_shorthand_with_colon"
+            android:text="@string/pack"
             android:textColor="@android:color/black"
             android:textSize="@dimen/party_txt_label_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_first_type"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/party_img_first" />
 
-        <TextView
-            android:id="@+id/party_txt_first_current_health"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/party_margin_left"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/default_health_text"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_first_type"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_first_health_label"
-            app:layout_constraintTop_toBottomOf="@id/party_img_first" />
-
-        <TextView
-            android:id="@+id/party_txt_first_slash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/forward_slash"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_first_type"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_first_current_health"
-            app:layout_constraintTop_toBottomOf="@id/party_img_first" />
-
-        <TextView
-            android:id="@+id/party_txt_first_max_health"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/default_health_text"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_first_type"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_first_slash"
-            app:layout_constraintTop_toBottomOf="@id/party_img_first" />
-
-        <TextView
-            android:id="@+id/party_txt_first_type_label"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/party_llo_first_stats"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/party_margin_vertical"
             android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/type_with_colon"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_label_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/party_txt_first_health_label" />
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/party_txt_first_name">
 
-        <TextView
-            android:id="@+id/party_txt_first_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/party_margin_left"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/default_type_text"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toBottomOf="@id/party_txt_first_type_label"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_first_type_label"
-            app:layout_constraintTop_toTopOf="@id/party_txt_first_type_label" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/party_txt_first_health_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/party_margin_left"
+                    android:gravity="center"
+                    android:text="@string/health_shorthand_with_colon"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_label_text_size"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/party_txt_first_current_health"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/party_margin_left"
+                    android:text="@string/default_health_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_first_health_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_first_health_label"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_first_health_label" />
+
+                <TextView
+                    android:id="@+id/party_txt_first_slash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/forward_slash"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_first_health_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_first_current_health"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_first_health_label" />
+
+                <TextView
+                    android:id="@+id/party_txt_first_max_health"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_health_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_first_health_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_first_slash"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_first_health_label" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/party_txt_first_type_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/party_margin_vertical"
+                    android:layout_marginTop="@dimen/party_margin_vertical"
+                    android:text="@string/type_with_colon"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_label_text_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/party_txt_first_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/party_margin_left"
+                    android:layout_marginTop="@dimen/party_margin_vertical"
+                    android:text="@string/default_type_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_first_type_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_first_type_label"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_first_type_label" />
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -128,81 +161,113 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/party_txt_second_health_label"
-            android:layout_width="wrap_content"
+            android:id="@+id/party_txt_second_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/party_margin_left"
             android:layout_marginTop="@dimen/party_margin_vertical"
             android:gravity="center"
-            android:text="@string/health_shorthand_with_colon"
+            android:text="@string/pack"
             android:textColor="@android:color/black"
             android:textSize="@dimen/party_txt_label_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_second_type"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/party_img_second" />
 
-        <TextView
-            android:id="@+id/party_txt_second_current_health"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/party_margin_left"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/default_health_text"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_second_type"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_second_health_label"
-            app:layout_constraintTop_toBottomOf="@id/party_img_second" />
-
-        <TextView
-            android:id="@+id/party_txt_second_slash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/forward_slash"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_second_type"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_second_current_health"
-            app:layout_constraintTop_toBottomOf="@id/party_img_second" />
-
-        <TextView
-            android:id="@+id/party_txt_second_max_health"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/default_health_text"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_second_type"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_second_slash"
-            app:layout_constraintTop_toBottomOf="@id/party_img_second" />
-
-        <TextView
-            android:id="@+id/party_txt_second_type_label"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/party_llo_second_stats"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/party_margin_vertical"
             android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/type_with_colon"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_label_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/party_txt_second_health_label" />
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/party_txt_second_name">
 
-        <TextView
-            android:id="@+id/party_txt_second_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/party_margin_left"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/default_type_text"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toBottomOf="@id/party_txt_second_type_label"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_second_type_label"
-            app:layout_constraintTop_toTopOf="@id/party_txt_second_type_label" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/party_txt_second_health_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/party_margin_left"
+                    android:gravity="center"
+                    android:text="@string/health_shorthand_with_colon"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_label_text_size"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/party_txt_second_current_health"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/party_margin_left"
+                    android:text="@string/default_health_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_second_health_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_second_health_label"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_second_health_label" />
+
+                <TextView
+                    android:id="@+id/party_txt_second_slash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/forward_slash"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_second_health_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_second_current_health"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_second_health_label" />
+
+                <TextView
+                    android:id="@+id/party_txt_second_max_health"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_health_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_second_health_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_second_slash"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_second_health_label" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/party_txt_second_type_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/party_margin_vertical"
+                    android:layout_marginTop="@dimen/party_margin_vertical"
+                    android:text="@string/type_with_colon"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_label_text_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/party_txt_second_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/party_margin_left"
+                    android:layout_marginTop="@dimen/party_margin_vertical"
+                    android:text="@string/default_type_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_second_type_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_second_type_label"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_second_type_label" />
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -228,80 +293,112 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/party_txt_third_health_label"
-            android:layout_width="wrap_content"
+            android:id="@+id/party_txt_third_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/party_margin_left"
             android:layout_marginTop="@dimen/party_margin_vertical"
             android:gravity="center"
-            android:text="@string/health_shorthand_with_colon"
+            android:text="@string/pack"
             android:textColor="@android:color/black"
             android:textSize="@dimen/party_txt_label_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_third_type"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/party_img_third" />
 
-        <TextView
-            android:id="@+id/party_txt_third_current_health"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/party_margin_left"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/default_health_text"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_third_type"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_third_health_label"
-            app:layout_constraintTop_toBottomOf="@id/party_img_third" />
-
-        <TextView
-            android:id="@+id/party_txt_third_slash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/forward_slash"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_third_type"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_third_current_health"
-            app:layout_constraintTop_toBottomOf="@id/party_img_third" />
-
-        <TextView
-            android:id="@+id/party_txt_third_max_health"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/default_health_text"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toTopOf="@id/party_txt_third_type"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_third_slash"
-            app:layout_constraintTop_toBottomOf="@id/party_img_third" />
-
-        <TextView
-            android:id="@+id/party_txt_third_type_label"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/party_llo_third_stats"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/party_margin_vertical"
             android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/type_with_colon"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_label_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/party_txt_third_health_label" />
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/party_txt_third_name">
 
-        <TextView
-            android:id="@+id/party_txt_third_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/party_margin_left"
-            android:layout_marginTop="@dimen/party_margin_vertical"
-            android:text="@string/default_type_text"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/party_txt_value_text_size"
-            app:layout_constraintBottom_toBottomOf="@id/party_txt_third_type_label"
-            app:layout_constraintLeft_toRightOf="@id/party_txt_third_type_label"
-            app:layout_constraintTop_toTopOf="@id/party_txt_third_type_label" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/party_txt_third_health_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/party_margin_left"
+                    android:gravity="center"
+                    android:text="@string/health_shorthand_with_colon"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_label_text_size"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/party_txt_third_current_health"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/party_margin_left"
+                    android:text="@string/default_health_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_third_health_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_third_health_label"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_third_health_label" />
+
+                <TextView
+                    android:id="@+id/party_txt_third_slash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/forward_slash"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_third_health_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_third_current_health"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_third_health_label" />
+
+                <TextView
+                    android:id="@+id/party_txt_third_max_health"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_health_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_third_health_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_third_slash"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_third_health_label" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/party_txt_third_type_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/party_margin_vertical"
+                    android:layout_marginTop="@dimen/party_margin_vertical"
+                    android:text="@string/type_with_colon"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_label_text_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/party_txt_third_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/party_margin_left"
+                    android:layout_marginTop="@dimen/party_margin_vertical"
+                    android:text="@string/default_type_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/party_txt_value_text_size"
+                    app:layout_constraintBottom_toBottomOf="@id/party_txt_third_type_label"
+                    app:layout_constraintLeft_toRightOf="@id/party_txt_third_type_label"
+                    app:layout_constraintTop_toTopOf="@id/party_txt_third_type_label" />
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
