@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Pack Pack Monsters</string>
-    <string name="pack_pack_activity_title">Pack Pack</string>
+    <string name="pack_pack_activity_title">PackDex</string>
     <string name="battle_activity_title">Battle</string>
     <string name="items_activity_title">Items</string>
     <string name="help_activity_title">FAQ</string>
@@ -20,6 +20,7 @@
     <string name="faq">Help</string>
     <string name="battle">Battle</string>
     <string name="pack">Pack Pack</string>
+    <string name="packdex">PackDex</string>
     <string name="home">Home</string>
     <string name="stats_underlined"><u>Stats</u></string>
     <string name="wins_with_colon">Wins:</string>

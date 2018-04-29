@@ -9,7 +9,6 @@ import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -45,6 +44,7 @@ public class BattleActivity extends AppCompatActivity {
     ArrayList<Button> moveBtns;
     private Monster currentPlayerMonster;
     private Monster currentOpponentMonster;
+    private boolean monsterSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,13 +74,25 @@ public class BattleActivity extends AppCompatActivity {
         opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
         opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
 
-        ((TextView) findViewById(R.id.party_txt_first_health_label)).setText("HP: " + playerMonsters.get(0).getHp());
-        ((TextView) findViewById(R.id.party_txt_second_health_label)).setText("HP: " + playerMonsters.get(1).getHp());
-        ((TextView) findViewById(R.id.party_txt_third_health_label)).setText("HP: " + playerMonsters.get(2).getHp());
+        partyTxtsName.get(0).setText(playerMonsters.get(0).getName());
+        partyTxtsName.get(1).setText(playerMonsters.get(1).getName());
+        partyTxtsName.get(2).setText(playerMonsters.get(2).getName());
 
-        ((TextView) findViewById(R.id.party_txt_first_type)).setText(playerMonsters.get(0).getTypeString());
-        ((TextView) findViewById(R.id.party_txt_second_type)).setText(playerMonsters.get(1).getTypeString());
-        ((TextView) findViewById(R.id.party_txt_third_type)).setText(playerMonsters.get(2).getTypeString());
+        partyImgs.get(0).setImageResource(playerMonsters.get(0).getImage());
+        partyImgs.get(1).setImageResource(playerMonsters.get(1).getImage());
+        partyImgs.get(2).setImageResource(playerMonsters.get(2).getImage());
+
+        partyTxtsCurrentHealth.get(0).setText(playerMonsters.get(0).getCurrentHp() + "");
+        partyTxtsCurrentHealth.get(1).setText(playerMonsters.get(1).getCurrentHp() + "");
+        partyTxtsCurrentHealth.get(2).setText(playerMonsters.get(2).getCurrentHp() + "");
+
+        partyTxtsMaxHealth.get(0).setText(playerMonsters.get(0).getMaxHp() + "");
+        partyTxtsMaxHealth.get(1).setText(playerMonsters.get(1).getMaxHp() + "");
+        partyTxtsMaxHealth.get(2).setText(playerMonsters.get(2).getMaxHp() + "");
+
+        partyTxtsType.get(0).setText(playerMonsters.get(0).getTypeString());
+        partyTxtsType.get(1).setText(playerMonsters.get(1).getTypeString());
+        partyTxtsType.get(2).setText(playerMonsters.get(2).getTypeString());
     }
 
     private void initializeViews()
@@ -389,19 +401,21 @@ public class BattleActivity extends AppCompatActivity {
 
             currentOpponentMonster = opponentMonsters.get(0);
 
-            Toast.makeText(BattleActivity.this, currentPlayerMonster.getName() + "\n" + currentOpponentMonster.getName(), Toast.LENGTH_LONG).show();
-            Log.e("Monsters", currentPlayerMonster.getName() + "\n" + currentOpponentMonster.getName());
+            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
+            battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
 
-            ((TextView) findViewById(R.id.battle_txt_bot_player_current_health)).setText(currentPlayerMonster.getHp() + "");
-            ((TextView) findViewById(R.id.battle_txt_bot_player_max_health)).setText(currentPlayerMonster.getHp() + "");
-
-            ((TextView) findViewById(R.id.battle_txt_top_player_current_health)).setText(currentOpponentMonster.getHp() + "");
-            ((TextView) findViewById(R.id.battle_txt_top_player_max_health)).setText(currentOpponentMonster.getHp() + "");
+            battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getMaxHp() + "");
+            battleTxtsMaxHealth.get(1).setText(currentPlayerMonster.getMaxHp() + "");
 
             moveBtns.get(0).setText(currentPlayerMonster.getMoves().get(0).getName());
             moveBtns.get(1).setText(currentPlayerMonster.getMoves().get(1).getName());
             moveBtns.get(2).setText(currentPlayerMonster.getMoves().get(3).getName());
             moveBtns.get(3).setText(currentPlayerMonster.getMoves().get(2).getName());
+
+            battleImgs.get(0).setImageResource(currentOpponentMonster.getImage());
+            battleImgs.get(1).setImageResource(currentPlayerMonster.getImage());
+
+            monsterSelected = true;
         }
     }
 
@@ -438,14 +452,22 @@ public class BattleActivity extends AppCompatActivity {
                     currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(1));
                     break;
                 case R.id.moves_btn_bot_left:
-                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(2));
+                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(3));
                     break;
                 case R.id.moves_btn_bot_right:
-                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(3));
+                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(2));
                     break;
             }
 
-            ((TextView) findViewById(R.id.battle_txt_top_player_current_health)).setText(currentOpponentMonster.getHp() + "");
+            if (currentOpponentMonster.isDead()) {
+                goToResultActivity(true);
+            }
+
+            if (currentPlayerMonster.isDead()) {
+                goToResultActivity(false);
+            }
+
+            ((TextView) findViewById(R.id.battle_txt_top_player_current_health)).setText(currentOpponentMonster.getCurrentHp() + "");
         }
     }
 
@@ -501,7 +523,11 @@ public class BattleActivity extends AppCompatActivity {
             switch (v.getId())
             {
                 case R.id.battle_btn_top_left://Battle button
-                    battleVfp.setDisplayedChild(1);
+                    if (monsterSelected) {
+                        battleVfp.setDisplayedChild(1);
+                    } else {
+                        Toast.makeText(BattleActivity.this, "You need to select a monster from the party menu first.", Toast.LENGTH_LONG).show();
+                    }
                     break;
                 case R.id.battle_btn_top_right: //Items
                     battleVfp.setDisplayedChild(2);
