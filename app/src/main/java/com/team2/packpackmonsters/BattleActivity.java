@@ -61,7 +61,6 @@ public class BattleActivity extends AppCompatActivity {
         }
 
         initializeListeners();
-        setPartyImages();
 
         playerMonsters = new ArrayList<>();
         opponentMonsters = new ArrayList<>();
@@ -467,19 +466,7 @@ public class BattleActivity extends AppCompatActivity {
                 goToResultActivity(false);
             }
 
-            ((TextView) findViewById(R.id.battle_txt_top_player_current_health)).setText(currentOpponentMonster.getCurrentHp() + "");
-        }
-    }
-
-    private void setPartyImages()
-    {
-        //TODO Add party images.
-
-        ArrayList<Drawable> images = new ArrayList<>(partyImgs.size());
-
-        for(int i = 0; i < images.size(); i++)
-        {
-            partyImgs.get(i).setImageDrawable(images.get(i));
+            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
         }
     }
 

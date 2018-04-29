@@ -13,7 +13,8 @@
     <string name="run">Run</string>
     <string name="party">Party</string>
     <string name="health">Health</string>
-    <string name="health_enemy">Enemy Health</string>
+    <string name="enemy_health">Enemy Health</string>
+    <string name="enemy">Enemy</string>
     <string name="health_shorthand_with_colon">HP:</string>
     <string name="base_health_with_colon">Base Health:</string>
     <string name="moves_underlined"><u>Moves</u></string>
