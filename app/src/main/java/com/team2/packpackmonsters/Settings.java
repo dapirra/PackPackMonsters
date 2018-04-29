@@ -45,5 +45,7 @@ public class Settings {
                     moves
             ));
         }
+
+        c.close();
     }
 }
