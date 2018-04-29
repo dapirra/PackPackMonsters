@@ -8,6 +8,7 @@
     <dimen name="battle_img_margin_vertical">12dp</dimen>
     <dimen name="battle_img_margin_horizontal_between_parent">12dp</dimen>
     <dimen name="battle_img_margin_horizontal">12dp</dimen>
+    <dimen name="battle_clo_health_margin_vertical">8dp</dimen>
     <dimen name="items_txt_margin_vertical_between_parent">8dp</dimen>
     <dimen name="items_txt_margin_vertical">8dp</dimen>
     <dimen name="items_txt_description_margin_horizontal">8dp</dimen>
@@ -46,21 +47,21 @@
 
     <dimen name="party_img_width">60dp</dimen>
     <dimen name="party_img_height">60dp</dimen>
-    <dimen name="party_img_width_landscape">30dp</dimen>
-    <dimen name="party_img_height_landscape">30dp</dimen>
+    <dimen name="party_img_width_landscape">40dp</dimen>
+    <dimen name="party_img_height_landscape">40dp</dimen>
     <dimen name="battle_img_width">125dp</dimen>
     <dimen name="battle_img_height">125dp</dimen>
     <dimen name="battle_img_width_landscape">50dp</dimen>
     <dimen name="battle_img_height_landscape">50dp</dimen>
     <dimen name="player_items_img_width">80dp</dimen>
     <dimen name="player_items_img_height">80dp</dimen>
-    <dimen name="player_items_img_width_landscape">50dp</dimen>
-    <dimen name="player_items_img_height_landscape">50dp</dimen>
+    <dimen name="player_items_img_width_landscape">80dp</dimen>
+    <dimen name="player_items_img_height_landscape">80dp</dimen>
     <dimen name="items_img_width">100dp</dimen>
     <dimen name="items_img_height">100dp</dimen>
     <dimen name="ind_pack_img_width">125dp</dimen>
     <dimen name="ind_pack_img_height">125dp</dimen>
-    <dimen name="pack_img_size">50dp</dimen>
+    <dimen name="pack_img_size">75dp</dimen>
 
     <dimen name="items_gdl_percent">0.6</dimen>
     <dimen name="battle_gdl_top_percent">0.5</dimen>
@@ -73,15 +74,16 @@
     <dimen name="items_txt_description_text_size">16sp</dimen>
     <dimen name="battle_btn_text_size">24sp</dimen>
     <dimen name="battle_txt_text_size">24sp</dimen>
+    <dimen name="battle_txt_text_size_landscape">16sp</dimen>
     <dimen name="main_txt_text_size">24sp</dimen>
     <dimen name="main_btn_text_size">24sp</dimen>
     <dimen name="name_edit_text_size">24sp</dimen>
     <dimen name="name_txt_text_size">24sp</dimen>
-    <dimen name="party_txt_label_text_size">20sp</dimen>
+    <dimen name="party_txt_label_text_size">16sp</dimen>
     <dimen name="party_txt_value_text_size">16sp</dimen>
     <dimen name="player_items_txt_text_size">16sp</dimen>
     <dimen name="moves_btn_text_size">24sp</dimen>
-    <dimen name="pack_text_size">16sp</dimen>
+    <dimen name="pack_text_size">24sp</dimen>
     <dimen name="ind_pack_text_size">24sp</dimen>
     <dimen name="battle_result_text_size">24sp</dimen>
     <dimen name="main_nav_text_size">24sp</dimen>

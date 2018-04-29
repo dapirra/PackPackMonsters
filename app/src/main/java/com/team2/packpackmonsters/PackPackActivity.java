@@ -3,7 +3,6 @@ package com.team2.packpackmonsters;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -18,7 +17,7 @@ public class PackPackActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pack_pack);
-        setTitle(getResources().getString(R.string.pack_pack_activity_title));
+        setTitle(R.string.pack_pack_activity_title);
 
         ListView packLst = findViewById(R.id.pack_lst);
         packLst.setOnItemClickListener(new PackLstOnItemClickListener());
@@ -36,7 +35,7 @@ public class PackPackActivity extends AppCompatActivity
                 TextView txtPack = (TextView) llo.getChildAt(1);
 
                 Intent intent = new Intent(view.getContext(), IndividualPackPackActivity.class);
-                intent.putExtra(IndividualPackPackActivity.PACK_PACK_KEY, txtPack.getText());
+                intent.putExtra(IndividualPackPackActivity.MONSTER_KEY, txtPack.getText());
 
                 startActivity(intent);
             }
