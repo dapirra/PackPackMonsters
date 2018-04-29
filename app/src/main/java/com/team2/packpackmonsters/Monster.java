@@ -18,6 +18,7 @@ public class Monster {
     private ArrayList<Move> moves;
     private int image;
     private String typeString;
+    public static int damageDealt;
 
     public Monster(String name, String description, int maxHp, int type, String imagePath, ArrayList<Move> moves) {
         this.name = name;
@@ -46,18 +47,23 @@ public class Monster {
     public void doMove (Monster opponent, Move selectedMove) {
         if (!selectedMove.isBuff()) {
             if (this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.WATER) {
-                opponent.setCurrentHp(opponent.getCurrentHp() - selectedMove.getDamage()  - 3);
+                damageDealt = selectedMove.getDamage()  - 3;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
             }
             else if(this.getType() == PacPacMonsterEntry.WATER && opponent.getType() == PacPacMonsterEntry.FIRE) {
-                opponent.setCurrentHp(opponent.getCurrentHp() - selectedMove.getDamage() + 3);
+                damageDealt = selectedMove.getDamage() + 3;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
             }
             else if(this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.EARTH) {
-                opponent.setCurrentHp(opponent.getCurrentHp() - selectedMove.getDamage() + 3);
+                damageDealt = selectedMove.getDamage() + 3;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
             }
             else if(this.getType() == PacPacMonsterEntry.EARTH && opponent.getType() == PacPacMonsterEntry.FIRE) {
-                opponent.setCurrentHp(opponent.getCurrentHp() - selectedMove.getDamage() - 3);
+                damageDealt = selectedMove.getDamage() - 3;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
             } else {
-                opponent.setCurrentHp(opponent.getCurrentHp() - selectedMove.getDamage());
+                damageDealt = selectedMove.getDamage();
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
             }
             // TODO finish all conditions
         } else {

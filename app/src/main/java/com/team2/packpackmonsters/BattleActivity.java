@@ -3,14 +3,12 @@ package com.team2.packpackmonsters;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.Process;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 import static com.team2.packpackmonsters.Settings.allMonsters;
@@ -388,7 +385,6 @@ public class BattleActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            //TODO Party OnClickListener() functionality, including changing images
             switch(v.getId())
             {
                 case R.id.party_clo_first:
@@ -467,6 +463,8 @@ public class BattleActivity extends AppCompatActivity {
                     break;
             }
 
+            Toast.makeText(BattleActivity.this, "You did " + Monster.damageDealt + " damage.", Toast.LENGTH_LONG).show();
+
             battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
 
             if (currentOpponentMonster.isDead()) {
@@ -485,14 +483,14 @@ public class BattleActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            return currentOpponentMonster.getMoves().get((int) Math.random() * 4);
+            return currentOpponentMonster.getMoves().get((int) (Math.random() * 4));
         }
 
         protected void onPostExecute(Move enemyMove) {
             currentOpponentMonster.doMove(currentPlayerMonster, enemyMove);
 
             Toast.makeText(BattleActivity.this, "Enemy used " + enemyMove.getName() +
-                    ".\nIt did " + enemyMove.getDamage() + " damage.", Toast.LENGTH_LONG).show();
+                    ".\nIt did " + Monster.damageDealt + " damage.", Toast.LENGTH_LONG).show();
 
             battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
 

@@ -45,10 +45,10 @@ public final class PacPacMonstersContract//Contract class, allows easier way to 
         public final static String COLUMN_MOVE_FOUR_DAMAGE = "move_four_damage";
         public final static String COLUMN_MOVE_FOUR_BUFF = "move_four_buff";
 
-        public final static int FIRE = 0;
-        public final static int WATER = 1;
-        public final static int EARTH = 2;
+        public final static int FIRE = 1;
+        public final static int WATER = 2;
         public final static int WIND = 3;
+        public final static int EARTH = 4;
 
         //Type for monster, grass, water, etc. Might make this an integer where 1 = water 2 = fire etc.
 //        public final static String COLUMN_IMAGE = "image";//Picture of monster, might need to remove...
@@ -61,10 +61,4 @@ public final class PacPacMonstersContract//Contract class, allows easier way to 
         public final static String _ID = BaseColumns._ID;
         public final static String COLUMN_ITEM_NAME = "name";
     }
-
-
-
-
-
-
 }
