@@ -61,7 +61,6 @@ public class BattleActivity extends AppCompatActivity {
         }
 
         initializeListeners();
-        setPartyImages();
 
         playerMonsters = new ArrayList<>();
         opponentMonsters = new ArrayList<>();
@@ -74,13 +73,18 @@ public class BattleActivity extends AppCompatActivity {
         opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
         opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
 
-        ((TextView) findViewById(R.id.party_txt_first_health_label)).setText("HP: " + playerMonsters.get(0).getHp());
-        ((TextView) findViewById(R.id.party_txt_second_health_label)).setText("HP: " + playerMonsters.get(1).getHp());
-        ((TextView) findViewById(R.id.party_txt_third_health_label)).setText("HP: " + playerMonsters.get(2).getHp());
+        ArrayList<Drawable> images = new ArrayList<>(partyImgs.size());
 
-        ((TextView) findViewById(R.id.party_txt_first_type)).setText(playerMonsters.get(0).getTypeString());
-        ((TextView) findViewById(R.id.party_txt_second_type)).setText(playerMonsters.get(1).getTypeString());
-        ((TextView) findViewById(R.id.party_txt_third_type)).setText(playerMonsters.get(2).getTypeString());
+        for (int i = 0; i < playerMonsters.size(); i++)
+        {
+            partyTxtsCurrentHealth.get(i).setText(playerMonsters.get(i).getHp() + "");
+            partyTxtsMaxHealth.get(i).setText(playerMonsters.get(i).getHp() + "");
+            partyTxtsType.get(i).setText(playerMonsters.get(i).getTypeString());
+            partyTxtsName.get(i).setText(playerMonsters.get(i).getName());
+
+            images.add(Drawable.createFromPath(playerMonsters.get(i).getImagePath()));
+            partyImgs.get(i).setImageDrawable(images.get(i));
+        }
     }
 
     private void initializeViews()
@@ -392,11 +396,18 @@ public class BattleActivity extends AppCompatActivity {
             Toast.makeText(BattleActivity.this, currentPlayerMonster.getName() + "\n" + currentOpponentMonster.getName(), Toast.LENGTH_LONG).show();
             Log.e("Monsters", currentPlayerMonster.getName() + "\n" + currentOpponentMonster.getName());
 
-            ((TextView) findViewById(R.id.battle_txt_bot_player_current_health)).setText(currentPlayerMonster.getHp() + "");
-            ((TextView) findViewById(R.id.battle_txt_bot_player_max_health)).setText(currentPlayerMonster.getHp() + "");
+            String healthLabelText = currentPlayerMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
 
-            ((TextView) findViewById(R.id.battle_txt_top_player_current_health)).setText(currentOpponentMonster.getHp() + "");
-            ((TextView) findViewById(R.id.battle_txt_top_player_max_health)).setText(currentOpponentMonster.getHp() + "");
+            battleImgs.get(1).setImageDrawable(Drawable.createFromPath(currentPlayerMonster.getImagePath()));
+            battleTxtsHealthLabel.get(1).setText(healthLabelText);
+            battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getHp() + "");
+            battleTxtsMaxHealth.get(1).setText(currentPlayerMonster.getHp() + "");
+
+            healthLabelText = v.getContext().getResources().getString(R.string.enemy) + " " + currentOpponentMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
+
+            battleTxtsHealthLabel.get(0).setText(healthLabelText);
+            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getHp() + "");
+            battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getHp() + "");
 
             moveBtns.get(0).setText(currentPlayerMonster.getMoves().get(0).getName());
             moveBtns.get(1).setText(currentPlayerMonster.getMoves().get(1).getName());
@@ -445,19 +456,7 @@ public class BattleActivity extends AppCompatActivity {
                     break;
             }
 
-            ((TextView) findViewById(R.id.battle_txt_top_player_current_health)).setText(currentOpponentMonster.getHp() + "");
-        }
-    }
-
-    private void setPartyImages()
-    {
-        //TODO Add party images.
-
-        ArrayList<Drawable> images = new ArrayList<>(partyImgs.size());
-
-        for(int i = 0; i < images.size(); i++)
-        {
-            partyImgs.get(i).setImageDrawable(images.get(i));
+            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getHp() + "");
         }
     }
 
