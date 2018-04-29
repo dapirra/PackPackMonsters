@@ -80,7 +80,7 @@
     <dimen name="name_edit_text_size">24sp</dimen>
     <dimen name="name_txt_text_size">24sp</dimen>
     <dimen name="party_txt_label_text_size">16sp</dimen>
-    <dimen name="party_txt_value_text_size">12sp</dimen>
+    <dimen name="party_txt_value_text_size">16sp</dimen>
     <dimen name="player_items_txt_text_size">16sp</dimen>
     <dimen name="moves_btn_text_size">24sp</dimen>
     <dimen name="pack_text_size">24sp</dimen>
