@@ -55,13 +55,13 @@ public class NameActivity extends AppCompatActivity {
 
     private void temp_saveName(String name)
     {
-        SharedPreferences pref = this.getSharedPreferences("app", Context.MODE_PRIVATE);
+        SharedPreferences pref = getSharedPreferences("app", Context.MODE_PRIVATE);
         pref.edit().putString("name", name).apply();
     }
 
     private String temp_fetchName()
     {
-        SharedPreferences pref = this.getSharedPreferences("app", Context.MODE_PRIVATE);
+        SharedPreferences pref = getSharedPreferences("app", Context.MODE_PRIVATE);
         return pref.getString("name", null);
     }
 }
