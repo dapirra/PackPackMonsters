@@ -9,7 +9,6 @@ import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -45,6 +44,7 @@ public class BattleActivity extends AppCompatActivity {
     ArrayList<Button> moveBtns;
     private Monster currentPlayerMonster;
     private Monster currentOpponentMonster;
+    private boolean monsterSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,18 +73,25 @@ public class BattleActivity extends AppCompatActivity {
         opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
         opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
 
-        ArrayList<Drawable> images = new ArrayList<>(partyImgs.size());
+        partyTxtsName.get(0).setText(playerMonsters.get(0).getName());
+        partyTxtsName.get(1).setText(playerMonsters.get(1).getName());
+        partyTxtsName.get(2).setText(playerMonsters.get(2).getName());
 
-        for (int i = 0; i < playerMonsters.size(); i++)
-        {
-            partyTxtsCurrentHealth.get(i).setText(playerMonsters.get(i).getHp() + "");
-            partyTxtsMaxHealth.get(i).setText(playerMonsters.get(i).getHp() + "");
-            partyTxtsType.get(i).setText(playerMonsters.get(i).getTypeString());
-            partyTxtsName.get(i).setText(playerMonsters.get(i).getName());
+        partyImgs.get(0).setImageResource(playerMonsters.get(0).getImage());
+        partyImgs.get(1).setImageResource(playerMonsters.get(1).getImage());
+        partyImgs.get(2).setImageResource(playerMonsters.get(2).getImage());
 
-            images.add(Drawable.createFromPath(playerMonsters.get(i).getImagePath()));
-            partyImgs.get(i).setImageDrawable(images.get(i));
-        }
+        partyTxtsCurrentHealth.get(0).setText(playerMonsters.get(0).getCurrentHp() + "");
+        partyTxtsCurrentHealth.get(1).setText(playerMonsters.get(1).getCurrentHp() + "");
+        partyTxtsCurrentHealth.get(2).setText(playerMonsters.get(2).getCurrentHp() + "");
+
+        partyTxtsMaxHealth.get(0).setText(playerMonsters.get(0).getMaxHp() + "");
+        partyTxtsMaxHealth.get(1).setText(playerMonsters.get(1).getMaxHp() + "");
+        partyTxtsMaxHealth.get(2).setText(playerMonsters.get(2).getMaxHp() + "");
+
+        partyTxtsType.get(0).setText(playerMonsters.get(0).getTypeString());
+        partyTxtsType.get(1).setText(playerMonsters.get(1).getTypeString());
+        partyTxtsType.get(2).setText(playerMonsters.get(2).getTypeString());
     }
 
     private void initializeViews()
@@ -393,26 +400,21 @@ public class BattleActivity extends AppCompatActivity {
 
             currentOpponentMonster = opponentMonsters.get(0);
 
-            Toast.makeText(BattleActivity.this, currentPlayerMonster.getName() + "\n" + currentOpponentMonster.getName(), Toast.LENGTH_LONG).show();
-            Log.e("Monsters", currentPlayerMonster.getName() + "\n" + currentOpponentMonster.getName());
+            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
+            battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
 
-            String healthLabelText = currentPlayerMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
-
-            battleImgs.get(1).setImageDrawable(Drawable.createFromPath(currentPlayerMonster.getImagePath()));
-            battleTxtsHealthLabel.get(1).setText(healthLabelText);
-            battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getHp() + "");
-            battleTxtsMaxHealth.get(1).setText(currentPlayerMonster.getHp() + "");
-
-            healthLabelText = v.getContext().getResources().getString(R.string.enemy) + " " + currentOpponentMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
-
-            battleTxtsHealthLabel.get(0).setText(healthLabelText);
-            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getHp() + "");
-            battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getHp() + "");
+            battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getMaxHp() + "");
+            battleTxtsMaxHealth.get(1).setText(currentPlayerMonster.getMaxHp() + "");
 
             moveBtns.get(0).setText(currentPlayerMonster.getMoves().get(0).getName());
             moveBtns.get(1).setText(currentPlayerMonster.getMoves().get(1).getName());
             moveBtns.get(2).setText(currentPlayerMonster.getMoves().get(3).getName());
             moveBtns.get(3).setText(currentPlayerMonster.getMoves().get(2).getName());
+
+            battleImgs.get(0).setImageResource(currentOpponentMonster.getImage());
+            battleImgs.get(1).setImageResource(currentPlayerMonster.getImage());
+
+            monsterSelected = true;
         }
     }
 
@@ -449,14 +451,22 @@ public class BattleActivity extends AppCompatActivity {
                     currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(1));
                     break;
                 case R.id.moves_btn_bot_left:
-                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(2));
+                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(3));
                     break;
                 case R.id.moves_btn_bot_right:
-                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(3));
+                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(2));
                     break;
             }
 
-            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getHp() + "");
+            if (currentOpponentMonster.isDead()) {
+                goToResultActivity(true);
+            }
+
+            if (currentPlayerMonster.isDead()) {
+                goToResultActivity(false);
+            }
+
+            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
         }
     }
 
@@ -500,7 +510,11 @@ public class BattleActivity extends AppCompatActivity {
             switch (v.getId())
             {
                 case R.id.battle_btn_top_left://Battle button
-                    battleVfp.setDisplayedChild(1);
+                    if (monsterSelected) {
+                        battleVfp.setDisplayedChild(1);
+                    } else {
+                        Toast.makeText(BattleActivity.this, "You need to select a monster from the party menu first.", Toast.LENGTH_LONG).show();
+                    }
                     break;
                 case R.id.battle_btn_top_right: //Items
                     battleVfp.setDisplayedChild(2);

@@ -46,7 +46,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/battle_txt_top_player_current_health"
+                android:id="@+id/battle_txt_top_player_max_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_health_text"
@@ -68,7 +68,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/battle_txt_top_player_max_health"
+                android:id="@+id/battle_txt_top_player_current_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_health_text"

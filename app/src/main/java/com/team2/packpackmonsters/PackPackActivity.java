@@ -17,7 +17,7 @@ public class PackPackActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pack_pack);
-        setTitle(getResources().getString(R.string.pack_pack_activity_title));
+        setTitle(R.string.pack_pack_activity_title);
 
         ListView packLst = findViewById(R.id.pack_lst);
         packLst.setOnItemClickListener(new PackLstOnItemClickListener());
