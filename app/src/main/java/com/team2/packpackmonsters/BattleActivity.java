@@ -478,7 +478,7 @@ public class BattleActivity extends AppCompatActivity {
         @Override
         protected Move doInBackground(Void... voids) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
