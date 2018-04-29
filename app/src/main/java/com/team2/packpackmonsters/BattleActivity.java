@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.Process;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 import static com.team2.packpackmonsters.Settings.allMonsters;
@@ -45,6 +48,7 @@ public class BattleActivity extends AppCompatActivity {
     private Monster currentPlayerMonster;
     private Monster currentOpponentMonster;
     private boolean monsterSelected;
+    private boolean isEnemyTurn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -436,12 +440,17 @@ public class BattleActivity extends AppCompatActivity {
         }
     }
 
-    private class MoveBtnOnClickListener implements View.OnClickListener
+    private class MoveBtnOnClickListener extends AsyncTask<Void, Void, Move> implements View.OnClickListener
     {
         @Override
         public void onClick(View v)
         {
-            //TODO Move OnClickListener() functionality
+            if (isEnemyTurn) {
+                return;
+            }
+
+            isEnemyTurn = true;
+
             switch(v.getId())
             {
                 case R.id.moves_btn_top_left:
@@ -458,15 +467,40 @@ public class BattleActivity extends AppCompatActivity {
                     break;
             }
 
+            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
+
             if (currentOpponentMonster.isDead()) {
                 goToResultActivity(true);
+                return;
             }
+
+            new MoveBtnOnClickListener().execute();
+        }
+
+        @Override
+        protected Move doInBackground(Void... voids) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return currentOpponentMonster.getMoves().get((int) Math.random() * 4);
+        }
+
+        protected void onPostExecute(Move enemyMove) {
+            currentOpponentMonster.doMove(currentPlayerMonster, enemyMove);
+
+            Toast.makeText(BattleActivity.this, "Enemy used " + enemyMove.getName() +
+                    ".\nIt did " + enemyMove.getDamage() + " damage.", Toast.LENGTH_LONG).show();
+
+            battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
+
+            isEnemyTurn = false;
 
             if (currentPlayerMonster.isDead()) {
                 goToResultActivity(false);
             }
-
-            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
         }
     }
 
