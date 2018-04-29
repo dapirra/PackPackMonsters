@@ -27,22 +27,32 @@
     <string name="surrenders_with_colon">Surrenders:</string>
     <string name="type_with_colon">Type:</string>
     <string name="type">Type</string>
+
+    <string name="fire_types_underlined"><u>Fire Types</u></string>
+    <string name="earth_types_underlined"><u>Earth Types</u></string>
+    <string name="air_types_underlined"><u>Air Types</u></string>
+    <string name="water_types_underlined"><u>Water Types</u></string>
+
+    <string name="bullet">&#8226;</string>
+    <string name="forward_slash">/</string>
+
     <string name="default_type_text">-</string>
     <string name="default_health_text">-</string>
     <string name="default_move_text">Move</string>
     <string name="default_stat_text">-</string>
-    <string name="bullet">&#8226;</string>
-    <string name="forward_slash">/</string>
     <string name="default_item_name">Item</string>
     <string name="default_item_description">Description</string>
     <string name="default_hello_message">Hello</string>
+
     <string name="welcome_message">Welcome to\nPack Pack Monsters!</string>
     <string name="name_edit_hint">Enter your name.</string>
     <string name="name_txt_label">What is your name?</string>
+
     <string name="ele_gen">Ele Gen</string>
     <string name="gen">Gen</string>
     <string name="sp">SP</string>
     <string name="sp_2">SP 2</string>
+
     <string name="victory_text">You\nWon!</string>
     <string name="lose_text">You\nLost...</string>
     <string name="large_text">

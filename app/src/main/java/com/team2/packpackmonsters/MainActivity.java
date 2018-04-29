@@ -3,7 +3,6 @@ package com.team2.packpackmonsters;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
@@ -13,7 +12,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +23,6 @@ import com.team2.packpackmonsters.data.MonstersDbHelper;
 import com.team2.packpackmonsters.data.PacPacMonstersContract;
 import com.team2.packpackmonsters.data.UserProfileDbHelper;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
@@ -49,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         drawer = findViewById(R.id.main_dwr);
 
         initializeToolbar();
-        initializeOnClickListeners();
+        initializeListeners();
     }
 
     /*@Override
@@ -57,6 +54,12 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        drawer = findViewById(R.id.main_dwr);
+
+        initializeToolbar();
+        initializeListeners();
+
 
         //UsDbHelper = new UserProfileDbHelper(this);
         ItDbHelper = new ItemsDbHelper(this);
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity
 
     }*/
 
-    private void initializeOnClickListeners()
+    private void initializeListeners()
     {
         ArrayList<Button> mainBtns = new ArrayList<>();
         mainBtns.add((Button) findViewById(R.id.main_btn_top_left));
