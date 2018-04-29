@@ -36,8 +36,10 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/battle_clo_top_health"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/battle_clo_health_margin_vertical"
+            android:layout_marginTop="@dimen/battle_clo_health_margin_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/battle_gdl_top_player"
             app:layout_constraintRight_toRightOf="parent"
@@ -224,8 +226,10 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/battle_clo_bot_health"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/battle_clo_health_margin_vertical"
+            android:layout_marginTop="@dimen/battle_clo_health_margin_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/battle_gdl_bot_player"

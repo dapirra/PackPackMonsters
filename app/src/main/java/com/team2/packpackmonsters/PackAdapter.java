@@ -18,16 +18,18 @@ public class PackAdapter extends BaseAdapter
     private final int PADDING;
     private final int IMG_SIZE;
     private final int MARGIN;
-    private final int TEXT_SIZE;
+    private final float TEXT_SIZE;
 
     public PackAdapter(Context context)
     {
         this.context = context;
 
-        PADDING = context.getResources().getDimensionPixelSize(R.dimen.pack_padding);
-        IMG_SIZE = context.getResources().getDimensionPixelSize(R.dimen.pack_img_size);
-        MARGIN = context.getResources().getDimensionPixelSize(R.dimen.pack_margin);
-        TEXT_SIZE = context.getResources().getDimensionPixelSize(R.dimen.pack_text_size);
+        float density = context.getResources().getDisplayMetrics().density;
+
+        PADDING = (int) (context.getResources().getDimension(R.dimen.pack_padding) / density);
+        IMG_SIZE = (int) (context.getResources().getDimensionPixelSize(R.dimen.pack_img_size) / density);
+        MARGIN = (int) (context.getResources().getDimension(R.dimen.pack_margin) / density);
+        TEXT_SIZE = context.getResources().getDimension(R.dimen.pack_text_size) / density;
     }
 
     @Override

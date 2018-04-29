@@ -1,10 +1,12 @@
 package com.team2.packpackmonsters;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,28 +15,47 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class BattleActivity extends AppCompatActivity {
 
     private ViewFlipper battleVfp;
     private ArrayList<ImageView> battleImgs;
-    private ArrayList<TextView> txtsCurrentHealth;
-    private ArrayList<TextView> txtsMaxHealth;
+    private ArrayList<TextView> battleTxtsCurrentHealth;
+    private ArrayList<TextView> battleTxtsMaxHealth;
+    private ArrayList<TextView> battleTxtsHealthLabel;
+    private ArrayList<TextView> battleTxtsSlash;
     private ConstraintLayout battleCloTopHealth;
     private ConstraintLayout battleCloTop;
     private ConstraintLayout battleCloBotHealth;
     private ConstraintLayout battleCloBot;
     private ArrayList<ImageView> itemImgs;
+    private ArrayList<TextView> itemTxtsName;
     private ArrayList<ImageView> partyImgs;
+    private ArrayList<TextView> partyTxtsCurrentHealth;
+    private ArrayList<TextView> partyTxtsMaxHealth;
+    private ArrayList<TextView> partyTxtsType;
+    private ArrayList<TextView> partyTxtsName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
         setTitle(getResources().getString(R.string.battle_activity_title));
+
+        initializeViews();
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+        {
+            adjustLayoutToLandscape();
+        }
+
+        initializeListeners();
+        setPartyImages();
+    }
+
+    private void initializeViews()
+    {
 
         battleVfp = findViewById(R.id.battle_vfp);
 
@@ -43,15 +64,24 @@ public class BattleActivity extends AppCompatActivity {
         battleImgs.add((ImageView) findViewById(R.id.battle_img_top_player));
         battleImgs.add((ImageView) findViewById(R.id.battle_img_bot_player));
 
+        //TODO Use these to initialize monster's name.
+        battleTxtsHealthLabel = new ArrayList<>();
+        battleTxtsHealthLabel.add((TextView) findViewById(R.id.battle_txt_top_player_health_label));
+        battleTxtsHealthLabel.add((TextView) findViewById(R.id.battle_txt_bot_player_health_label));
+
         //TODO Use these to initialize current health and when a monster's health changes.
-        txtsCurrentHealth = new ArrayList<>();
-        txtsCurrentHealth.add((TextView) findViewById(R.id.battle_txt_top_player_current_health));
-        txtsCurrentHealth.add((TextView) findViewById(R.id.battle_txt_bot_player_current_health));
+        battleTxtsCurrentHealth = new ArrayList<>();
+        battleTxtsCurrentHealth.add((TextView) findViewById(R.id.battle_txt_top_player_current_health));
+        battleTxtsCurrentHealth.add((TextView) findViewById(R.id.battle_txt_bot_player_current_health));
 
         //TODO Use these to initialize max health.
-        txtsMaxHealth = new ArrayList<>();
-        txtsMaxHealth.add((TextView) findViewById(R.id.battle_txt_top_player_max_health));
-        txtsMaxHealth.add((TextView) findViewById(R.id.battle_txt_bot_player_max_health));
+        battleTxtsMaxHealth = new ArrayList<>();
+        battleTxtsMaxHealth.add((TextView) findViewById(R.id.battle_txt_top_player_max_health));
+        battleTxtsMaxHealth.add((TextView) findViewById(R.id.battle_txt_bot_player_max_health));
+
+        battleTxtsSlash = new ArrayList<>();
+        battleTxtsSlash.add((TextView) findViewById(R.id.battle_txt_top_player_slash));
+        battleTxtsSlash.add((TextView) findViewById(R.id.battle_txt_bot_player_slash));
 
         battleCloTopHealth = findViewById(R.id.battle_clo_top_health);
         battleCloTop = findViewById(R.id.battle_clo_top);
@@ -63,19 +93,41 @@ public class BattleActivity extends AppCompatActivity {
         itemImgs.add((ImageView)findViewById(R.id.player_items_img_second));
         itemImgs.add((ImageView)findViewById(R.id.player_items_img_third));
 
+        //TODO Use these to initialize item names
+        itemTxtsName = new ArrayList<>();
+        itemTxtsName.add((TextView) findViewById(R.id.player_items_txt_first));
+        itemTxtsName.add((TextView) findViewById(R.id.player_items_txt_second));
+        itemTxtsName.add((TextView) findViewById(R.id.player_items_txt_third));
+
         //TODO Use these to initialize party's images.
         partyImgs = new ArrayList<>();
         partyImgs.add((ImageView)findViewById(R.id.party_img_first));
         partyImgs.add((ImageView)findViewById(R.id.party_img_second));
         partyImgs.add((ImageView)findViewById(R.id.party_img_third));
 
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
-        {
-            adjustLayoutToLandscape();
-        }
+        //TODO Use these to initialize party current health.
+        partyTxtsCurrentHealth = new ArrayList<>();
+        partyTxtsCurrentHealth.add((TextView) findViewById(R.id.party_txt_first_current_health));
+        partyTxtsCurrentHealth.add((TextView) findViewById(R.id.party_txt_second_current_health));
+        partyTxtsCurrentHealth.add((TextView) findViewById(R.id.party_txt_third_current_health));
 
-        initializeListeners();
-        setPartyImages();
+        //TODO Use these to initialize party max health
+        partyTxtsMaxHealth = new ArrayList<>();
+        partyTxtsMaxHealth.add((TextView) findViewById(R.id.party_txt_first_max_health));
+        partyTxtsMaxHealth.add((TextView) findViewById(R.id.party_txt_second_max_health));
+        partyTxtsMaxHealth.add((TextView) findViewById(R.id.party_txt_third_max_health));
+
+        //TODO Use these to initialize party types
+        partyTxtsType = new ArrayList<>();
+        partyTxtsType.add((TextView) findViewById(R.id.party_txt_first_type));
+        partyTxtsType.add((TextView) findViewById(R.id.party_txt_second_type));
+        partyTxtsType.add((TextView) findViewById(R.id.party_txt_third_type));
+
+        //TODO Use these to initialize party names
+        partyTxtsName = new ArrayList<>();
+        partyTxtsName.add((TextView) findViewById(R.id.party_txt_first_name));
+        partyTxtsName.add((TextView) findViewById(R.id.party_txt_second_name));
+        partyTxtsName.add((TextView) findViewById(R.id.party_txt_third_name));
     }
 
     private void initializeListeners()
@@ -125,7 +177,7 @@ public class BattleActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (battleVfp.getDisplayedChild() == 0) {
-            super.onBackPressed();
+            showRunAlertDialog();
         } else {
             battleVfp.setDisplayedChild(0);
         }
@@ -148,22 +200,62 @@ public class BattleActivity extends AppCompatActivity {
 
     private void adjustLayoutToLandscape()
     {
+        float density = getResources().getDisplayMetrics().density;
+        int imageWidth;
+        int imageHeight;
+
         for(ImageView img:  battleImgs)
         {
-            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width_landscape);
-            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height_landscape);
+            imageWidth = (int) (getResources().getDimension(R.dimen.battle_img_width_landscape) / density);
+            imageHeight = (int) (getResources().getDimension(R.dimen.battle_img_height_landscape) / density);
+
+            img.getLayoutParams().width = imageWidth;
+            img.getLayoutParams().height = imageHeight;
         }
 
         for(ImageView img: itemImgs)
         {
-            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.player_items_img_width_landscape);
-            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.player_items_img_height_landscape);
+            imageWidth = (int) (getResources().getDimension(R.dimen.player_items_img_width_landscape) / density);
+            imageHeight = (int) (getResources().getDimension(R.dimen.player_items_img_height_landscape) / density);
+
+            img.getLayoutParams().width = imageWidth;
+            img.getLayoutParams().height = imageHeight;
         }
 
         for(ImageView img: partyImgs)
         {
-            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.party_img_width_landscape);
-            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.party_img_height_landscape);
+            imageWidth = (int) (getResources().getDimension(R.dimen.party_img_width_landscape) / density);
+            imageHeight = (int) (getResources().getDimension(R.dimen.party_img_height_landscape) / density);
+
+            img.getLayoutParams().width = imageWidth;
+            img.getLayoutParams().height = imageHeight;
+        }
+
+        float textSize = getResources().getDimension(R.dimen.battle_txt_text_size_landscape) / density;
+
+        for (TextView txt : battleTxtsHealthLabel)
+        {
+            txt.setTextSize(textSize);
+        }
+
+        for (TextView txt : battleTxtsCurrentHealth)
+        {
+            txt.setTextSize(textSize);
+        }
+
+        for (TextView txt : battleTxtsSlash)
+        {
+            txt.setTextSize(textSize);
+        }
+
+        for (TextView txt : battleTxtsMaxHealth)
+        {
+            txt.setTextSize(textSize);
+        }
+
+        for (TextView txt : battleTxtsMaxHealth)
+        {
+            txt.setTextSize(textSize);
         }
 
         ConstraintSet constraintSet = new ConstraintSet();
@@ -179,22 +271,53 @@ public class BattleActivity extends AppCompatActivity {
 
     private void adjustLayoutToPortrait()
     {
+        float density = getResources().getDisplayMetrics().density;
+        int imageWidth = (int) (getResources().getDimension(R.dimen.battle_img_width) / density);
+        int imageHeight = (int) (getResources().getDimension(R.dimen.battle_img_height) / density);
+
         for(ImageView img:  battleImgs)
         {
-            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.battle_img_width);
-            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.battle_img_height);
+            img.getLayoutParams().width = imageWidth;
+            img.getLayoutParams().height = imageHeight;
         }
 
         for(ImageView img: itemImgs)
         {
-            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.player_items_img_width);
-            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.player_items_img_height);
+            img.getLayoutParams().width = imageWidth;
+            img.getLayoutParams().height = imageHeight;
         }
 
         for(ImageView img: partyImgs)
         {
-            img.getLayoutParams().width = getResources().getDimensionPixelSize(R.dimen.party_img_width);
-            img.getLayoutParams().height = getResources().getDimensionPixelSize(R.dimen.party_img_height);
+            img.getLayoutParams().width = imageWidth;
+            img.getLayoutParams().height = imageHeight;
+        }
+
+        float textSize = getResources().getDimension(R.dimen.battle_txt_text_size) / density;
+
+        for (TextView txt : battleTxtsHealthLabel)
+        {
+            txt.setTextSize(textSize);
+        }
+
+        for (TextView txt : battleTxtsCurrentHealth)
+        {
+            txt.setTextSize(textSize);
+        }
+
+        for (TextView txt : battleTxtsSlash)
+        {
+            txt.setTextSize(textSize);
+        }
+
+        for (TextView txt : battleTxtsMaxHealth)
+        {
+            txt.setTextSize(textSize);
+        }
+
+        for (TextView txt : battleTxtsMaxHealth)
+        {
+            txt.setTextSize(textSize);
         }
 
         ConstraintSet constraintSet = new ConstraintSet();
@@ -208,28 +331,12 @@ public class BattleActivity extends AppCompatActivity {
         constraintSet.applyTo(battleCloBot);
     }
 
-    private class BattleBtnOnClickListener implements View.OnClickListener
+    private void goToResultActivity(boolean isWinner)
     {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.battle_btn_top_left://Battle button
-                    battleVfp.setDisplayedChild(1);
-                    break;
-                case R.id.battle_btn_top_right: //Items
-                    battleVfp.setDisplayedChild(2);
-                    break;
-                case R.id.battle_btn_bot_left: //Party
-                    battleVfp.setDisplayedChild(3);
-                    break;
-                case R.id.battle_btn_bot_right: //Run
-                    Intent intent = new Intent(v.getContext(), BattleResultActivity.class);
-                    intent.putExtra(BattleResultActivity.WINNER_KEY, false);
+        Intent intent = new Intent(this, BattleResultActivity.class);
+        intent.putExtra(BattleResultActivity.WINNER_KEY, isWinner);
 
-                    startActivity(intent);
-                    break;
-            }
-        }
+        startActivity(intent);
     }
 
     private class PartyCloOnClickListener implements View.OnClickListener
@@ -297,6 +404,61 @@ public class BattleActivity extends AppCompatActivity {
         for(int i = 0; i < images.size(); i++)
         {
             partyImgs.get(i).setImageDrawable(images.get(i));
+        }
+    }
+
+    private void showRunAlertDialog()
+    {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setMessage("Are you sure you want to leave? This counts as a surrender.");
+        alertBuilder.setCancelable(true);
+
+        alertBuilder.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        goToResultActivity(false);
+                    }
+                }
+        );
+
+        alertBuilder.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        dialog.cancel();
+                    }
+                }
+        );
+
+        AlertDialog alert = alertBuilder.create();
+        alert.show();
+    }
+
+    private class BattleBtnOnClickListener implements View.OnClickListener
+    {
+        @Override
+        public void onClick(View v)
+        {
+            switch (v.getId())
+            {
+                case R.id.battle_btn_top_left://Battle button
+                    battleVfp.setDisplayedChild(1);
+                    break;
+                case R.id.battle_btn_top_right: //Items
+                    battleVfp.setDisplayedChild(2);
+                    break;
+                case R.id.battle_btn_bot_left: //Party
+                    battleVfp.setDisplayedChild(3);
+                    break;
+                case R.id.battle_btn_bot_right: //Run
+                    showRunAlertDialog();
+                    break;
+            }
         }
     }
 }
