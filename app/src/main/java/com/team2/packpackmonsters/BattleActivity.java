@@ -216,6 +216,12 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
+    @Override
     public void onBackPressed() {
         if (battleVfp.getDisplayedChild() == 0) {
             showRunAlertDialog();

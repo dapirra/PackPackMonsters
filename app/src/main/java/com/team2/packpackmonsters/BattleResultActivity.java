@@ -38,6 +38,12 @@ public class BattleResultActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
+    @Override
     public void onBackPressed()
     {
         startActivity(new Intent(this, MainActivity.class));
