@@ -43,7 +43,7 @@
 
     <dimen name="border_padding">1dp</dimen>
     <dimen name="pack_lst_padding">12dp</dimen>
-    <dimen name="pack_padding">4dp</dimen>
+    <dimen name="pack_padding">8dp</dimen>
 
     <dimen name="party_img_width">80dp</dimen>
     <dimen name="party_img_height">80dp</dimen>
@@ -61,7 +61,9 @@
     <dimen name="items_img_height">100dp</dimen>
     <dimen name="ind_pack_img_width">125dp</dimen>
     <dimen name="ind_pack_img_height">125dp</dimen>
-    <dimen name="pack_img_size">75dp</dimen>
+    <dimen name="pack_img_size">125dp</dimen>
+
+    <dimen name="moves_view_height">1dp</dimen>
 
     <dimen name="items_gdl_percent">0.6</dimen>
     <dimen name="battle_gdl_top_percent">0.5</dimen>
