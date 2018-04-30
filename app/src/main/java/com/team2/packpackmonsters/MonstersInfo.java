@@ -1,13 +1,10 @@
 package com.team2.packpackmonsters;
 
-import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
 import com.team2.packpackmonsters.data.MonstersDbHelper;
 import com.team2.packpackmonsters.data.PacPacMonstersContract;
-
-import java.util.ArrayList;
 
 /**
  * Created by Owner on 4/24/2018.
