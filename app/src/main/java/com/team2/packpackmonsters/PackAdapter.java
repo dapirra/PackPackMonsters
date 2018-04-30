@@ -2,7 +2,6 @@ package com.team2.packpackmonsters;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,29 +78,28 @@ public class PackAdapter extends BaseAdapter
             txtType.setTextColor(Color.BLACK);
             txtType.setGravity(Gravity.CENTER);
 
-            Drawable packImg;
-            int packType;
+            int packImg, packType;
 
             switch(position / 4)
             {
                 case 0: //Fire
-                    packImg = context.getResources().getDrawable(R.drawable.fire_icon);
+                    packImg = R.drawable.fire_icon;
                     packType = R.string.fire_types_underlined;
                     break;
                 case 1: //Earth
-                    packImg = context.getResources().getDrawable(R.drawable.earth_icon);
+                    packImg = R.drawable.earth_icon;
                     packType = R.string.earth_types_underlined;
                     break;
                 case 2: //Air
-                    packImg = context.getResources().getDrawable(R.drawable.air_icon);
+                    packImg = R.drawable.air_icon;
                     packType = R.string.air_types_underlined;
                     break;
                 default: //Water
-                    packImg = context.getResources().getDrawable(R.drawable.water_icon);
+                    packImg = R.drawable.water_icon;
                     packType = R.string.water_types_underlined;
             }
 
-            imgType.setImageDrawable(packImg);
+            imgType.setImageResource(packImg);
             txtType.setText(packType);
 
             llo.addView(imgType);
