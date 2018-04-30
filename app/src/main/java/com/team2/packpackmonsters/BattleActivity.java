@@ -201,6 +201,12 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return false;
+    }
+
+    @Override
     public void onBackPressed() {
         if (isInitialPartySelection)
         {
@@ -485,7 +491,7 @@ public class BattleActivity extends AppCompatActivity {
         @Override
         protected Move doInBackground(Void... voids) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -512,11 +518,11 @@ public class BattleActivity extends AppCompatActivity {
     private void showRunAlertDialog()
     {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-        alertBuilder.setMessage("Are you sure you want to leave? This counts as a surrender.");
+        alertBuilder.setMessage("Are you sure you want to leave?\nThis will count as a surrender.");
         alertBuilder.setCancelable(true);
 
         alertBuilder.setPositiveButton(
-                "Yes",
+                android.R.string.ok,
                 new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface dialog, int id)
@@ -527,7 +533,7 @@ public class BattleActivity extends AppCompatActivity {
         );
 
         alertBuilder.setNegativeButton(
-                "No",
+                android.R.string.cancel,
                 new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface dialog, int id)
@@ -537,8 +543,7 @@ public class BattleActivity extends AppCompatActivity {
                 }
         );
 
-        AlertDialog alert = alertBuilder.create();
-        alert.show();
+        alertBuilder.show();
     }
 
     private class BattleBtnOnClickListener implements View.OnClickListener
