@@ -43,8 +43,8 @@ public class BattleActivity extends AppCompatActivity {
     private ArrayList<TextView> partyTxtsName;
     private ArrayList<Button> moveBtns;
     private Monster currentPlayerMonster;
+    private int currentPlayerMonsterIndex;
     private Monster currentOpponentMonster;
-    private boolean monsterSelected;
     private boolean isEnemyTurn;
     private boolean isInitialPartySelection = true;
     private View lastPartyCloSelected = null;
@@ -389,60 +389,138 @@ public class BattleActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void onSuccessfulPartySelection(View v)
+    {
+        isInitialPartySelection = false;
+        battleCloTopHealth.setVisibility(View.VISIBLE);
+        battleCloBotHealth.setVisibility(View.VISIBLE);
+        battleVfp.setDisplayedChild(0); //Return to initial screen (fight, party, item, run)
+
+        if (lastPartyCloSelected != null)
+        {
+            lastPartyCloSelected.setBackgroundResource(R.drawable.border_default);
+        }
+
+        v.setBackgroundResource(R.drawable.border_selected);
+        lastPartyCloSelected = v;
+
+        switch (v.getId())
+        {
+            case R.id.party_clo_first:
+                currentPlayerMonster = playerMonsters.get(0);
+                currentPlayerMonsterIndex = 0;
+                break;
+            case R.id.party_clo_second:
+                currentPlayerMonster = playerMonsters.get(1);
+                currentPlayerMonsterIndex = 1;
+                break;
+            case R.id.party_clo_third:
+                currentPlayerMonster = playerMonsters.get(2);
+                currentPlayerMonsterIndex = 2;
+                break;
+        }
+
+        currentOpponentMonster = opponentMonsters.get(0);
+
+        String healthLabelText = currentPlayerMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
+        battleTxtsHealthLabel.get(1).setText(healthLabelText);
+
+        healthLabelText = v.getContext().getResources().getString(R.string.enemy) + " " + currentOpponentMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
+        battleTxtsHealthLabel.get(0).setText(healthLabelText);
+
+        battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
+        battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
+
+        battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getMaxHp() + "");
+        battleTxtsMaxHealth.get(1).setText(currentPlayerMonster.getMaxHp() + "");
+
+        moveBtns.get(0).setText(currentPlayerMonster.getMoves().get(0).getName());
+        moveBtns.get(1).setText(currentPlayerMonster.getMoves().get(1).getName());
+        moveBtns.get(2).setText(currentPlayerMonster.getMoves().get(3).getName());
+        moveBtns.get(3).setText(currentPlayerMonster.getMoves().get(2).getName());
+
+        battleImgs.get(0).setImageResource(currentOpponentMonster.getImage());
+        battleImgs.get(1).setImageResource(currentPlayerMonster.getImage());
+    }
+
+    private void onSuccessfulItemSelection(View v)
+    {
+        //TODO Item OnClickListener() functionality
+        switch (v.getId())
+        {
+            case R.id.player_items_clo_first: //Revive
+                break;
+            case R.id.player_items_clo_second: //Attack up
+                break;
+            case R.id.player_items_clo_third: //Heal
+                break;
+        }
+    }
+
+    private void createAndShowAlertDialog(String message, String positiveMessage, DialogInterface.OnClickListener positiveListener, String negativeMessage, DialogInterface.OnClickListener negativeListener)
+    {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setMessage(message);
+        alertBuilder.setCancelable(true);
+        alertBuilder.setPositiveButton(positiveMessage, positiveListener);
+        alertBuilder.setNegativeButton(negativeMessage, negativeListener);
+        alertBuilder.show();
+    }
+
+    private void showRunAlertDialog()
+    {
+        createAndShowAlertDialog("Are you sure you want to leave?\nThis will count as a surrender.",
+                getString(android.R.string.ok),
+                new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        goToResultActivity(false);
+                    }
+                },
+                getString(android.R.string.cancel),
+                new CancelDialogOnClickListener()
+        );
+    }
+
+    private void showPartySelectionAlertDialog(final View v)
+    {
+        createAndShowAlertDialog("Are you sure you want to use this monster?",
+                getString(android.R.string.ok),
+                new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        onSuccessfulPartySelection(v);
+                    }
+                },
+                getString(android.R.string.cancel),
+                new CancelDialogOnClickListener()
+        );
+    }
+
+    private void showItemSelectionAlertDialog(final View v)
+    {
+        createAndShowAlertDialog("Are you sure you want to use this item?",
+                getString(android.R.string.ok),
+                new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        onSuccessfulItemSelection(v);
+                    }
+                },
+                getString(android.R.string.cancel),
+                new CancelDialogOnClickListener()
+        );
+    }
+
     private class PartyCloOnClickListener implements View.OnClickListener
     {
         @Override
         public void onClick(View v)
         {
-            isInitialPartySelection = false;
-            battleCloTopHealth.setVisibility(View.VISIBLE);
-            battleCloBotHealth.setVisibility(View.VISIBLE);
-            battleVfp.setDisplayedChild(0); //Return to initial screen (fight, party, item, run)
-
-            if (lastPartyCloSelected != null)
-            {
-                lastPartyCloSelected.setBackgroundResource(R.drawable.border_default);
-            }
-
-            v.setBackgroundResource(R.drawable.border_selected);
-            lastPartyCloSelected = v;
-
-            switch(v.getId())
-            {
-                case R.id.party_clo_first:
-                    currentPlayerMonster = playerMonsters.get(0);
-                    break;
-                case R.id.party_clo_second:
-                    currentPlayerMonster = playerMonsters.get(1);
-                    break;
-                case R.id.party_clo_third:
-                    currentPlayerMonster = playerMonsters.get(2);
-                    break;
-            }
-
-            currentOpponentMonster = opponentMonsters.get(0);
-
-            String healthLabelText = currentPlayerMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
-            battleTxtsHealthLabel.get(1).setText(healthLabelText);
-
-            healthLabelText = v.getContext().getResources().getString(R.string.enemy) + " " + currentOpponentMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
-            battleTxtsHealthLabel.get(0).setText(healthLabelText);
-
-            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
-            battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
-
-            battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getMaxHp() + "");
-            battleTxtsMaxHealth.get(1).setText(currentPlayerMonster.getMaxHp() + "");
-
-            moveBtns.get(0).setText(currentPlayerMonster.getMoves().get(0).getName());
-            moveBtns.get(1).setText(currentPlayerMonster.getMoves().get(1).getName());
-            moveBtns.get(2).setText(currentPlayerMonster.getMoves().get(3).getName());
-            moveBtns.get(3).setText(currentPlayerMonster.getMoves().get(2).getName());
-
-            battleImgs.get(0).setImageResource(currentOpponentMonster.getImage());
-            battleImgs.get(1).setImageResource(currentPlayerMonster.getImage());
-
-            monsterSelected = true;
+            showPartySelectionAlertDialog(v);
         }
     }
 
@@ -451,16 +529,7 @@ public class BattleActivity extends AppCompatActivity {
         @Override
         public void onClick(View v)
         {
-            //TODO Item OnClickListener() functionality
-            switch(v.getId())
-            {
-                case R.id.player_items_clo_first: //Revive
-                    break;
-                case R.id.player_items_clo_second: //Attack up
-                    break;
-                case R.id.player_items_clo_third: //Heal
-                    break;
-            }
+            showItemSelectionAlertDialog(v);
         }
     }
 
@@ -521,6 +590,7 @@ public class BattleActivity extends AppCompatActivity {
                     ".\nIt did " + Monster.damageDealt + " damage.", Toast.LENGTH_LONG).show();
 
             battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
+            partyTxtsCurrentHealth.get(currentPlayerMonsterIndex).setText(currentPlayerMonster.getCurrentHp() + "");
 
             isEnemyTurn = false;
 
@@ -530,35 +600,12 @@ public class BattleActivity extends AppCompatActivity {
         }
     }
 
-    private void showRunAlertDialog()
+    private class CancelDialogOnClickListener implements DialogInterface.OnClickListener
     {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-        alertBuilder.setMessage("Are you sure you want to leave?\nThis will count as a surrender.");
-        alertBuilder.setCancelable(true);
-
-        alertBuilder.setPositiveButton(
-                android.R.string.ok,
-                new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        goToResultActivity(false);
-                    }
-                }
-        );
-
-        alertBuilder.setNegativeButton(
-                android.R.string.cancel,
-                new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        dialog.cancel();
-                    }
-                }
-        );
-
-        alertBuilder.show();
+        public void onClick(DialogInterface dialog, int id)
+        {
+            dialog.cancel();
+        }
     }
 
     private class BattleBtnOnClickListener implements View.OnClickListener
@@ -569,11 +616,7 @@ public class BattleActivity extends AppCompatActivity {
             switch (v.getId())
             {
                 case R.id.battle_btn_top_left://Battle button
-                    if (monsterSelected) {
-                        battleVfp.setDisplayedChild(1);
-                    } else {
-                        Toast.makeText(BattleActivity.this, "You need to select a monster from the party menu first.", Toast.LENGTH_LONG).show();
-                    }
+                    battleVfp.setDisplayedChild(1);
                     break;
                 case R.id.battle_btn_top_right: //Items
                     battleVfp.setDisplayedChild(2);
