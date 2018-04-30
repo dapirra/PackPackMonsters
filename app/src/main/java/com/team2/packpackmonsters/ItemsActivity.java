@@ -24,7 +24,7 @@ public class ItemsActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_items);
-        setTitle(getResources().getString(R.string.items_activity_title));
+        setTitle(R.string.items_activity_title);
 
         //TODO Use both of these to initialize item names/descriptions.
         txtsName = new ArrayList<>();

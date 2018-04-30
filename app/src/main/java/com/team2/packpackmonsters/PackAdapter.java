@@ -81,25 +81,25 @@ public class PackAdapter extends BaseAdapter
             txtType.setGravity(Gravity.CENTER);
 
             Drawable packImg;
-            String packType;
+            int packType;
 
             switch(position / 4)
             {
                 case 0: //Fire
                     packImg = context.getResources().getDrawable(R.drawable.fire_icon);
-                    packType = context.getResources().getString(R.string.fire_types_underlined);
+                    packType = R.string.fire_types_underlined;
                     break;
                 case 1: //Earth
                     packImg = context.getResources().getDrawable(R.drawable.earth_icon);
-                    packType = context.getResources().getString(R.string.earth_types_underlined);
+                    packType = R.string.earth_types_underlined;
                     break;
                 case 2: //Air
                     packImg = context.getResources().getDrawable(R.drawable.air_icon);
-                    packType = context.getResources().getString(R.string.air_types_underlined);
+                    packType = R.string.air_types_underlined;
                     break;
                 default: //Water
                     packImg = context.getResources().getDrawable(R.drawable.water_icon);
-                    packType = context.getResources().getString(R.string.water_types_underlined);
+                    packType = R.string.water_types_underlined;
             }
 
             imgType.setImageDrawable(packImg);
