@@ -9,8 +9,6 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -49,6 +47,7 @@ public class BattleActivity extends AppCompatActivity {
     private boolean monsterSelected;
     private boolean isEnemyTurn;
     private boolean isInitialPartySelection = true;
+    private View lastPartyCloSelected = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +57,10 @@ public class BattleActivity extends AppCompatActivity {
         Settings.loadData(this);
 
         initializeViews();
+
+        //Keep everything except party view off the screen until a selection is made.
+        battleCloTopHealth.setVisibility(View.INVISIBLE);
+        battleCloBotHealth.setVisibility(View.INVISIBLE);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
         {
@@ -88,6 +91,8 @@ public class BattleActivity extends AppCompatActivity {
 
         Button btnParty = findViewById(R.id.battle_btn_bot_left);
         btnParty.callOnClick();
+
+        Toast.makeText(this, "Select a party member.", Toast.LENGTH_SHORT).show();
     }
 
     private void initializeViews()
@@ -390,7 +395,17 @@ public class BattleActivity extends AppCompatActivity {
         public void onClick(View v)
         {
             isInitialPartySelection = false;
-            battleVfp.setDisplayedChild(0);
+            battleCloTopHealth.setVisibility(View.VISIBLE);
+            battleCloBotHealth.setVisibility(View.VISIBLE);
+            battleVfp.setDisplayedChild(0); //Return to initial screen (fight, party, item, run)
+
+            if (lastPartyCloSelected != null)
+            {
+                lastPartyCloSelected.setBackgroundResource(R.drawable.border_default);
+            }
+
+            v.setBackgroundResource(R.drawable.border_selected);
+            lastPartyCloSelected = v;
 
             switch(v.getId())
             {
