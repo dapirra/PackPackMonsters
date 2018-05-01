@@ -391,19 +391,6 @@ public class BattleActivity extends AppCompatActivity {
 
     private void onSuccessfulPartySelection(View v)
     {
-        isInitialPartySelection = false;
-        battleCloTopHealth.setVisibility(View.VISIBLE);
-        battleCloBotHealth.setVisibility(View.VISIBLE);
-        battleVfp.setDisplayedChild(0); //Return to initial screen (fight, party, item, run)
-
-        if (lastPartyCloSelected != null)
-        {
-            lastPartyCloSelected.setBackgroundResource(R.drawable.border_default);
-        }
-
-        v.setBackgroundResource(R.drawable.border_selected);
-        lastPartyCloSelected = v;
-
         switch (v.getId())
         {
             case R.id.party_clo_first:
@@ -420,7 +407,28 @@ public class BattleActivity extends AppCompatActivity {
                 break;
         }
 
-        currentOpponentMonster = opponentMonsters.get(0);
+        if (currentPlayerMonster.isDead()) {
+            // TODO Finish player being able to pick another monster
+            Toast.makeText(BattleActivity.this, "Pick another monster", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        battleCloTopHealth.setVisibility(View.VISIBLE);
+        battleCloBotHealth.setVisibility(View.VISIBLE);
+        battleVfp.setDisplayedChild(0); //Return to initial screen (fight, party, item, run)
+
+        if (lastPartyCloSelected != null)
+        {
+            lastPartyCloSelected.setBackgroundResource(R.drawable.border_default);
+        }
+
+        v.setBackgroundResource(R.drawable.border_selected);
+        lastPartyCloSelected = v;
+
+        if (isInitialPartySelection) {
+            currentOpponentMonster = opponentMonsters.get(0);
+        }
+        isInitialPartySelection = false;
 
         String healthLabelText = currentPlayerMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
         battleTxtsHealthLabel.get(1).setText(healthLabelText);
@@ -609,6 +617,12 @@ public class BattleActivity extends AppCompatActivity {
             isEnemyTurn = false;
 
             if (currentPlayerMonster.isDead()) {
+                for (Monster m : playerMonsters) {
+                    if (!m.isDead()) {
+                        battleVfp.setDisplayedChild(3);
+                        return;
+                    }
+                }
                 goToResultActivity(false);
             }
         }
