@@ -40,10 +40,15 @@
     <dimen name="battle_result_margin_vertical">32dp</dimen>
     <dimen name="main_nav_margin_vertical">16dp</dimen>
     <dimen name="main_nav_margin_horizontal">8dp</dimen>
+    <dimen name="help_margin_vertical">8dp</dimen>
+    <dimen name="help_margin_vertical_large">32dp</dimen>
+    <dimen name="help_margin">8dp</dimen>
 
     <dimen name="border_padding">1dp</dimen>
     <dimen name="pack_lst_padding">12dp</dimen>
     <dimen name="pack_padding">8dp</dimen>
+    <dimen name="help_lst_padding">12dp</dimen>
+    <dimen name="help_padding">8dp</dimen>
 
     <dimen name="party_img_width">80dp</dimen>
     <dimen name="party_img_height">80dp</dimen>
@@ -62,6 +67,7 @@
     <dimen name="ind_pack_img_width">125dp</dimen>
     <dimen name="ind_pack_img_height">125dp</dimen>
     <dimen name="pack_img_size">125dp</dimen>
+    <dimen name="help_img_size">125dp</dimen>
 
     <dimen name="moves_view_height">1dp</dimen>
 
@@ -89,6 +95,7 @@
     <dimen name="ind_pack_text_size">24sp</dimen>
     <dimen name="battle_result_text_size">24sp</dimen>
     <dimen name="main_nav_text_size">24sp</dimen>
+    <dimen name="help_text_size">24sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
