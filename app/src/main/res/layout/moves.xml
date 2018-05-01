@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/moves_main_clo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/moves_btn_top_left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/moves_btn_margin_vertical"
+        android:layout_marginLeft="@dimen/moves_btn_margin_horizontal_between_parent"
+        android:layout_marginRight="@dimen/moves_btn_margin_horizontal"
+        android:layout_marginTop="@dimen/moves_btn_margin_vertical_between_parent"
+        android:text="@string/ele_gen"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/moves_btn_text_size"
+        app:layout_constraintBottom_toTopOf="@id/moves_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/moves_btn_top_right"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/moves_btn_top_right"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/moves_btn_margin_vertical"
+        android:layout_marginLeft="@dimen/moves_btn_margin_horizontal"
+        android:layout_marginRight="@dimen/moves_btn_margin_horizontal_between_parent"
+        android:layout_marginTop="@dimen/moves_btn_margin_vertical_between_parent"
+        android:text="@string/sp"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/moves_btn_text_size"
+        app:layout_constraintBottom_toTopOf="@id/moves_view"
+        app:layout_constraintLeft_toRightOf="@id/moves_btn_top_left"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/moves_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/moves_view_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/moves_btn_bot_left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/moves_btn_margin_vertical_between_parent"
+        android:layout_marginLeft="@dimen/moves_btn_margin_horizontal_between_parent"
+        android:layout_marginRight="@dimen/moves_btn_margin_horizontal"
+        android:layout_marginTop="@dimen/moves_btn_margin_vertical"
+        android:text="@string/gen"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/moves_btn_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/moves_btn_bot_right"
+        app:layout_constraintTop_toBottomOf="@id/moves_view" />
+
+    <Button
+        android:id="@+id/moves_btn_bot_right"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/moves_btn_margin_vertical_between_parent"
+        android:layout_marginLeft="@dimen/moves_btn_margin_horizontal"
+        android:layout_marginRight="@dimen/moves_btn_margin_horizontal_between_parent"
+        android:layout_marginTop="@dimen/moves_btn_margin_vertical"
+        android:text="@string/sp_2"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/moves_btn_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/moves_btn_bot_left"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/moves_view" />
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/main_nav_gdl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/main_nav_gdl_percent" />
+
+    <TextView
+        android:id="@+id/main_nav_txt_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_nav_margin_vertical"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/main_nav_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/main_nav_txt_stats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_nav_margin_vertical"
+        android:gravity="center"
+        android:text="@string/stats_underlined"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/main_nav_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_nav_txt_name" />
+
+    <TextView
+        android:id="@+id/main_nav_win_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_nav_margin_vertical"
+        android:gravity="center"
+        android:text="@string/wins_with_colon"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/main_nav_text_size"
+        app:layout_constraintLeft_toRightOf="@id/main_nav_gdl"
+        app:layout_constraintTop_toBottomOf="@id/main_nav_txt_stats" />
+
+    <TextView
+        android:id="@+id/main_nav_win"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_nav_margin_horizontal"
+        android:gravity="center"
+        android:text="@string/default_stat_text"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/main_nav_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/main_nav_win_label"
+        app:layout_constraintLeft_toRightOf="@id/main_nav_win_label"
+        app:layout_constraintTop_toTopOf="@id/main_nav_win_label" />
+
+    <TextView
+        android:id="@+id/main_nav_lose_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_nav_margin_vertical"
+        android:gravity="center"
+        android:text="@string/losses_with_colon"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/main_nav_text_size"
+        app:layout_constraintLeft_toRightOf="@id/main_nav_gdl"
+        app:layout_constraintTop_toBottomOf="@id/main_nav_win_label" />
+
+    <TextView
+        android:id="@+id/main_nav_lose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_nav_margin_horizontal"
+        android:gravity="center"
+        android:text="@string/default_stat_text"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/main_nav_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/main_nav_lose_label"
+        app:layout_constraintLeft_toRightOf="@id/main_nav_lose_label"
+        app:layout_constraintTop_toTopOf="@id/main_nav_lose_label" />
+
+    <TextView
+        android:id="@+id/main_nav_surrender_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_nav_margin_vertical"
+        android:gravity="center"
+        android:text="@string/surrenders_with_colon"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/main_nav_text_size"
+        app:layout_constraintLeft_toRightOf="@id/main_nav_gdl"
+        app:layout_constraintTop_toBottomOf="@id/main_nav_lose_label" />
+
+    <TextView
+        android:id="@+id/main_nav_surrender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_nav_margin_horizontal"
+        android:gravity="center"
+        android:text="@string/default_stat_text"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/main_nav_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/main_nav_surrender_label"
+        app:layout_constraintLeft_toRightOf="@id/main_nav_surrender_label"
+        app:layout_constraintTop_toTopOf="@id/main_nav_surrender_label" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,1 +1,3 @@
 # PackPackMonsters
+
+Pack Pack Monsters, a game heavily influenced by “Pokemon”, is about strategy and decision making. You control 3 different types of Pack Pack Monsters and use their unique abilities and the items you bring into the battle to ensure victory for your team, as you face off against other Pack Pack Monster tamers. Will you become the best Pack Pack Monster tamer the world has ever seen? Download now to find out!
