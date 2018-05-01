@@ -565,7 +565,21 @@ public class BattleActivity extends AppCompatActivity {
             battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
 
             if (currentOpponentMonster.isDead()) {
-                goToResultActivity(true);
+                //TODO check to see if opponent has more monsters by checking its current health and as long as its over 0, new monster displays
+                if(!opponentMonsters.get(1).isDead()) {
+                    currentOpponentMonster = opponentMonsters.get(1);
+                } else if (!opponentMonsters.get(2).isDead()) {
+                    currentOpponentMonster = opponentMonsters.get(2);
+                } else {
+                    goToResultActivity(true);
+                    return;
+                }
+
+                battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
+                battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getMaxHp() + "");
+                battleTxtsHealthLabel.get(0).setText(v.getContext().getResources().getString(R.string.enemy) + " " + currentOpponentMonster.getName() + " " + v.getContext().getResources().getString(R.string.health));
+                battleImgs.get(0).setImageResource(currentOpponentMonster.getImage());
+                isEnemyTurn = false;
                 return;
             }
 

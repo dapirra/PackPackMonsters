@@ -30,10 +30,10 @@ public class Settings {
 
         while (c.moveToNext()) {
             moves = new ArrayList<>();
-            moves.add(new Move(c.getString(5), c.getString(6), c.getInt(7), c.getInt(8) == 1));
-            moves.add(new Move(c.getString(9), c.getString(10), c.getInt(11), c.getInt(12) == 1));
-            moves.add(new Move(c.getString(13), c.getString(14), c.getInt(15), c.getInt(16) == 1));
-            moves.add(new Move(c.getString(17), c.getString(18), c.getInt(19), c.getInt(20) == 1));
+            moves.add(new Move(c.getString(5), c.getString(6), c.getInt(7), c.getInt(8) == 1, false));
+            moves.add(new Move(c.getString(9), c.getString(10), c.getInt(11), c.getInt(12) == 1, false));
+            moves.add(new Move(c.getString(13), c.getString(14), c.getInt(15), c.getInt(16) == 1, false));
+            moves.add(new Move(c.getString(17), c.getString(18), c.getInt(19), c.getInt(20) == 1, true));
 
             allMonsters.add(new Monster(
                     c.getString(1),

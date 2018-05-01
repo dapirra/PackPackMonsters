@@ -9,13 +9,15 @@ public class Move {
     private String description;
     private int damage;
     private boolean isBuff;
+    private boolean basicMove;
 
-    public Move(String name, String description, int damage, boolean isBuff) {
+    public Move(String name, String description, int damage, boolean isBuff, boolean basicMove) {
 
         this.name = name;
         this.description = description;
         this.damage = damage;
         this.isBuff = isBuff;
+        this.basicMove = basicMove;
     }
 
     public String getName() {
@@ -48,5 +50,15 @@ public class Move {
 
     public void setBuff(boolean buff) {
         isBuff = buff;
+    }
+
+    public boolean getBasicMove()
+    {
+        return basicMove;
+    }
+
+    public void setBasicMove(boolean basicMove)
+    {
+        this.basicMove = basicMove;
     }
 }
