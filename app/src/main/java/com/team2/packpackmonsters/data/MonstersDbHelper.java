@@ -8,8 +8,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.team2.packpackmonsters.MonstersInfo;
-
 public class MonstersDbHelper extends SQLiteOpenHelper
 {
     private static final String DATABASE_NAME = "Monsters.db";//Name of the database

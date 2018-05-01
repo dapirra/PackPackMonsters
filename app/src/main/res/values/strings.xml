@@ -3,7 +3,7 @@
     <string name="pack_pack_activity_title">PackDex</string>
     <string name="battle_activity_title">Battle</string>
     <string name="items_activity_title">Items</string>
-    <string name="help_activity_title">FAQ</string>
+    <string name="help_activity_title">Help</string>
 
     <string name="navigation_drawer_open">Opening navigation drawer.</string>
     <string name="navigation_drawer_close">Closing navigation drawer.</string>
@@ -34,6 +34,10 @@
     <string name="earth_types_underlined"><u>Earth Types</u></string>
     <string name="air_types_underlined"><u>Air Types</u></string>
     <string name="water_types_underlined"><u>Water Types</u></string>
+    <!--<string name="fire_types">Fire Types</string>
+    <string name="earth_types">Earth Types</string>
+    <string name="air_types">Air Types</string>
+    <string name="water_types">Water Types</string>-->
 
     <string name="bullet">&#8226;</string>
     <string name="forward_slash">/</string>
@@ -49,6 +53,42 @@
     <string name="welcome_message">Welcome to\nPack Pack Monsters!</string>
     <string name="name_edit_hint">Enter your name.</string>
     <string name="name_txt_label">What is your name?</string>
+
+    <string name="help_type_faq"><u>What are the typing strengths?</u></string>
+
+    <string name="fire_against_fire">Fire &lt; Fire</string>
+    <string name="fire_against_earth">Fire &gt; Earth</string>
+    <string name="fire_against_air">Fire is neutral against air.</string>
+    <string name="fire_against_water">Fire &lt; Water</string>
+    <string name="earth_against_fire">Earth &lt; Fire</string>
+    <string name="earth_against_earth">Earth &lt; Earth</string>
+    <string name="earth_against_air">Earth &gt; Air</string>
+    <string name="earth_against_water">Earth is neutral against water.</string>
+    <string name="air_against_fire">Air is neutral against fire.</string>
+    <string name="air_against_earth">Air &lt; Earth</string>
+    <string name="air_against_air">Air &lt; Air</string>
+    <string name="air_against_water">Air &gt; Water</string>
+    <string name="water_against_fire">Water &gt; Fire</string>
+    <string name="water_against_water">Water &lt; Water</string>
+    <string name="water_against_earth">Water is neutral against earth.</string>
+    <string name="water_against_air">Water &lt; Air</string>
+
+    <!--<string name="fire_against_fire">Fire is not very effective against fire.</string>
+    <string name="fire_against_earth">Fire is super effective against earth.</string>
+    <string name="fire_against_air">Fire is neutral against air.</string>
+    <string name="fire_against_water">Fire is not very effective against water.</string>
+    <string name="earth_against_fire">Earth is not very effective against fire.</string>
+    <string name="earth_against_earth">Earth is not very effective against earth.</string>
+    <string name="earth_against_air">Earth is super effective against air.</string>
+    <string name="earth_against_water">Earth is neutral against water.</string>
+    <string name="air_against_fire">Air is neutral against fire.</string>
+    <string name="air_against_earth">Air is not very effective against earth.</string>
+    <string name="air_against_air">Air is not very effective against air.</string>
+    <string name="air_against_water">Air is super effective against water.</string>
+    <string name="water_against_fire">Water is super effective against fire.</string>
+    <string name="water_against_water">Water is not very effective against water.</string>
+    <string name="water_against_earth">Water is neutral against earth.</string>
+    <string name="water_against_air">Water is not very effective against air.</string>-->
 
     <string name="ele_gen">Ele Gen</string>
     <string name="gen">Gen</string>

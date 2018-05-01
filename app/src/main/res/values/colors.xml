@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#2e8bf4</color>
+    <color name="colorPrimaryDark">#1c5494</color>
+    <color name="colorAccent">#f1fd34</color>
+
+    <color name="borderSelectedColor">#d3d3d3</color> <!-- Light gray. -->
+    <color name="borderDefaultColor">@android:color/background_light</color>
 </resources>

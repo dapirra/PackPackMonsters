@@ -3,7 +3,6 @@ package com.team2.packpackmonsters;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.team2.packpackmonsters.data.AllMonstersDb;
 import com.team2.packpackmonsters.data.PacPacMonstersContract;
@@ -45,5 +44,7 @@ public class Settings {
                     moves
             ));
         }
+
+        c.close();
     }
 }

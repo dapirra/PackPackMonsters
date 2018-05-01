@@ -2,17 +2,14 @@ package com.team2.packpackmonsters;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-import com.team2.packpackmonsters.data.PacPacMonstersContract;
 import com.team2.packpackmonsters.data.UserProfileDbHelper;
 
 /**

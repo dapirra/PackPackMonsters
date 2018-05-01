@@ -1,16 +1,8 @@
 package com.team2.packpackmonsters;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-
-import com.team2.packpackmonsters.data.ItemsDbHelper;
-import com.team2.packpackmonsters.data.PacPacMonstersContract;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -24,7 +16,7 @@ public class ItemsActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_items);
-        setTitle(getResources().getString(R.string.items_activity_title));
+        setTitle(R.string.items_activity_title);
 
         //TODO Use both of these to initialize item names/descriptions.
         txtsName = new ArrayList<>();

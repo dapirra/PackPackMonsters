@@ -10,30 +10,65 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class PackAdapter extends BaseAdapter
+import java.util.ArrayList;
+
+public class HelpAdapter extends BaseAdapter
 {
     private Context context;
     private final int PADDING;
     private final int IMG_SIZE;
     private final int MARGIN;
     private final float TEXT_SIZE;
+    private ArrayList<Integer> fireStringResources;
+    private ArrayList<Integer> waterStringResources;
+    private ArrayList<Integer> airStringResources;
+    private ArrayList<Integer> earthStringResources;
 
-    public PackAdapter(Context context)
+    public HelpAdapter(Context context)
     {
         this.context = context;
 
         float density = context.getResources().getDisplayMetrics().density;
 
-        PADDING = (int) (context.getResources().getDimension(R.dimen.pack_padding) / density);
+        PADDING = (int) (context.getResources().getDimension(R.dimen.help_padding) / density);
         IMG_SIZE = (int) (context.getResources().getDimension(R.dimen.pack_img_size) / density);
-        MARGIN = (int) (context.getResources().getDimension(R.dimen.pack_margin) / density);
-        TEXT_SIZE = context.getResources().getDimension(R.dimen.pack_text_size) / context.getResources().getDisplayMetrics().scaledDensity;
+        MARGIN = (int) (context.getResources().getDimension(R.dimen.help_margin) / density);
+        TEXT_SIZE = context.getResources().getDimension(R.dimen.help_text_size) / context.getResources().getDisplayMetrics().scaledDensity;
+
+        initializeStringResources();
+    }
+
+    private void initializeStringResources()
+    {
+        fireStringResources = new ArrayList<>();
+        fireStringResources.add(R.string.fire_against_fire);
+        fireStringResources.add(R.string.fire_against_earth);
+        fireStringResources.add(R.string.fire_against_air);
+        fireStringResources.add(R.string.fire_against_water);
+
+        earthStringResources = new ArrayList<>();
+        earthStringResources.add(R.string.earth_against_fire);
+        earthStringResources.add(R.string.earth_against_earth);
+        earthStringResources.add(R.string.earth_against_air);
+        earthStringResources.add(R.string.earth_against_water);
+
+        airStringResources = new ArrayList<>();
+        airStringResources.add(R.string.air_against_fire);
+        airStringResources.add(R.string.air_against_earth);
+        airStringResources.add(R.string.air_against_air);
+        airStringResources.add(R.string.air_against_water);
+
+        waterStringResources = new ArrayList<>();
+        waterStringResources.add(R.string.water_against_fire);
+        waterStringResources.add(R.string.water_against_earth);
+        waterStringResources.add(R.string.water_against_air);
+        waterStringResources.add(R.string.water_against_water);
     }
 
     @Override
     public int getCount()
     {
-        return 16; //12 monsters + 4 type
+        return 20; //16 type effectiveness + 4 type labels
     }
 
     @Override
@@ -57,9 +92,7 @@ public class PackAdapter extends BaseAdapter
         llo.setGravity(Gravity.CENTER);
         llo.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-        int positionModResult = position % 4;
-
-        if(positionModResult == 0)
+        if(position % 5 == 0)
         {
             ImageView imgType = new ImageView(context);
             TextView txtType = new TextView(context);
@@ -107,81 +140,37 @@ public class PackAdapter extends BaseAdapter
         }
         else
         {
-            TextView txtBullet = new TextView(context);
-            txtBullet.setTextSize(TEXT_SIZE);
-            txtBullet.setText("\u2022 ");
-            txtBullet.setTextColor(Color.BLACK);
-            txtBullet.setGravity(Gravity.CENTER);
+            TextView txtEffectiveness = new TextView(context);
+            txtEffectiveness.setTextSize(TEXT_SIZE);
+            txtEffectiveness.setTextColor(Color.BLACK);
+            txtEffectiveness.setGravity(Gravity.CENTER);
 
-            TextView txtPack = new TextView(context);
-            txtPack.setTextSize(TEXT_SIZE);
-            //txtPack.setText(context.getResources().getString(R.string.pack));
-            txtPack.setTextColor(Color.BLACK);
-            txtPack.setGravity(Gravity.CENTER);
+            int resourceID;
+            int typePosition = position % 5 - 1;
 
-            //TODO Set text to each of the monster names.
-
-            String packName;
-
-            switch(positionModResult)
+            //TODO Optimize for readability.
+            if(position >= 1 && position <= 4)
             {
-                case 1:
-                    switch(position / 4)
-                    {
-                        case 0: //Fire 1
-                            packName = "Fire 1";
-                            break;
-                        case 1: //Earth 1
-                            packName = "Earth 1";
-                            break;
-                        case 2: //Air 1
-                            packName = "Air 1";
-                            break;
-                        default: //Water 1
-                            packName = "Water 1";
-                    }
-                    break;
-                case 2:
-                    switch (position / 4)
-                    {
-                        case 0: //Fire 2
-                            packName = "Fire 2";
-                            break;
-                        case 1: //Earth 2
-                            packName = "Earth 2";
-                            break;
-                        case 2: //Air 2
-                            packName = "Air 2";
-                            break;
-                        default: //Water 2
-                            packName = "Water 2";
-                    }
-                    break;
-                default:
-                    switch (position / 4)
-                    {
-                        case 0: //Fire 3
-                            packName = "Fire 3";
-                            break;
-                        case 1: //Earth 3
-                            packName = "Earth 3";
-                            break;
-                        case 2: //Air 3
-                            packName = "Air 3";
-                            break;
-                        default: //Water 3
-                            packName = "Water 3";
-                    }
+                resourceID = fireStringResources.get(typePosition);
+            }
+            else if(position >= 6 && position <= 9)
+            {
+                resourceID = earthStringResources.get(typePosition);
+            }
+            else if(position >= 11 && position <= 14)
+            {
+                resourceID = airStringResources.get(typePosition);
+            }
+            else //position >= 16 && position <= 20
+            {
+                resourceID = waterStringResources.get(typePosition);
             }
 
-            txtPack.setText(packName);
+            txtEffectiveness.setText(resourceID);
 
-            llo.addView(txtBullet);
-            llo.addView(txtPack);
+            llo.addView(txtEffectiveness);
         }
-
 
         return llo;
     }
 }
-
