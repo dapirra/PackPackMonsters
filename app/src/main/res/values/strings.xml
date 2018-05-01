@@ -57,21 +57,21 @@
     <string name="help_type_faq"><u>What are the typing strengths?</u></string>
 
     <string name="fire_against_fire">Fire &lt; Fire</string>
-    <string name="fire_against_earth">Fire &gt; Earth.</string>
+    <string name="fire_against_earth">Fire &gt; Earth</string>
     <string name="fire_against_air">Fire is neutral against air.</string>
-    <string name="fire_against_water">Fire &lt; Water.</string>
-    <string name="earth_against_fire">Earth &lt; Fire.</string>
-    <string name="earth_against_earth">Earth &lt; Earth.</string>
-    <string name="earth_against_air">Earth &gt; Air.</string>
+    <string name="fire_against_water">Fire &lt; Water</string>
+    <string name="earth_against_fire">Earth &lt; Fire</string>
+    <string name="earth_against_earth">Earth &lt; Earth</string>
+    <string name="earth_against_air">Earth &gt; Air</string>
     <string name="earth_against_water">Earth is neutral against water.</string>
     <string name="air_against_fire">Air is neutral against fire.</string>
-    <string name="air_against_earth">Air &lt; Earth.</string>
-    <string name="air_against_air">Air &lt; Air.</string>
-    <string name="air_against_water">Air &gt; Water.</string>
-    <string name="water_against_fire">Water &gt; Fire.</string>
-    <string name="water_against_water">Water &lt; Water.</string>
+    <string name="air_against_earth">Air &lt; Earth</string>
+    <string name="air_against_air">Air &lt; Air</string>
+    <string name="air_against_water">Air &gt; Water</string>
+    <string name="water_against_fire">Water &gt; Fire</string>
+    <string name="water_against_water">Water &lt; Water</string>
     <string name="water_against_earth">Water is neutral against earth.</string>
-    <string name="water_against_air">Water &lt; Air.</string>
+    <string name="water_against_air">Water &lt; Air</string>
 
     <!--<string name="fire_against_fire">Fire is not very effective against fire.</string>
     <string name="fire_against_earth">Fire is super effective against earth.</string>
