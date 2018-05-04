@@ -48,6 +48,7 @@ public class BattleActivity extends AppCompatActivity {
     private boolean isEnemyTurn;
     private boolean isInitialPartySelection = true;
     private View lastPartyCloSelected = null;
+    private boolean playerIsSelectingAnotherMonster;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -219,7 +220,7 @@ public class BattleActivity extends AppCompatActivity {
             return;
         }
 
-        if (battleVfp.getDisplayedChild() == 0) {
+        if (battleVfp.getDisplayedChild() == 0 || playerIsSelectingAnotherMonster) {
             showRunAlertDialog();
         } else {
             battleVfp.setDisplayedChild(0);
@@ -413,6 +414,10 @@ public class BattleActivity extends AppCompatActivity {
             return;
         }
 
+        if (playerIsSelectingAnotherMonster) {
+            playerIsSelectingAnotherMonster = false;
+        }
+
         battleCloTopHealth.setVisibility(View.VISIBLE);
         battleCloBotHealth.setVisibility(View.VISIBLE);
         battleVfp.setDisplayedChild(0); //Return to initial screen (fight, party, item, run)
@@ -427,6 +432,8 @@ public class BattleActivity extends AppCompatActivity {
 
         if (isInitialPartySelection) {
             currentOpponentMonster = opponentMonsters.get(0);
+        } else {
+            new EnemyMove().execute();
         }
         isInitialPartySelection = false;
 
@@ -541,7 +548,7 @@ public class BattleActivity extends AppCompatActivity {
         }
     }
 
-    private class MoveBtnOnClickListener extends AsyncTask<Void, Void, Move> implements View.OnClickListener
+    private class MoveBtnOnClickListener implements View.OnClickListener
     {
         @Override
         public void onClick(View v)
@@ -591,8 +598,11 @@ public class BattleActivity extends AppCompatActivity {
                 return;
             }
 
-            new MoveBtnOnClickListener().execute();
+            new EnemyMove().execute();
         }
+
+    }
+    private class EnemyMove extends AsyncTask<Void, Void, Move> {
 
         @Override
         protected Move doInBackground(Void... voids) {
@@ -619,6 +629,7 @@ public class BattleActivity extends AppCompatActivity {
             if (currentPlayerMonster.isDead()) {
                 for (Monster m : playerMonsters) {
                     if (!m.isDead()) {
+                        playerIsSelectingAnotherMonster = true;
                         battleVfp.setDisplayedChild(3);
                         return;
                     }
