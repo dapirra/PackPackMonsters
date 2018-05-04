@@ -15,11 +15,8 @@
     <dimen name="items_img_margin_vertical">8dp</dimen>
     <dimen name="items_img_margin_horizontal_between_parent">12dp</dimen>
     <dimen name="items_img_margin_horizontal">4dp</dimen>
-    <dimen name="main_txt_margin_vertical_between_parent">16dp</dimen>
-    <dimen name="main_btn_margin_vertical">4dp</dimen>
-    <dimen name="main_btn_margin_vertical_between_parent">0dp</dimen>
-    <dimen name="main_btn_margin_horizontal_between_parent">0dp</dimen>
-    <dimen name="main_btn_margin_horizontal">4dp</dimen>
+    <dimen name="main_clo_margin_top">36dp</dimen>
+    <dimen name="main_btn_margin_vertical">16dp</dimen>
     <dimen name="name_edit_margin_top">16dp</dimen>
     <dimen name="name_txt_margin_top">16dp</dimen>
     <dimen name="party_margin_left">4dp</dimen>
@@ -68,6 +65,8 @@
     <dimen name="ind_pack_img_height">125dp</dimen>
     <dimen name="pack_img_size">125dp</dimen>
     <dimen name="help_img_size">125dp</dimen>
+
+    <dimen name="main_btn_width">150dp</dimen>
 
     <dimen name="moves_view_height">1dp</dimen>
 
