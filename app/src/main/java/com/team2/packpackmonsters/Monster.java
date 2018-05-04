@@ -49,28 +49,28 @@ public class Monster {
         if (!selectedMove.isBuff()) {
             if (!selectedMove.getBasicMove()) {
                 if (this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.WATER) {
-                    damageDealt = selectedMove.getDamage() - 3;
+                    damageDealt = selectedMove.getDamage() - 2;
                     opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
                 } else if (this.getType() == PacPacMonsterEntry.WATER && opponent.getType() == PacPacMonsterEntry.FIRE) {
-                    damageDealt = selectedMove.getDamage() + 3;
+                    damageDealt = selectedMove.getDamage() + 2;
                     opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
                 } else if (this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.EARTH) {
-                    damageDealt = selectedMove.getDamage() + 3;
+                    damageDealt = selectedMove.getDamage() + 2;
                     opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
                 } else if (this.getType() == PacPacMonsterEntry.EARTH && opponent.getType() == PacPacMonsterEntry.FIRE) {
-                    damageDealt = selectedMove.getDamage() - 3;
+                    damageDealt = selectedMove.getDamage() - 2;
                     opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
                 } else if (this.getType() == PacPacMonsterEntry.WIND && opponent.getType() == PacPacMonsterEntry.WATER) {
-                    damageDealt = selectedMove.getDamage() + 3;
+                    damageDealt = selectedMove.getDamage() + 2;
                     opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
                 } else if (this.getType() == PacPacMonsterEntry.WATER && opponent.getType() == PacPacMonsterEntry.WIND) {
-                    damageDealt = selectedMove.getDamage() - 3;
+                    damageDealt = selectedMove.getDamage() - 2;
                     opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
                 } else if (this.getType() == PacPacMonsterEntry.EARTH && opponent.getType() == PacPacMonsterEntry.WIND) {
-                    damageDealt = selectedMove.getDamage() + 3;
+                    damageDealt = selectedMove.getDamage() + 2;
                     opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
                 } else if (this.getType() == PacPacMonsterEntry.WIND && opponent.getType() == PacPacMonsterEntry.EARTH) {
-                    damageDealt = selectedMove.getDamage() - 3;
+                    damageDealt = selectedMove.getDamage() - 2;
                     opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
                 } else {
                     damageDealt = selectedMove.getDamage();

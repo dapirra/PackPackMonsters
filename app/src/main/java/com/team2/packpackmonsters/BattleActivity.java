@@ -49,6 +49,8 @@ public class BattleActivity extends AppCompatActivity {
     private boolean isInitialPartySelection = true;
     private View lastPartyCloSelected = null;
     private boolean playerIsSelectingAnotherMonster;
+    private boolean itemSelected;
+    private boolean reviveSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -409,8 +411,15 @@ public class BattleActivity extends AppCompatActivity {
         }
 
         if (currentPlayerMonster.isDead()) {
-            // TODO Finish player being able to pick another monster
-            Toast.makeText(BattleActivity.this, "Pick another monster", Toast.LENGTH_SHORT).show();
+            if (reviveSelected) {
+                currentPlayerMonster.setCurrentHp(currentPlayerMonster.getMaxHp());
+                reviveSelected = false;
+            } else {
+                Toast.makeText(BattleActivity.this, "Pick another monster", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } else if (reviveSelected) {
+            Toast.makeText(BattleActivity.this, "Pick another monster to revive", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -460,14 +469,38 @@ public class BattleActivity extends AppCompatActivity {
 
     private void onSuccessfulItemSelection(View v)
     {
-        //TODO Item OnClickListener() functionality
+        test:
         switch (v.getId())
         {
-            case R.id.player_items_clo_first: //Revive
+            case R.id.player_items_clo_first: // Revive
+                for (Monster m : playerMonsters) {
+                    if (m.isDead()) {
+                        itemSelected = true;
+                        reviveSelected = true;
+                        battleVfp.setDisplayedChild(3);
+                        break test;
+                    }
+                }
+                Toast.makeText(BattleActivity.this, "You have no monsters to revive", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.player_items_clo_second: //Attack up
+            case R.id.player_items_clo_second: // Instakill
+                currentOpponentMonster.setCurrentHp(0);
+                onDamageDoneToEnemy();
+
+                battleVfp.setDisplayedChild(1);
+                itemSelected = true;
                 break;
-            case R.id.player_items_clo_third: //Heal
+            case R.id.player_items_clo_third: // Heal and Deal
+                currentPlayerMonster.setCurrentHp(currentPlayerMonster.getCurrentHp() + 10);
+                currentOpponentMonster.setCurrentHp(currentOpponentMonster.getCurrentHp() - 10);
+
+                battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
+                partyTxtsCurrentHealth.get(currentPlayerMonsterIndex).setText(currentPlayerMonster.getCurrentHp() + "");
+
+                onDamageDoneToEnemy();
+                Toast.makeText(BattleActivity.this, "Player monster gained 10hp", Toast.LENGTH_SHORT).show();
+                battleVfp.setDisplayedChild(1);
+                itemSelected = true;
                 break;
         }
     }
@@ -539,12 +572,12 @@ public class BattleActivity extends AppCompatActivity {
         }
     }
 
-    private class PlayerItemsCloOnClickListener implements View.OnClickListener
-    {
+    private class PlayerItemsCloOnClickListener implements View.OnClickListener {
         @Override
-        public void onClick(View v)
-        {
-            showItemSelectionAlertDialog(v);
+        public void onClick(View v) {
+            if (!isEnemyTurn) {
+                showItemSelectionAlertDialog(v);
+            }
         }
     }
 
@@ -577,31 +610,32 @@ public class BattleActivity extends AppCompatActivity {
 
             Toast.makeText(BattleActivity.this, "You did " + Monster.damageDealt + " damage.", Toast.LENGTH_LONG).show();
 
-            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
+            onDamageDoneToEnemy();
+        }
+    }
 
-            if (currentOpponentMonster.isDead()) {
-                //TODO check to see if opponent has more monsters by checking its current health and as long as its over 0, new monster displays
-                if(!opponentMonsters.get(1).isDead()) {
-                    currentOpponentMonster = opponentMonsters.get(1);
-                } else if (!opponentMonsters.get(2).isDead()) {
-                    currentOpponentMonster = opponentMonsters.get(2);
-                } else {
-                    goToResultActivity(true);
-                    return;
-                }
-
-                battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
-                battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getMaxHp() + "");
-                battleTxtsHealthLabel.get(0).setText(v.getContext().getResources().getString(R.string.enemy) + " " + currentOpponentMonster.getName() + " " + v.getContext().getResources().getString(R.string.health));
-                battleImgs.get(0).setImageResource(currentOpponentMonster.getImage());
-                isEnemyTurn = false;
+    private void onDamageDoneToEnemy() {
+        if (currentOpponentMonster.isDead()) {
+            if(!opponentMonsters.get(1).isDead()) {
+                currentOpponentMonster = opponentMonsters.get(1);
+            } else if (!opponentMonsters.get(2).isDead()) {
+                currentOpponentMonster = opponentMonsters.get(2);
+            } else {
+                goToResultActivity(true);
                 return;
             }
 
+            battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getMaxHp() + "");
+            battleTxtsHealthLabel.get(0).setText(getResources().getString(R.string.enemy) + " " + currentOpponentMonster.getName() + " " + getResources().getString(R.string.health));
+            battleImgs.get(0).setImageResource(currentOpponentMonster.getImage());
+            isEnemyTurn = false;
+        } else {
             new EnemyMove().execute();
         }
 
+        battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
     }
+
     private class EnemyMove extends AsyncTask<Void, Void, Move> {
 
         @Override
@@ -658,7 +692,12 @@ public class BattleActivity extends AppCompatActivity {
                     battleVfp.setDisplayedChild(1);
                     break;
                 case R.id.battle_btn_top_right: //Items
-                    battleVfp.setDisplayedChild(2);
+                    if (itemSelected) {
+                        Toast.makeText(BattleActivity.this, "You already used your item", Toast.LENGTH_SHORT).show();
+                    } else {
+                        battleVfp.setDisplayedChild(2);
+                        Toast.makeText(BattleActivity.this, "You can only use 1 item", Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case R.id.battle_btn_bot_left: //Party
                     battleVfp.setDisplayedChild(3);
