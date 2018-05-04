@@ -41,6 +41,11 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Settings.loadData(this);
+
+        if (Settings.loadName() == null) {
+            startActivity(new Intent(this, NameActivity.class));
+        }
 
         drawer = findViewById(R.id.main_dwr);
 
