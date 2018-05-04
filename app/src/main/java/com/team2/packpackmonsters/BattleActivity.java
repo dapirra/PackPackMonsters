@@ -41,11 +41,16 @@ public class BattleActivity extends AppCompatActivity {
     private ArrayList<TextView> partyTxtsMaxHealth;
     private ArrayList<TextView> partyTxtsType;
     private ArrayList<TextView> partyTxtsName;
-    ArrayList<Button> moveBtns;
+    private ArrayList<Button> moveBtns;
     private Monster currentPlayerMonster;
+    private int currentPlayerMonsterIndex;
     private Monster currentOpponentMonster;
-    private boolean monsterSelected;
     private boolean isEnemyTurn;
+    private boolean isInitialPartySelection = true;
+    private View lastPartyCloSelected = null;
+    private boolean playerIsSelectingAnotherMonster;
+    private boolean itemSelected;
+    private boolean reviveSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,10 @@ public class BattleActivity extends AppCompatActivity {
         Settings.loadData(this);
 
         initializeViews();
+
+        //Keep everything except party view off the screen until a selection is made.
+        battleCloTopHealth.setVisibility(View.INVISIBLE);
+        battleCloBotHealth.setVisibility(View.INVISIBLE);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
         {
@@ -74,25 +83,19 @@ public class BattleActivity extends AppCompatActivity {
         opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
         opponentMonsters.add(allMonsters.get((int) (Math.random() * allMonsters.size())).clone());
 
-        partyTxtsName.get(0).setText(playerMonsters.get(0).getName());
-        partyTxtsName.get(1).setText(playerMonsters.get(1).getName());
-        partyTxtsName.get(2).setText(playerMonsters.get(2).getName());
+        for (int i = 0; i < playerMonsters.size(); i++)
+        {
+            partyTxtsName.get(i).setText(playerMonsters.get(i).getName());
+            partyImgs.get(i).setImageResource(playerMonsters.get(i).getImage());
+            partyTxtsCurrentHealth.get(i).setText(playerMonsters.get(i).getCurrentHp() + "");
+            partyTxtsMaxHealth.get(i).setText(playerMonsters.get(i).getMaxHp() + "");
+            partyTxtsType.get(i).setText(playerMonsters.get(i).getTypeString());
+        }
 
-        partyImgs.get(0).setImageResource(playerMonsters.get(0).getImage());
-        partyImgs.get(1).setImageResource(playerMonsters.get(1).getImage());
-        partyImgs.get(2).setImageResource(playerMonsters.get(2).getImage());
+        Button btnParty = findViewById(R.id.battle_btn_bot_left);
+        btnParty.callOnClick();
 
-        partyTxtsCurrentHealth.get(0).setText(playerMonsters.get(0).getCurrentHp() + "");
-        partyTxtsCurrentHealth.get(1).setText(playerMonsters.get(1).getCurrentHp() + "");
-        partyTxtsCurrentHealth.get(2).setText(playerMonsters.get(2).getCurrentHp() + "");
-
-        partyTxtsMaxHealth.get(0).setText(playerMonsters.get(0).getMaxHp() + "");
-        partyTxtsMaxHealth.get(1).setText(playerMonsters.get(1).getMaxHp() + "");
-        partyTxtsMaxHealth.get(2).setText(playerMonsters.get(2).getMaxHp() + "");
-
-        partyTxtsType.get(0).setText(playerMonsters.get(0).getTypeString());
-        partyTxtsType.get(1).setText(playerMonsters.get(1).getTypeString());
-        partyTxtsType.get(2).setText(playerMonsters.get(2).getTypeString());
+        Toast.makeText(this, "Select a party member.", Toast.LENGTH_SHORT).show();
     }
 
     private void initializeViews()
@@ -100,22 +103,18 @@ public class BattleActivity extends AppCompatActivity {
 
         battleVfp = findViewById(R.id.battle_vfp);
 
-        //TODO Use these to initialize image for first monster sent out and when another monster is selected using party button.
         battleImgs = new ArrayList<>();
         battleImgs.add((ImageView) findViewById(R.id.battle_img_top_player));
         battleImgs.add((ImageView) findViewById(R.id.battle_img_bot_player));
 
-        //TODO Use these to initialize monster's name.
         battleTxtsHealthLabel = new ArrayList<>();
         battleTxtsHealthLabel.add((TextView) findViewById(R.id.battle_txt_top_player_health_label));
         battleTxtsHealthLabel.add((TextView) findViewById(R.id.battle_txt_bot_player_health_label));
 
-        //TODO Use these to initialize current health and when a monster's health changes.
         battleTxtsCurrentHealth = new ArrayList<>();
         battleTxtsCurrentHealth.add((TextView) findViewById(R.id.battle_txt_top_player_current_health));
         battleTxtsCurrentHealth.add((TextView) findViewById(R.id.battle_txt_bot_player_current_health));
 
-        //TODO Use these to initialize max health.
         battleTxtsMaxHealth = new ArrayList<>();
         battleTxtsMaxHealth.add((TextView) findViewById(R.id.battle_txt_top_player_max_health));
         battleTxtsMaxHealth.add((TextView) findViewById(R.id.battle_txt_bot_player_max_health));
@@ -134,37 +133,31 @@ public class BattleActivity extends AppCompatActivity {
         itemImgs.add((ImageView)findViewById(R.id.player_items_img_second));
         itemImgs.add((ImageView)findViewById(R.id.player_items_img_third));
 
-        //TODO Use these to initialize item names
         itemTxtsName = new ArrayList<>();
         itemTxtsName.add((TextView) findViewById(R.id.player_items_txt_first));
         itemTxtsName.add((TextView) findViewById(R.id.player_items_txt_second));
         itemTxtsName.add((TextView) findViewById(R.id.player_items_txt_third));
 
-        //TODO Use these to initialize party's images.
         partyImgs = new ArrayList<>();
         partyImgs.add((ImageView)findViewById(R.id.party_img_first));
         partyImgs.add((ImageView)findViewById(R.id.party_img_second));
         partyImgs.add((ImageView)findViewById(R.id.party_img_third));
 
-        //TODO Use these to initialize party current health.
         partyTxtsCurrentHealth = new ArrayList<>();
         partyTxtsCurrentHealth.add((TextView) findViewById(R.id.party_txt_first_current_health));
         partyTxtsCurrentHealth.add((TextView) findViewById(R.id.party_txt_second_current_health));
         partyTxtsCurrentHealth.add((TextView) findViewById(R.id.party_txt_third_current_health));
 
-        //TODO Use these to initialize party max health
         partyTxtsMaxHealth = new ArrayList<>();
         partyTxtsMaxHealth.add((TextView) findViewById(R.id.party_txt_first_max_health));
         partyTxtsMaxHealth.add((TextView) findViewById(R.id.party_txt_second_max_health));
         partyTxtsMaxHealth.add((TextView) findViewById(R.id.party_txt_third_max_health));
 
-        //TODO Use these to initialize party types
         partyTxtsType = new ArrayList<>();
         partyTxtsType.add((TextView) findViewById(R.id.party_txt_first_type));
         partyTxtsType.add((TextView) findViewById(R.id.party_txt_second_type));
         partyTxtsType.add((TextView) findViewById(R.id.party_txt_third_type));
 
-        //TODO Use these to initialize party names
         partyTxtsName = new ArrayList<>();
         partyTxtsName.add((TextView) findViewById(R.id.party_txt_first_name));
         partyTxtsName.add((TextView) findViewById(R.id.party_txt_second_name));
@@ -223,7 +216,13 @@ public class BattleActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (battleVfp.getDisplayedChild() == 0) {
+        if (isInitialPartySelection)
+        {
+            Toast.makeText(this, "You must select a party member first.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (battleVfp.getDisplayedChild() == 0 || playerIsSelectingAnotherMonster) {
             showRunAlertDialog();
         } else {
             battleVfp.setDisplayedChild(0);
@@ -247,14 +246,13 @@ public class BattleActivity extends AppCompatActivity {
 
     private void adjustLayoutToLandscape()
     {
-        float density = getResources().getDisplayMetrics().density;
         int imageWidth;
         int imageHeight;
 
         for(ImageView img:  battleImgs)
         {
-            imageWidth = (int) (getResources().getDimension(R.dimen.battle_img_width_landscape) / density);
-            imageHeight = (int) (getResources().getDimension(R.dimen.battle_img_height_landscape) / density);
+            imageWidth = (int) (getResources().getDimension(R.dimen.battle_img_width_landscape));
+            imageHeight = (int) (getResources().getDimension(R.dimen.battle_img_height_landscape));
 
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
@@ -262,8 +260,8 @@ public class BattleActivity extends AppCompatActivity {
 
         for(ImageView img: itemImgs)
         {
-            imageWidth = (int) (getResources().getDimension(R.dimen.player_items_img_width_landscape) / density);
-            imageHeight = (int) (getResources().getDimension(R.dimen.player_items_img_height_landscape) / density);
+            imageWidth = (int) (getResources().getDimension(R.dimen.player_items_img_width_landscape));
+            imageHeight = (int) (getResources().getDimension(R.dimen.player_items_img_height_landscape));
 
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
@@ -271,14 +269,14 @@ public class BattleActivity extends AppCompatActivity {
 
         for(ImageView img: partyImgs)
         {
-            imageWidth = (int) (getResources().getDimension(R.dimen.party_img_width_landscape) / density);
-            imageHeight = (int) (getResources().getDimension(R.dimen.party_img_height_landscape) / density);
+            imageWidth = (int) (getResources().getDimension(R.dimen.party_img_width_landscape));
+            imageHeight = (int) (getResources().getDimension(R.dimen.party_img_height_landscape));
 
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
         }
 
-        float textSize = getResources().getDimension(R.dimen.battle_txt_text_size_landscape) / density;
+        float textSize = getResources().getDimension(R.dimen.battle_txt_text_size_landscape) / getResources().getDisplayMetrics().scaledDensity;
 
         for (TextView txt : battleTxtsHealthLabel)
         {
@@ -318,29 +316,37 @@ public class BattleActivity extends AppCompatActivity {
 
     private void adjustLayoutToPortrait()
     {
-        float density = getResources().getDisplayMetrics().density;
-        int imageWidth = (int) (getResources().getDimension(R.dimen.battle_img_width) / density);
-        int imageHeight = (int) (getResources().getDimension(R.dimen.battle_img_height) / density);
+        int imageWidth;
+        int imageHeight;
 
         for(ImageView img:  battleImgs)
         {
+            imageWidth = (int) (getResources().getDimension(R.dimen.battle_img_width));
+            imageHeight = (int) (getResources().getDimension(R.dimen.battle_img_height));
+
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
         }
 
         for(ImageView img: itemImgs)
         {
+            imageWidth = (int) (getResources().getDimension(R.dimen.player_items_img_width));
+            imageHeight = (int) (getResources().getDimension(R.dimen.player_items_img_height));
+
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
         }
 
         for(ImageView img: partyImgs)
         {
+            imageWidth = (int) (getResources().getDimension(R.dimen.party_img_width));
+            imageHeight = (int) (getResources().getDimension(R.dimen.party_img_height));
+
             img.getLayoutParams().width = imageWidth;
             img.getLayoutParams().height = imageHeight;
         }
 
-        float textSize = getResources().getDimension(R.dimen.battle_txt_text_size) / density;
+        float textSize = getResources().getDimension(R.dimen.battle_txt_text_size) / getResources().getDisplayMetrics().scaledDensity;
 
         for (TextView txt : battleTxtsHealthLabel)
         {
@@ -386,63 +392,196 @@ public class BattleActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void onSuccessfulPartySelection(View v)
+    {
+        switch (v.getId())
+        {
+            case R.id.party_clo_first:
+                currentPlayerMonster = playerMonsters.get(0);
+                currentPlayerMonsterIndex = 0;
+                break;
+            case R.id.party_clo_second:
+                currentPlayerMonster = playerMonsters.get(1);
+                currentPlayerMonsterIndex = 1;
+                break;
+            case R.id.party_clo_third:
+                currentPlayerMonster = playerMonsters.get(2);
+                currentPlayerMonsterIndex = 2;
+                break;
+        }
+
+        if (currentPlayerMonster.isDead()) {
+            if (reviveSelected) {
+                currentPlayerMonster.setCurrentHp(currentPlayerMonster.getMaxHp());
+                reviveSelected = false;
+            } else {
+                Toast.makeText(BattleActivity.this, "Pick another monster", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } else if (reviveSelected) {
+            Toast.makeText(BattleActivity.this, "Pick another monster to revive", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (playerIsSelectingAnotherMonster) {
+            playerIsSelectingAnotherMonster = false;
+        }
+
+        battleCloTopHealth.setVisibility(View.VISIBLE);
+        battleCloBotHealth.setVisibility(View.VISIBLE);
+        battleVfp.setDisplayedChild(0); //Return to initial screen (fight, party, item, run)
+
+        if (lastPartyCloSelected != null)
+        {
+            lastPartyCloSelected.setBackgroundResource(R.drawable.border_default);
+        }
+
+        v.setBackgroundResource(R.drawable.border_selected);
+        lastPartyCloSelected = v;
+
+        if (isInitialPartySelection) {
+            currentOpponentMonster = opponentMonsters.get(0);
+        } else {
+            new EnemyMove().execute();
+        }
+        isInitialPartySelection = false;
+
+        String healthLabelText = currentPlayerMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
+        battleTxtsHealthLabel.get(1).setText(healthLabelText);
+
+        healthLabelText = v.getContext().getResources().getString(R.string.enemy) + " " + currentOpponentMonster.getName() + " " + v.getContext().getResources().getString(R.string.health);
+        battleTxtsHealthLabel.get(0).setText(healthLabelText);
+
+        battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
+        battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
+
+        battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getMaxHp() + "");
+        battleTxtsMaxHealth.get(1).setText(currentPlayerMonster.getMaxHp() + "");
+
+        moveBtns.get(0).setText(currentPlayerMonster.getMoves().get(0).getName());
+        moveBtns.get(1).setText(currentPlayerMonster.getMoves().get(1).getName());
+        moveBtns.get(2).setText(currentPlayerMonster.getMoves().get(3).getName());
+        moveBtns.get(3).setText(currentPlayerMonster.getMoves().get(2).getName());
+
+        battleImgs.get(0).setImageResource(currentOpponentMonster.getImage());
+        battleImgs.get(1).setImageResource(currentPlayerMonster.getImage());
+    }
+
+    private void onSuccessfulItemSelection(View v)
+    {
+        test:
+        switch (v.getId())
+        {
+            case R.id.player_items_clo_first: // Revive
+                for (Monster m : playerMonsters) {
+                    if (m.isDead()) {
+                        itemSelected = true;
+                        reviveSelected = true;
+                        battleVfp.setDisplayedChild(3);
+                        break test;
+                    }
+                }
+                Toast.makeText(BattleActivity.this, "You have no monsters to revive", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.player_items_clo_second: // Instakill
+                currentOpponentMonster.setCurrentHp(0);
+                onDamageDoneToEnemy();
+
+                battleVfp.setDisplayedChild(1);
+                itemSelected = true;
+                break;
+            case R.id.player_items_clo_third: // Heal and Deal
+                currentPlayerMonster.setCurrentHp(currentPlayerMonster.getCurrentHp() + 10);
+                currentOpponentMonster.setCurrentHp(currentOpponentMonster.getCurrentHp() - 10);
+
+                battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
+                partyTxtsCurrentHealth.get(currentPlayerMonsterIndex).setText(currentPlayerMonster.getCurrentHp() + "");
+
+                onDamageDoneToEnemy();
+                Toast.makeText(BattleActivity.this, "Player monster gained 10hp", Toast.LENGTH_SHORT).show();
+                battleVfp.setDisplayedChild(1);
+                itemSelected = true;
+                break;
+        }
+    }
+
+    private void createAndShowAlertDialog(String message, String positiveMessage, DialogInterface.OnClickListener positiveListener, String negativeMessage, DialogInterface.OnClickListener negativeListener)
+    {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setMessage(message);
+        alertBuilder.setCancelable(true);
+        alertBuilder.setPositiveButton(positiveMessage, positiveListener);
+        alertBuilder.setNegativeButton(negativeMessage, negativeListener);
+        alertBuilder.show();
+    }
+
+    private void showRunAlertDialog()
+    {
+        createAndShowAlertDialog("Are you sure you want to leave?\nThis will count as a surrender.",
+                getString(android.R.string.ok),
+                new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        goToResultActivity(false);
+                    }
+                },
+                getString(android.R.string.cancel),
+                new CancelDialogOnClickListener()
+        );
+    }
+
+    private void showPartySelectionAlertDialog(final View v)
+    {
+        createAndShowAlertDialog("Are you sure you want to use this monster?",
+                getString(android.R.string.ok),
+                new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        onSuccessfulPartySelection(v);
+                    }
+                },
+                getString(android.R.string.cancel),
+                new CancelDialogOnClickListener()
+        );
+    }
+
+    private void showItemSelectionAlertDialog(final View v)
+    {
+        createAndShowAlertDialog("Are you sure you want to use this item?",
+                getString(android.R.string.ok),
+                new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        onSuccessfulItemSelection(v);
+                    }
+                },
+                getString(android.R.string.cancel),
+                new CancelDialogOnClickListener()
+        );
+    }
+
     private class PartyCloOnClickListener implements View.OnClickListener
     {
         @Override
         public void onClick(View v)
         {
-            switch(v.getId())
-            {
-                case R.id.party_clo_first:
-                    currentPlayerMonster = playerMonsters.get(0);
-                    break;
-                case R.id.party_clo_second:
-                    currentPlayerMonster = playerMonsters.get(1);
-                    break;
-                case R.id.party_clo_third:
-                    currentPlayerMonster = playerMonsters.get(2);
-                    break;
-            }
-
-            currentOpponentMonster = opponentMonsters.get(0);
-
-            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
-            battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
-
-            battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getMaxHp() + "");
-            battleTxtsMaxHealth.get(1).setText(currentPlayerMonster.getMaxHp() + "");
-
-            moveBtns.get(0).setText(currentPlayerMonster.getMoves().get(0).getName());
-            moveBtns.get(1).setText(currentPlayerMonster.getMoves().get(1).getName());
-            moveBtns.get(2).setText(currentPlayerMonster.getMoves().get(3).getName());
-            moveBtns.get(3).setText(currentPlayerMonster.getMoves().get(2).getName());
-
-            battleImgs.get(0).setImageResource(currentOpponentMonster.getImage());
-            battleImgs.get(1).setImageResource(currentPlayerMonster.getImage());
-
-            monsterSelected = true;
+            showPartySelectionAlertDialog(v);
         }
     }
 
-    private class PlayerItemsCloOnClickListener implements View.OnClickListener
-    {
+    private class PlayerItemsCloOnClickListener implements View.OnClickListener {
         @Override
-        public void onClick(View v)
-        {
-            //TODO Item OnClickListener() functionality
-            switch(v.getId())
-            {
-                case R.id.player_items_clo_first: //Revive
-                    break;
-                case R.id.player_items_clo_second: //Attack up
-                    break;
-                case R.id.player_items_clo_third: //Heal
-                    break;
+        public void onClick(View v) {
+            if (!isEnemyTurn) {
+                showItemSelectionAlertDialog(v);
             }
         }
     }
 
-    private class MoveBtnOnClickListener extends AsyncTask<Void, Void, Move> implements View.OnClickListener
+    private class MoveBtnOnClickListener implements View.OnClickListener
     {
         @Override
         public void onClick(View v)
@@ -471,15 +610,33 @@ public class BattleActivity extends AppCompatActivity {
 
             Toast.makeText(BattleActivity.this, "You did " + Monster.damageDealt + " damage.", Toast.LENGTH_LONG).show();
 
-            battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
+            onDamageDoneToEnemy();
+        }
+    }
 
-            if (currentOpponentMonster.isDead()) {
+    private void onDamageDoneToEnemy() {
+        if (currentOpponentMonster.isDead()) {
+            if(!opponentMonsters.get(1).isDead()) {
+                currentOpponentMonster = opponentMonsters.get(1);
+            } else if (!opponentMonsters.get(2).isDead()) {
+                currentOpponentMonster = opponentMonsters.get(2);
+            } else {
                 goToResultActivity(true);
                 return;
             }
 
-            new MoveBtnOnClickListener().execute();
+            battleTxtsMaxHealth.get(0).setText(currentOpponentMonster.getMaxHp() + "");
+            battleTxtsHealthLabel.get(0).setText(getResources().getString(R.string.enemy) + " " + currentOpponentMonster.getName() + " " + getResources().getString(R.string.health));
+            battleImgs.get(0).setImageResource(currentOpponentMonster.getImage());
+            isEnemyTurn = false;
+        } else {
+            new EnemyMove().execute();
         }
+
+        battleTxtsCurrentHealth.get(0).setText(currentOpponentMonster.getCurrentHp() + "");
+    }
+
+    private class EnemyMove extends AsyncTask<Void, Void, Move> {
 
         @Override
         protected Move doInBackground(Void... voids) {
@@ -499,44 +656,29 @@ public class BattleActivity extends AppCompatActivity {
                     ".\nIt did " + Monster.damageDealt + " damage.", Toast.LENGTH_LONG).show();
 
             battleTxtsCurrentHealth.get(1).setText(currentPlayerMonster.getCurrentHp() + "");
+            partyTxtsCurrentHealth.get(currentPlayerMonsterIndex).setText(currentPlayerMonster.getCurrentHp() + "");
 
             isEnemyTurn = false;
 
             if (currentPlayerMonster.isDead()) {
+                for (Monster m : playerMonsters) {
+                    if (!m.isDead()) {
+                        playerIsSelectingAnotherMonster = true;
+                        battleVfp.setDisplayedChild(3);
+                        return;
+                    }
+                }
                 goToResultActivity(false);
             }
         }
     }
 
-    private void showRunAlertDialog()
+    private class CancelDialogOnClickListener implements DialogInterface.OnClickListener
     {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-        alertBuilder.setMessage("Are you sure you want to leave?\nThis will count as a surrender.");
-        alertBuilder.setCancelable(true);
-
-        alertBuilder.setPositiveButton(
-                android.R.string.ok,
-                new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        goToResultActivity(false);
-                    }
-                }
-        );
-
-        alertBuilder.setNegativeButton(
-                android.R.string.cancel,
-                new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        dialog.cancel();
-                    }
-                }
-        );
-
-        alertBuilder.show();
+        public void onClick(DialogInterface dialog, int id)
+        {
+            dialog.cancel();
+        }
     }
 
     private class BattleBtnOnClickListener implements View.OnClickListener
@@ -547,14 +689,15 @@ public class BattleActivity extends AppCompatActivity {
             switch (v.getId())
             {
                 case R.id.battle_btn_top_left://Battle button
-                    if (monsterSelected) {
-                        battleVfp.setDisplayedChild(1);
-                    } else {
-                        Toast.makeText(BattleActivity.this, "You need to select a monster from the party menu first.", Toast.LENGTH_LONG).show();
-                    }
+                    battleVfp.setDisplayedChild(1);
                     break;
                 case R.id.battle_btn_top_right: //Items
-                    battleVfp.setDisplayedChild(2);
+                    if (itemSelected) {
+                        Toast.makeText(BattleActivity.this, "You already used your item", Toast.LENGTH_SHORT).show();
+                    } else {
+                        battleVfp.setDisplayedChild(2);
+                        Toast.makeText(BattleActivity.this, "You can only use 1 item", Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case R.id.battle_btn_bot_left: //Party
                     battleVfp.setDisplayedChild(3);

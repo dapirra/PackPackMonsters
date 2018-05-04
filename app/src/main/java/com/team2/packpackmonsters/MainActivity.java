@@ -80,10 +80,10 @@ public class MainActivity extends AppCompatActivity
     private void initializeListeners()
     {
         ArrayList<Button> mainBtns = new ArrayList<>();
-        mainBtns.add((Button) findViewById(R.id.main_btn_top_left));
-        mainBtns.add((Button) findViewById(R.id.main_btn_top_right));
-        mainBtns.add((Button) findViewById(R.id.main_btn_bot_left));
-        mainBtns.add((Button) findViewById(R.id.main_btn_bot_right));
+        mainBtns.add((Button) findViewById(R.id.main_btn_first));
+        mainBtns.add((Button) findViewById(R.id.main_btn_third));
+        mainBtns.add((Button) findViewById(R.id.main_btn_second));
+        mainBtns.add((Button) findViewById(R.id.main_btn_fourth));
 
         for (Button btn : mainBtns)
         {
@@ -217,16 +217,16 @@ public class MainActivity extends AppCompatActivity
         {
             switch(v.getId())
             {
-                case R.id.main_btn_top_left:
+                case R.id.main_btn_first:
                     startActivity(new Intent(v.getContext(), BattleActivity.class));
                     break;
-                case R.id.main_btn_top_right:
+                case R.id.main_btn_third:
                     startActivity(new Intent(v.getContext(), ItemsActivity.class));
                     break;
-                case R.id.main_btn_bot_left:
+                case R.id.main_btn_second:
                     startActivity(new Intent(v.getContext(), PackPackActivity.class));
                     break;
-                case R.id.main_btn_bot_right:
+                case R.id.main_btn_fourth:
                     startActivity(new Intent(v.getContext(), HelpActivity.class));
                     break;
             }

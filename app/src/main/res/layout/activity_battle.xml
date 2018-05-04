@@ -46,14 +46,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/battle_txt_top_player_max_health"
+                android:id="@+id/battle_txt_top_player_current_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_health_text"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/battle_txt_text_size"
                 app:layout_constraintBottom_toBottomOf="@id/battle_txt_top_player_slash"
-                app:layout_constraintLeft_toRightOf="@id/battle_txt_top_player_slash"
+                app:layout_constraintRight_toLeftOf="@id/battle_txt_top_player_slash"
                 app:layout_constraintTop_toTopOf="@id/battle_txt_top_player_slash" />
 
             <TextView
@@ -68,14 +68,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/battle_txt_top_player_current_health"
+                android:id="@+id/battle_txt_top_player_max_health"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_health_text"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/battle_txt_text_size"
                 app:layout_constraintBottom_toBottomOf="@id/battle_txt_top_player_slash"
-                app:layout_constraintRight_toLeftOf="@id/battle_txt_top_player_slash"
+                app:layout_constraintLeft_toRightOf="@id/battle_txt_top_player_slash"
                 app:layout_constraintTop_toTopOf="@id/battle_txt_top_player_slash" />
 
             <TextView
