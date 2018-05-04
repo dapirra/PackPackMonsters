@@ -85,7 +85,11 @@ public class Monster {
             // TODO Figure out what to do for buffs
         }
 
+        if (opponent.getCurrentHp() < 0) {
+            opponent.setCurrentHp(0);
+        }
     }
+
     public String getName() {
         return name;
     }
@@ -128,12 +132,7 @@ public class Monster {
     }
 
     public boolean isDead() {
-        if (this.currentHp > 0) {
-            return false;
-        } else {
-            this.currentHp = 0;
-            return true;
-        }
+        return this.currentHp <= 0;
     }
 
     @Override
