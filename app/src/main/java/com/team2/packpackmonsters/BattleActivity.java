@@ -483,8 +483,8 @@ public class BattleActivity extends AppCompatActivity {
                 }
                 Toast.makeText(BattleActivity.this, "You have no monsters to revive", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.player_items_clo_second: // Instakill
-                currentOpponentMonster.setCurrentHp(0);
+            case R.id.player_items_clo_second: // Finish Him
+                currentOpponentMonster.setCurrentHp(1);
                 onDamageDoneToEnemy();
 
                 battleVfp.setDisplayedChild(1);
