@@ -187,4 +187,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="revive">Revive</string>
+    <string name="instakill">Instakill</string>
+    <string name="heal_and_deal">Heal and Deal</string>
 </resources>
