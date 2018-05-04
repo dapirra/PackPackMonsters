@@ -10,8 +10,7 @@ import com.team2.packpackmonsters.data.PacPacMonstersContract;
  * Created by Owner on 4/24/2018.
  */
 
-public class MonstersInfo
-{
+public class MonstersInfo {
     private MonstersDbHelper MonDbHelper;
     private int monsterOneId;
     private String monsterOneName;
@@ -31,17 +30,10 @@ public class MonstersInfo
     private int monsterOneMoveFourBuff;
     private String dataMonsterName;
 
-
-
-    public MonstersInfo()
-    {
-
-
+    public MonstersInfo() {
     }
 
-
-    public void createMonsterOne()
-    {
+    public void createMonsterOne() {
         String IdTest = "2";//This will have to be a random number generator, so everytime we call createMonster its random
 
         SQLiteDatabase db1 = MonDbHelper.getReadableDatabase();
@@ -68,26 +60,25 @@ public class MonstersInfo
 
         Cursor c = db1.query(PacPacMonstersContract.PacPacMonsterEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
 
-            try
-            {
-                int monOne_ID_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry._ID);
-                int monOne_Name_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_NAME);
-                int monOne_HP_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_HP);
-                int monOne_Type_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_TYPE);
-                int monOne_MOne_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_ONE);
-                int monOne_MOneDamage_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_ONE_DAMAGE);
-                int monOne_MOneBuff_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_ONE_BUFF);
-                int monOne_MTwo_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_TWO);
-                int monOne_MTwoDamage_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_TWO_DAMAGE);
-                int monOne_MTwoBuff_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_TWO_BUFF);
-                int monOne_MThree_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_THREE);
-                int monOne_MThreeDamage_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_THREE_DAMAGE);
-                int monOne_MThreeBuff_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_THREE_BUFF);
-                int monOne_MFour_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_FOUR);
-                int monOne_MFourDamage_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_FOUR_DAMAGE);
-                int monOne_MFourBuff_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_FOUR_BUFF);
+        try {
+            int monOne_ID_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry._ID);
+            int monOne_Name_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_NAME);
+            int monOne_HP_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_HP);
+            int monOne_Type_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_TYPE);
+            int monOne_MOne_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_ONE);
+            int monOne_MOneDamage_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_ONE_DAMAGE);
+            int monOne_MOneBuff_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_ONE_BUFF);
+            int monOne_MTwo_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_TWO);
+            int monOne_MTwoDamage_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_TWO_DAMAGE);
+            int monOne_MTwoBuff_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_TWO_BUFF);
+            int monOne_MThree_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_THREE);
+            int monOne_MThreeDamage_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_THREE_DAMAGE);
+            int monOne_MThreeBuff_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_THREE_BUFF);
+            int monOne_MFour_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_FOUR);
+            int monOne_MFourDamage_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_FOUR_DAMAGE);
+            int monOne_MFourBuff_CI = c.getColumnIndex(PacPacMonstersContract.PacPacMonsterEntry.COLUMN_MOVE_FOUR_BUFF);
 
-            while(c.moveToNext())//Goes through all iterations
+            while (c.moveToNext())//Goes through all iterations
             {
                 monsterOneId = c.getInt(monOne_ID_CI);
                 monsterOneName = c.getString(monOne_Name_CI);
@@ -105,21 +96,16 @@ public class MonstersInfo
                 monsterOneMoveFour = c.getString(monOne_MFour_CI);
                 monsterOneMoveFourDamage = c.getInt(monOne_MFourDamage_CI);
                 monsterOneMoveFourBuff = c.getInt(monOne_MFourBuff_CI);
-
             }
 
-
-            }
-
-            finally
-            {
-                c.close();
-            }
+        } finally {
+            c.close();
+        }
 
         System.out.println(monsterOneName + " " + monsterOneMoveFourDamage);
     }
-                                                                    //This is passed to a method that wants the Id. Now with this Id it can then call the other methods, getMonsterMoves, get MonsterName
-                                                                 //and use this Id to get the specific items it calls for
+    //This is passed to a method that wants the Id. Now with this Id it can then call the other methods, getMonsterMoves, get MonsterName
+    //and use this Id to get the specific items it calls for
 
     /*public ArrayList<MonstersInfo> createMonsterOne()
     {
@@ -132,176 +118,131 @@ public class MonstersInfo
         }
     }*/
 
-    public int getMonsterIdOne()
-    {
-       return monsterOneId;
+    public int getMonsterIdOne() {
+        return monsterOneId;
     }
 
-    public void setMonsterIdOne(int monsterOneId)
-    {
+    public void setMonsterIdOne(int monsterOneId) {
         this.monsterOneId = monsterOneId;
     }
 
-    public String getMonsterOneName()
-    {
+    public String getMonsterOneName() {
         return monsterOneName;
     }
 
-    public void setMonsterOneName(String monsterOneName)
-    {
+    public void setMonsterOneName(String monsterOneName) {
         this.monsterOneName = monsterOneName;
     }
 
-    public int getMonsterHp()
-    {
+    public int getMonsterHp() {
         return monsterOneHp;
     }
 
-    public void setMonsterHp(int monsterOneHp)
-    {
+    public void setMonsterHp(int monsterOneHp) {
         this.monsterOneHp = monsterOneHp;
     }
 
-    public int getMonsterType()
-    {
+    public int getMonsterType() {
         return monsterOneType;
     }
 
-    public void setMonsterType(int monsterOneType)
-    {
+    public void setMonsterType(int monsterOneType) {
         this.monsterOneType = monsterOneType;
     }
 
-    public String getMonsterMoveOneName()
-    {
+    public String getMonsterMoveOneName() {
         return monsterOneMoveOne;
     }
 
-    public void setMonsterMoveOneName(String monsterOneMoveOne)
-    {
+    public void setMonsterMoveOneName(String monsterOneMoveOne) {
         this.monsterOneMoveOne = monsterOneMoveOne;
     }
 
-    public int getMonsterMoveOneDamage()
-    {
+    public int getMonsterMoveOneDamage() {
         return monsterOneMoveOneDamage;
     }
 
-    public void setMonsterMoveOneDamage(int monsterOneMoveOneDamage)
-    {
+    public void setMonsterMoveOneDamage(int monsterOneMoveOneDamage) {
         this.monsterOneMoveOneDamage = monsterOneMoveOneDamage;
     }
 
-    public int getMonsterOneBuff()
-    {
+    public int getMonsterOneBuff() {
         return monsterOneMoveOneBuff;
     }
 
-    public void setMonsterOneMoveBuff(int monsterOneMoveOneBuff)
-    {
+    public void setMonsterOneMoveBuff(int monsterOneMoveOneBuff) {
         this.monsterOneMoveOneBuff = monsterOneMoveOneBuff;
     }
 
-    public String getMonsterOneMoveTwo()
-    {
+    public String getMonsterOneMoveTwo() {
         return monsterOneMoveTwo;
     }
 
-    public void setMonsterOneMoveTwo(String monsterOneMoveTwo)
-    {
+    public void setMonsterOneMoveTwo(String monsterOneMoveTwo) {
         this.monsterOneMoveTwo = monsterOneMoveTwo;
     }
 
-    public int getMonsterOneMoveTwoDamage()
-    {
+    public int getMonsterOneMoveTwoDamage() {
         return monsterOneMoveTwoDamage;
     }
 
-    public void setMonsterOneMoveTwoDamage(int monsterOneMoveTwoDamage)
-    {
+    public void setMonsterOneMoveTwoDamage(int monsterOneMoveTwoDamage) {
         this.monsterOneMoveTwoDamage = monsterOneMoveTwoDamage;
     }
 
-    public int getMonsterOneMOveTwoBuff()
-    {
+    public int getMonsterOneMOveTwoBuff() {
         return monsterOneMoveTwoBuff;
     }
 
-    public void setMonsterOneMoveTwoBuff(int monsterOneMoveTwoBuff)
-    {
+    public void setMonsterOneMoveTwoBuff(int monsterOneMoveTwoBuff) {
         this.monsterOneMoveTwoBuff = monsterOneMoveTwoBuff;
     }
 
-    public String getMonsterOneMoveThree()
-    {
+    public String getMonsterOneMoveThree() {
         return monsterOneMoveThree;
     }
 
-    public void setMonsterOneMoveThree(String monsterOneMoveThree)
-    {
+    public void setMonsterOneMoveThree(String monsterOneMoveThree) {
         this.monsterOneMoveThree = monsterOneMoveThree;
     }
 
-    public int getMonsterOneMoveThreeDamage()
-    {
+    public int getMonsterOneMoveThreeDamage() {
         return monsterOneMoveThreeDamage;
     }
 
-    public void setMonsterOneMoveThreeDamage(int monsterOneMoveThreeDamage)
-    {
+    public void setMonsterOneMoveThreeDamage(int monsterOneMoveThreeDamage) {
         this.monsterOneMoveThreeDamage = monsterOneMoveThreeDamage;
     }
 
-    public int getMonsterOneMoveThreeBuff()
-    {
+    public int getMonsterOneMoveThreeBuff() {
         return monsterOneMoveThreeBuff;
     }
 
-    public void setMonsterOneMoveThreeBuff(int monsterOneMoveThreeBuff)
-    {
+    public void setMonsterOneMoveThreeBuff(int monsterOneMoveThreeBuff) {
         this.monsterOneMoveThreeBuff = monsterOneMoveThreeBuff;
     }
 
-    public String getMonsterOneMoveFour()
-    {
+    public String getMonsterOneMoveFour() {
         return monsterOneMoveFour;
     }
 
-    public void setMonsterOneMoveFour(String monsterOneMoveFour)
-    {
+    public void setMonsterOneMoveFour(String monsterOneMoveFour) {
         this.monsterOneMoveFour = monsterOneMoveFour;
     }
 
-    public int getMonsterOneMoveFourDamage()
-    {
+    public int getMonsterOneMoveFourDamage() {
         return monsterOneMoveFourDamage;
     }
 
-    public void setMonsterOneMoveFourDamage(int monsterOneMoveFourDamage)
-    {
+    public void setMonsterOneMoveFourDamage(int monsterOneMoveFourDamage) {
         this.monsterOneMoveFourDamage = monsterOneMoveFourDamage;
     }
 
-    public int getMonsterOneMoveFourBuff()
-    {
+    public int getMonsterOneMoveFourBuff() {
         return monsterOneMoveFourBuff;
     }
 
-    public void setMonsterOneMoveFourBuff(int monsterOneMoveFourBuff)
-    {
+    public void setMonsterOneMoveFourBuff(int monsterOneMoveFourBuff) {
         this.monsterOneMoveFourBuff = monsterOneMoveFourBuff;
     }
-
-
-
-
-
-
-
-
-
-
-
 }
-
-

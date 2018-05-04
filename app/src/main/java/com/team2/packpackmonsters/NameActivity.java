@@ -21,13 +21,10 @@ public class NameActivity extends AppCompatActivity {
         nameEdit.setOnEditorActionListener(new NameEditOnEditorActionListener());
     }
 
-    private class NameEditOnEditorActionListener implements TextView.OnEditorActionListener
-    {
+    private class NameEditOnEditorActionListener implements TextView.OnEditorActionListener {
         @Override
-        public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
-        {
-            if(actionId == EditorInfo.IME_ACTION_DONE)
-            {
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 Settings.saveName(nameEdit.getText().toString());
                 finish();
                 return true;

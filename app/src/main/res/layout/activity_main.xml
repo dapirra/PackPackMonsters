@@ -16,9 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:titleTextColor="@android:color/white"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:theme="@style/MainToolbar">
+            app:theme="@style/MainToolbar"
+            app:titleTextColor="@android:color/white">
 
         </android.support.v7.widget.Toolbar>
 
@@ -108,7 +108,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-
     <TextView
         android:id="@+id/text_view_test2"
         android:layout_width="wrap_content"
@@ -119,7 +118,6 @@
         android:text="Test for Monsters database"
         tools:layout_editor_absoluteX="163dp"
         tools:layout_editor_absoluteY="35dp" />
-
 
     <TextView
         android:id="@+id/text_view_test4"
@@ -132,7 +130,4 @@
         android:layout_marginLeft="37dp"
         android:layout_marginStart="37dp"
         android:text="Test for Items Database" />
-
-
-
 </RelativeLayout>-->

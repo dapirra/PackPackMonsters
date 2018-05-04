@@ -10,16 +10,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class PackAdapter extends BaseAdapter
-{
-    private Context context;
+public class PackAdapter extends BaseAdapter {
     private final int PADDING;
     private final int IMG_SIZE;
     private final int MARGIN;
     private final float TEXT_SIZE;
+    private Context context;
 
-    public PackAdapter(Context context)
-    {
+    public PackAdapter(Context context) {
         this.context = context;
 
         float density = context.getResources().getDisplayMetrics().density;
@@ -31,26 +29,22 @@ public class PackAdapter extends BaseAdapter
     }
 
     @Override
-    public int getCount()
-    {
+    public int getCount() {
         return 16; //12 monsters + 4 type
     }
 
     @Override
-    public Object getItem(int position)
-    {
+    public Object getItem(int position) {
         return null;
     }
 
     @Override
-    public long getItemId(int position)
-    {
+    public long getItemId(int position) {
         return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         LinearLayout llo = new LinearLayout(context);
         llo.setOrientation(LinearLayout.HORIZONTAL);
         llo.setPadding(PADDING, PADDING, PADDING, PADDING);
@@ -59,8 +53,7 @@ public class PackAdapter extends BaseAdapter
 
         int positionModResult = position % 4;
 
-        if(positionModResult == 0)
-        {
+        if (positionModResult == 0) {
             ImageView imgType = new ImageView(context);
             TextView txtType = new TextView(context);
 
@@ -80,8 +73,7 @@ public class PackAdapter extends BaseAdapter
 
             int packImg, packType;
 
-            switch(position / 4)
-            {
+            switch (position / 4) {
                 case 0: //Fire
                     packImg = R.drawable.fire_icon;
                     packType = R.string.fire_types_underlined;
@@ -104,9 +96,7 @@ public class PackAdapter extends BaseAdapter
 
             llo.addView(imgType);
             llo.addView(txtType);
-        }
-        else
-        {
+        } else {
             TextView txtBullet = new TextView(context);
             txtBullet.setTextSize(TEXT_SIZE);
             txtBullet.setText("\u2022 ");
@@ -123,11 +113,9 @@ public class PackAdapter extends BaseAdapter
 
             String packName;
 
-            switch(positionModResult)
-            {
+            switch (positionModResult) {
                 case 1:
-                    switch(position / 4)
-                    {
+                    switch (position / 4) {
                         case 0: //Fire 1
                             packName = "Fire 1";
                             break;
@@ -142,8 +130,7 @@ public class PackAdapter extends BaseAdapter
                     }
                     break;
                 case 2:
-                    switch (position / 4)
-                    {
+                    switch (position / 4) {
                         case 0: //Fire 2
                             packName = "Fire 2";
                             break;
@@ -158,8 +145,7 @@ public class PackAdapter extends BaseAdapter
                     }
                     break;
                 default:
-                    switch (position / 4)
-                    {
+                    switch (position / 4) {
                         case 0: //Fire 3
                             packName = "Fire 3";
                             break;
@@ -179,8 +165,6 @@ public class PackAdapter extends BaseAdapter
             llo.addView(txtBullet);
             llo.addView(txtPack);
         }
-
-
         return llo;
     }
 }

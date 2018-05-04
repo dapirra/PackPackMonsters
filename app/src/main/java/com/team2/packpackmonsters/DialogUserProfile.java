@@ -16,41 +16,35 @@ import com.team2.packpackmonsters.data.UserProfileDbHelper;
  * Created by Owner on 4/21/2018.
  */
 
-public class DialogUserProfile extends AppCompatDialogFragment
-{
+public class DialogUserProfile extends AppCompatDialogFragment {
     private EditText editTextUsername;
     private DialogUserProfileListener listener;
     private UserProfileDbHelper MDbHelper;
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState)
-    {
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.layout_dialog_userprofile, null);
 
         builder.setView(view)
-                    .setTitle("Welcome")
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-                            String name1 = "Player 1";
-                            String username = name1.toString();
-                            editTextUsername.setText(username);
-                        }
-                    })
-                    .setPositiveButton("Confirm", new DialogInterface.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-                            String username = editTextUsername.getText().toString();
-                            listener.applyTexts(username);
-                        }
-                    });
+                .setTitle("Welcome")
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String name1 = "Player 1";
+                        String username = name1.toString();
+                        editTextUsername.setText(username);
+                    }
+                })
+                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String username = editTextUsername.getText().toString();
+                        listener.applyTexts(username);
+                    }
+                });
 
         editTextUsername = view.findViewById(R.id.edit_username);
 
@@ -58,22 +52,18 @@ public class DialogUserProfile extends AppCompatDialogFragment
     }
 
     @Override
-    public void onAttach(Context context)
-    {
+    public void onAttach(Context context) {
         super.onAttach(context);
-        try
-        {
+        try {
             listener = (DialogUserProfileListener) context;
-        }
-        catch (ClassCastException e)
-        {
+        } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() +
                     "Must implement DialogUserProfleListener");
         }
 
     }
-    public interface DialogUserProfileListener
-    {
+
+    public interface DialogUserProfileListener {
         void applyTexts(String username);
     }
 

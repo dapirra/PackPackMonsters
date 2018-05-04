@@ -6,13 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-public class BattleResultActivity extends AppCompatActivity
-{
+public class BattleResultActivity extends AppCompatActivity {
     public static final String WINNER_KEY = "Winner";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_result);
 
@@ -30,16 +28,13 @@ public class BattleResultActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));
     }
 
-    private class HomeBtnOnClickListener implements View.OnClickListener
-    {
+    private class HomeBtnOnClickListener implements View.OnClickListener {
         @Override
-        public void onClick(View v)
-        {
+        public void onClick(View v) {
             startActivity(new Intent(v.getContext(), MainActivity.class));
         }
     }
