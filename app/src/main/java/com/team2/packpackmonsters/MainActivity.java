@@ -37,12 +37,24 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawer;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        // TODO Figure out how to get the textviews
+//        if (drawer != null) {
+//            ((TextView) drawer.findViewById(R.id.main_nav_win)).setText(Settings.STATISTICS.wins + "");
+//            ((TextView) drawer.findViewById(R.id.main_nav_lose)).setText(Settings.STATISTICS.losses + "");
+//            ((TextView) drawer.findViewById(R.id.main_nav_surrender)).setText(Settings.STATISTICS.surrenders + "");
+//        }
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Settings.loadData(this);
 
-        if (Settings.loadName() == null) {
+        if (Settings.STATISTICS.name == null) {
             startActivity(new Intent(this, NameActivity.class));
         }
 

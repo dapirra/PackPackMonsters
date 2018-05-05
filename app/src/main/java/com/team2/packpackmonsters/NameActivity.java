@@ -25,7 +25,8 @@ public class NameActivity extends AppCompatActivity {
         @Override
         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                Settings.saveName(nameEdit.getText().toString());
+                Settings.STATISTICS.name = nameEdit.getText().toString();
+                Settings.saveData();
                 finish();
                 return true;
             }
