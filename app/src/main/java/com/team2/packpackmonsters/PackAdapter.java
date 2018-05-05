@@ -5,12 +5,14 @@ import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class PackAdapter extends BaseAdapter {
+import static com.team2.packpackmonsters.Settings.packDexMonsters;
+
+public class PackAdapter extends ArrayAdapter<Monster> {
     private final int PADDING;
     private final int IMG_SIZE;
     private final int MARGIN;
@@ -18,6 +20,8 @@ public class PackAdapter extends BaseAdapter {
     private Context context;
 
     public PackAdapter(Context context) {
+        super(context, 0, Settings.packDexMonsters);
+
         this.context = context;
 
         float density = context.getResources().getDisplayMetrics().density;
@@ -26,21 +30,6 @@ public class PackAdapter extends BaseAdapter {
         IMG_SIZE = (int) (context.getResources().getDimension(R.dimen.pack_img_size) / density);
         MARGIN = (int) (context.getResources().getDimension(R.dimen.pack_margin) / density);
         TEXT_SIZE = context.getResources().getDimension(R.dimen.pack_text_size) / context.getResources().getDisplayMetrics().scaledDensity;
-    }
-
-    @Override
-    public int getCount() {
-        return 16; //12 monsters + 4 type
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
     }
 
     @Override
@@ -78,17 +67,17 @@ public class PackAdapter extends BaseAdapter {
                     packImg = R.drawable.fire_icon;
                     packType = R.string.fire_types_underlined;
                     break;
-                case 1: //Earth
-                    packImg = R.drawable.earth_icon;
-                    packType = R.string.earth_types_underlined;
+                case 1: //Water
+                    packImg = R.drawable.water_icon;
+                    packType = R.string.water_types_underlined;
                     break;
                 case 2: //Air
                     packImg = R.drawable.air_icon;
                     packType = R.string.air_types_underlined;
                     break;
-                default: //Water
-                    packImg = R.drawable.water_icon;
-                    packType = R.string.water_types_underlined;
+                default: //Earth
+                    packImg = R.drawable.earth_icon;
+                    packType = R.string.earth_types_underlined;
             }
 
             imgType.setImageResource(packImg);
@@ -109,58 +98,7 @@ public class PackAdapter extends BaseAdapter {
             txtPack.setTextColor(Color.BLACK);
             txtPack.setGravity(Gravity.CENTER);
 
-            //TODO Set text to each of the monster names.
-
-            String packName;
-
-            switch (positionModResult) {
-                case 1:
-                    switch (position / 4) {
-                        case 0: //Fire 1
-                            packName = "Fire 1";
-                            break;
-                        case 1: //Earth 1
-                            packName = "Earth 1";
-                            break;
-                        case 2: //Air 1
-                            packName = "Air 1";
-                            break;
-                        default: //Water 1
-                            packName = "Water 1";
-                    }
-                    break;
-                case 2:
-                    switch (position / 4) {
-                        case 0: //Fire 2
-                            packName = "Fire 2";
-                            break;
-                        case 1: //Earth 2
-                            packName = "Earth 2";
-                            break;
-                        case 2: //Air 2
-                            packName = "Air 2";
-                            break;
-                        default: //Water 2
-                            packName = "Water 2";
-                    }
-                    break;
-                default:
-                    switch (position / 4) {
-                        case 0: //Fire 3
-                            packName = "Fire 3";
-                            break;
-                        case 1: //Earth 3
-                            packName = "Earth 3";
-                            break;
-                        case 2: //Air 3
-                            packName = "Air 3";
-                            break;
-                        default: //Water 3
-                            packName = "Water 3";
-                    }
-            }
-
-            txtPack.setText(packName);
+            txtPack.setText(packDexMonsters.get(position).getName());
 
             llo.addView(txtBullet);
             llo.addView(txtPack);
