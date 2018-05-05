@@ -41,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer musicPlayer;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        if (musicPlayer == null) {
+            musicPlayer = MediaPlayer.create(this, R.raw.main_menu_music);
+        }
+        musicPlayer.start();
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -61,9 +70,14 @@ public class MainActivity extends AppCompatActivity {
         webView.setHorizontalScrollBarEnabled(false);
         webView.setVerticalScrollBarEnabled(false);
         webView.loadUrl("file:///android_asset/canvas_geometry_panorama.html");
+    }
 
-        musicPlayer = MediaPlayer.create(this, R.raw.main_menu_music);
-        musicPlayer.start();
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (musicPlayer.isPlaying()) {
+            musicPlayer.pause();
+        }
     }
 
     /*@Override
@@ -227,7 +241,8 @@ public class MainActivity extends AppCompatActivity {
     private class MainBtnOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            musicPlayer.stop();
+            musicPlayer.pause();
+            musicPlayer.seekTo(0);
             switch (v.getId()) {
                 case R.id.main_btn_first:
                     startActivity(new Intent(v.getContext(), BattleActivity.class));
