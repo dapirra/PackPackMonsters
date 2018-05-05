@@ -24,16 +24,15 @@ import com.team2.packpackmonsters.data.UserProfileDbHelper;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
 
+    static String dataUserName;
+    static String dataMonsterName;
+    static String dataItem;
     private UserProfileDbHelper UsDbHelper;
     private MonstersDbHelper MonDbHelper;
     private ItemsDbHelper ItDbHelper;
     private TextView textViewUsername;
-    static String dataUserName;
-    static String dataMonsterName;
-    static String dataItem;
     private MonstersInfo MonsterOne;
     private DrawerLayout drawer;
 
@@ -41,6 +40,11 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Settings.loadData(this);
+
+        if (Settings.loadName() == null) {
+            startActivity(new Intent(this, NameActivity.class));
+        }
 
         drawer = findViewById(R.id.main_dwr);
 
@@ -59,7 +63,6 @@ public class MainActivity extends AppCompatActivity
         initializeToolbar();
         initializeListeners();
 
-
         //UsDbHelper = new UserProfileDbHelper(this);
         ItDbHelper = new ItemsDbHelper(this);
 
@@ -77,52 +80,43 @@ public class MainActivity extends AppCompatActivity
 
     }*/
 
-    private void initializeListeners()
-    {
+    private void initializeListeners() {
         ArrayList<Button> mainBtns = new ArrayList<>();
         mainBtns.add((Button) findViewById(R.id.main_btn_first));
         mainBtns.add((Button) findViewById(R.id.main_btn_third));
         mainBtns.add((Button) findViewById(R.id.main_btn_second));
         mainBtns.add((Button) findViewById(R.id.main_btn_fourth));
 
-        for (Button btn : mainBtns)
-        {
+        for (Button btn : mainBtns) {
             btn.setOnClickListener(new MainBtnOnClickListener());
         }
     }
 
-    private void displayDatabaseInfoUserProfile()
-    {//TEST TO SEE IF DATABASE WORKS...
+    private void displayDatabaseInfoUserProfile() {//TEST TO SEE IF DATABASE WORKS...
 
         SQLiteDatabase db = UsDbHelper.getReadableDatabase();//Opening the database or creating a new one
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + PacPacMonstersContract.UserProfileEntry.TABLE_NAME, null);
-        try
-        {
+        try {
             //TextView displayView = (TextView) findViewById(R.id.text_view_test);
-           // displayView.setText("Number of rows in user profile database table: " + cursor.getCount());
-        } finally
-        {
+            // displayView.setText("Number of rows in user profile database table: " + cursor.getCount());
+        } finally {
             cursor.close();
         }
     }
 
-    private void displayDatabaseInfoItems()
-    {//TEST TO SEE IF DATABASE WORKS FOR MOVES...
+    private void displayDatabaseInfoItems() {//TEST TO SEE IF DATABASE WORKS FOR MOVES...
 
         SQLiteDatabase db = ItDbHelper.getReadableDatabase();//Opening the database or creating a new one
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + PacPacMonstersContract.ItemsEntry.TABLE_NAME, null);
-        try
-        {
+        try {
             //TextView displayView = (TextView) findViewById(R.id.text_view_test4);
             //displayView.setText("Number of rows in Items database table: " + cursor.getCount());
-        } finally
-        {
+        } finally {
             cursor.close();
         }
     }
-
 
     private void insertItems()//Items are inserted
     {
@@ -136,21 +130,17 @@ public class MainActivity extends AppCompatActivity
         Cursor c = db1.query(PacPacMonstersContract.ItemsEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
         if (c.moveToFirst())//This if then statement checks to see if we already have moves inserted
         {
-            try
-            {
+            try {
                 int nameColumnIndex = c.getColumnIndex(PacPacMonstersContract.ItemsEntry.COLUMN_ITEM_NAME);//checks if we have the move inserted
                 dataItem = c.getString(nameColumnIndex);
-            } finally
-            {
+            } finally {
                 c.close();
             }
 
-        } else
-        {//If we dont have moves inserted then insert the moves
+        } else {//If we dont have moves inserted then insert the moves
 
             SQLiteDatabase db = ItDbHelper.getWritableDatabase();//Database is in writemode
             ContentValues values = new ContentValues();//Content Values object Column names are keys and attributes in "" are values
-
 
             //Item 1 - Revive
             values.put(PacPacMonstersContract.ItemsEntry.COLUMN_ITEM_NAME, "Revive");//So when we do battles we will do an if then
@@ -172,7 +162,6 @@ public class MainActivity extends AppCompatActivity
         // Gets the database in write mode
         SQLiteDatabase db = UsDbHelper.getWritableDatabase();//Write mode is to CREATE, UPDATE, & DELETE
 
-
         ContentValues values = new ContentValues();//Content Values object Column names are keys and attributes in "" are values
         values.put(PacPacMonstersContract.UserProfileEntry.COLUMN_NAME, "John Snow");
         values.put(PacPacMonstersContract.UserProfileEntry.COLUMN_WINS, "5");
@@ -186,8 +175,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) //User clicked on menu item statistics menu
     {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 drawer.openDrawer(GravityCompat.START);
                 return true;
@@ -196,8 +184,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void initializeToolbar()
-    {
+    private void initializeToolbar() {
         Toolbar toolbar = findViewById(R.id.main_tbar);
         setSupportActionBar(toolbar);
 
@@ -210,13 +197,23 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
     }
 
-    private class MainBtnOnClickListener implements View.OnClickListener
-    {
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
+        }
+    }
+
+    private class MainBtnOnClickListener implements View.OnClickListener {
         @Override
-        public void onClick(View v)
-        {
-            switch(v.getId())
-            {
+        public void onClick(View v) {
+            switch (v.getId()) {
                 case R.id.main_btn_first:
                     startActivity(new Intent(v.getContext(), BattleActivity.class));
                     break;
@@ -230,23 +227,6 @@ public class MainActivity extends AppCompatActivity
                     startActivity(new Intent(v.getContext(), HelpActivity.class));
                     break;
             }
-        }
-    }
-
-    @Override
-    public void onBackPressed()
-    {
-        if(drawer.isDrawerOpen(GravityCompat.START))
-        {
-            drawer.closeDrawer(GravityCompat.START);
-        }
-        else
-        {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            startActivity(intent);
         }
     }
 }

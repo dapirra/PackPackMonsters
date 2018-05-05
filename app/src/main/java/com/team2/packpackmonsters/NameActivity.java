@@ -1,8 +1,5 @@
 package com.team2.packpackmonsters;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -21,46 +18,18 @@ public class NameActivity extends AppCompatActivity {
 
         nameEdit = findViewById(R.id.name_edit);
 
-        //TODO If(name in database) then startActivity() -> MainActivity else continue
-
-        //TEMPORARY
-        if(temp_fetchName() != null)
-        {
-            startActivity(new Intent(this, MainActivity.class));
-        }
-
         nameEdit.setOnEditorActionListener(new NameEditOnEditorActionListener());
     }
 
-    private class NameEditOnEditorActionListener implements TextView.OnEditorActionListener
-    {
+    private class NameEditOnEditorActionListener implements TextView.OnEditorActionListener {
         @Override
-        public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
-        {
-            if(actionId == EditorInfo.IME_ACTION_DONE)
-            {
-                //TODO Save name to database.
-
-                //TEMPORARY
-                temp_saveName(nameEdit.getText().toString());
-
-                startActivity(new Intent(v.getContext(), MainActivity.class));
+        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                Settings.saveName(nameEdit.getText().toString());
+                finish();
                 return true;
             }
-
             return false;
         }
-    }
-
-    private void temp_saveName(String name)
-    {
-        SharedPreferences pref = getSharedPreferences("app", Context.MODE_PRIVATE);
-        pref.edit().putString("name", name).apply();
-    }
-
-    private String temp_fetchName()
-    {
-        SharedPreferences pref = getSharedPreferences("app", Context.MODE_PRIVATE);
-        return pref.getString("name", null);
     }
 }

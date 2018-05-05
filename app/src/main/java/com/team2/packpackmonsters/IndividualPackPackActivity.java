@@ -5,13 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class IndividualPackPackActivity extends AppCompatActivity
-{
+public class IndividualPackPackActivity extends AppCompatActivity {
     public static final String MONSTER_KEY = "Monster";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_pack_pack);
 

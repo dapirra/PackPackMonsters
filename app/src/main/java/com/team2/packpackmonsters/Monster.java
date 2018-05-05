@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 
 public class Monster {
+    public static int damageDealt;
     private String name;
     private String description;
     private int maxHp;
@@ -18,8 +19,6 @@ public class Monster {
     private ArrayList<Move> moves;
     private int image;
     private String typeString;
-    public static int damageDealt;
-
 
     public Monster(String name, String description, int maxHp, int type, String imagePath, ArrayList<Move> moves) {
         this.name = name;
@@ -45,7 +44,7 @@ public class Monster {
         figureOutImage();
     }
 
-    public void doMove (Monster opponent, Move selectedMove) {
+    public void doMove(Monster opponent, Move selectedMove) {
         if (!selectedMove.isBuff()) {
             if (!selectedMove.getBasicMove()) {
                 if (this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.WATER) {
@@ -80,8 +79,7 @@ public class Monster {
                 damageDealt = selectedMove.getDamage();
                 opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
             }
-        }
-        else {
+        } else {
             // TODO Figure out what to do for buffs
         }
 
@@ -115,12 +113,14 @@ public class Monster {
     }
 
     private void figureOutType() {
+        //@formatter:off
         switch (type) {
             case 1: typeString = "Fire"; break;
             case 2: typeString = "Water"; break;
             case 3: typeString = "Wind"; break;
             case 4: typeString = "Earth"; break;
         }
+        //@formatter:on
     }
 
     public String getTypeString() {
@@ -141,6 +141,7 @@ public class Monster {
     }
 
     private void figureOutImage() {
+        //@formatter:off
         switch (name) {
             case "Moultin": this.image = R.drawable.moultin; break;
             case "Aerou": this.image = R.drawable.aerou; break;
@@ -155,6 +156,7 @@ public class Monster {
             case "Vaypour": this.image = R.drawable.vaypour; break;
             case "Whoush": this.image = R.drawable.whoush; break;
         }
+        //@formatter:on
     }
 
     public int getImage() {

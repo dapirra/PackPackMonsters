@@ -12,8 +12,7 @@ public class ItemsActivity extends AppCompatActivity {
     ArrayList<TextView> txtsDescription;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_items);
         setTitle(R.string.items_activity_title);

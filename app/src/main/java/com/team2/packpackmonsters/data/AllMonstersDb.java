@@ -12,7 +12,7 @@ public class AllMonstersDb extends SQLiteAssetHelper {
 
     private static final String DATABASE_NAME = "AllMonsters.db"; //Name of the database
 
-    private static final int DATABASE_VERSION = 1 ; //Don't worry about
+    private static final int DATABASE_VERSION = 1; //Don't worry about
 
     public AllMonstersDb(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

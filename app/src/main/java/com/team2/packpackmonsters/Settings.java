@@ -1,6 +1,7 @@
 package com.team2.packpackmonsters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -21,7 +22,11 @@ public class Settings {
 
     public static ArrayList<Monster> opponentMonsters;
 
+    public static SharedPreferences prefs;
+
     public static void loadData(Context context) {
+
+        prefs = context.getSharedPreferences("app", Context.MODE_PRIVATE);
 
         SQLiteDatabase db = (new AllMonstersDb(context)).getReadableDatabase();
         Cursor c = db.query(PacPacMonstersContract.PacPacMonsterEntry.TABLE_NAME, null, null, null, null, null, null);
@@ -46,5 +51,13 @@ public class Settings {
         }
 
         c.close();
+    }
+
+    public static String loadName() {
+        return prefs.getString("name", null);
+    }
+
+    public static void saveName(String name) {
+        prefs.edit().putString("name", name).apply();
     }
 }
