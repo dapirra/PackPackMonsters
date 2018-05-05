@@ -17,18 +17,19 @@ import java.util.ArrayList;
 public class Settings {
 
     public static ArrayList<Monster> allMonsters;
-
     public static ArrayList<Monster> packDexMonsters;
-
     public static ArrayList<Monster> playerMonsters;
-
     public static ArrayList<Monster> opponentMonsters;
-
     public static SharedPreferences prefs;
+    public static final Statistics STATISTICS = new Statistics();
 
     public static void loadData(Context context) {
 
         prefs = context.getSharedPreferences("app", Context.MODE_PRIVATE);
+        STATISTICS.setName(prefs.getString("name", null));
+        STATISTICS.setWins(prefs.getInt("wins", 0));
+        STATISTICS.setLosses(prefs.getInt("losses", 0));
+        STATISTICS.setSurrenders(prefs.getInt("surrenders", 0));
 
         AllMonstersDb monstersDb = new AllMonstersDb(context);
         monstersDb.setForcedUpgrade();
@@ -66,11 +67,10 @@ public class Settings {
         c.close();
     }
 
-    public static String loadName() {
-        return prefs.getString("name", null);
-    }
-
-    public static void saveName(String name) {
-        prefs.edit().putString("name", name).apply();
+    public static void saveData() {
+        prefs.edit().putString("name", STATISTICS.getName()).apply();
+        prefs.edit().putInt("wins", STATISTICS.getWins()).apply();
+        prefs.edit().putInt("losses", STATISTICS.getLosses()).apply();
+        prefs.edit().putInt("surrenders", STATISTICS.getSurrenders()).apply();
     }
 }

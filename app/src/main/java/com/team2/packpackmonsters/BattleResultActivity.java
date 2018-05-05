@@ -14,9 +14,15 @@ public class BattleResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_result);
 
+        boolean result = getIntent().getBooleanExtra(WINNER_KEY, false);
+
+        if (result) {
+            Settings.STATISTICS.wins++;
+            Settings.saveData();
+        }
+
         ((TextView) findViewById(R.id.battle_result_txt)).setText(
-                getIntent().getBooleanExtra(WINNER_KEY, false) ?
-                        R.string.victory_text : R.string.lose_text);
+                result ? R.string.victory_text : R.string.lose_text);
 
         findViewById(R.id.battle_result_btn).setOnClickListener(new HomeBtnOnClickListener());
     }
