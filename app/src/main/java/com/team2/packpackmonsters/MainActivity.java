@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewUsername;
     private MonstersInfo MonsterOne;
     private DrawerLayout drawer;
+    private MediaPlayer musicPlayer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         webView.setHorizontalScrollBarEnabled(false);
         webView.setVerticalScrollBarEnabled(false);
         webView.loadUrl("file:///android_asset/canvas_geometry_panorama.html");
+
+        musicPlayer = MediaPlayer.create(this, R.raw.main_menu_music);
+        musicPlayer.start();
     }
 
     /*@Override
@@ -222,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
     private class MainBtnOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            musicPlayer.stop();
             switch (v.getId()) {
                 case R.id.main_btn_first:
                     startActivity(new Intent(v.getContext(), BattleActivity.class));
