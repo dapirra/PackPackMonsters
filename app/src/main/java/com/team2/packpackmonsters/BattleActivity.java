@@ -445,7 +445,7 @@ public class BattleActivity extends AppCompatActivity {
                         break test;
                     }
                 }
-                Toast.makeText(BattleActivity.this, "You have no monsters to revive", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BattleActivity.this, "You have no monstersList to revive", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.player_items_clo_second: // Finish Him
                 currentOpponentMonster.setCurrentHp(1);

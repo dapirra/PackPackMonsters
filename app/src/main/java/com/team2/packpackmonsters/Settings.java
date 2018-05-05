@@ -18,6 +18,8 @@ public class Settings {
 
     public static ArrayList<Monster> allMonsters;
 
+    public static ArrayList<Monster> packDexMonsters;
+
     public static ArrayList<Monster> playerMonsters;
 
     public static ArrayList<Monster> opponentMonsters;
@@ -28,9 +30,12 @@ public class Settings {
 
         prefs = context.getSharedPreferences("app", Context.MODE_PRIVATE);
 
-        SQLiteDatabase db = (new AllMonstersDb(context)).getReadableDatabase();
+        AllMonstersDb monstersDb = new AllMonstersDb(context);
+        monstersDb.setForcedUpgrade();
+        SQLiteDatabase db = monstersDb.getReadableDatabase();
         Cursor c = db.query(PacPacMonstersContract.PacPacMonsterEntry.TABLE_NAME, null, null, null, null, null, null);
         allMonsters = new ArrayList<>();
+        packDexMonsters = new ArrayList<>();
         ArrayList<Move> moves;
 
         while (c.moveToNext()) {
@@ -40,15 +45,23 @@ public class Settings {
             moves.add(new Move(c.getString(13), c.getString(14), c.getInt(15), c.getInt(16) == 1, false));
             moves.add(new Move(c.getString(17), c.getString(18), c.getInt(19), c.getInt(20) == 1, true));
 
-            allMonsters.add(new Monster(
+            Monster m = new Monster(
                     c.getString(1),
                     c.getString(2),
                     c.getInt(3),
                     c.getInt(4),
                     null,
                     moves
-            ));
+            );
+
+            allMonsters.add(m);
+            packDexMonsters.add(m);
         }
+
+        packDexMonsters.add(9, null);
+        packDexMonsters.add(6, null);
+        packDexMonsters.add(3, null);
+        packDexMonsters.add(0, null);
 
         c.close();
     }
