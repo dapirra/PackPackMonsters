@@ -11,7 +11,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".BattleActivity"
             android:configChanges="orientation|screenSize"
@@ -19,13 +25,7 @@
         <activity
             android:name=".ItemsActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".NameActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".NameActivity" />
         <activity
             android:name=".PackPackActivity"
             android:parentActivityName=".MainActivity" />

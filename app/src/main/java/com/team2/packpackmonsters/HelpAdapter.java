@@ -12,20 +12,18 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class HelpAdapter extends BaseAdapter
-{
-    private Context context;
+public class HelpAdapter extends BaseAdapter {
     private final int PADDING;
     private final int IMG_SIZE;
     private final int MARGIN;
     private final float TEXT_SIZE;
+    private Context context;
     private ArrayList<Integer> fireStringResources;
     private ArrayList<Integer> waterStringResources;
     private ArrayList<Integer> airStringResources;
     private ArrayList<Integer> earthStringResources;
 
-    public HelpAdapter(Context context)
-    {
+    public HelpAdapter(Context context) {
         this.context = context;
 
         float density = context.getResources().getDisplayMetrics().density;
@@ -38,8 +36,7 @@ public class HelpAdapter extends BaseAdapter
         initializeStringResources();
     }
 
-    private void initializeStringResources()
-    {
+    private void initializeStringResources() {
         fireStringResources = new ArrayList<>();
         fireStringResources.add(R.string.fire_against_fire);
         fireStringResources.add(R.string.fire_against_earth);
@@ -66,34 +63,29 @@ public class HelpAdapter extends BaseAdapter
     }
 
     @Override
-    public int getCount()
-    {
+    public int getCount() {
         return 20; //16 type effectiveness + 4 type labels
     }
 
     @Override
-    public Object getItem(int position)
-    {
+    public Object getItem(int position) {
         return null;
     }
 
     @Override
-    public long getItemId(int position)
-    {
+    public long getItemId(int position) {
         return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
+    public View getView(int position, View convertView, ViewGroup parent) {
         LinearLayout llo = new LinearLayout(context);
         llo.setOrientation(LinearLayout.HORIZONTAL);
         llo.setPadding(PADDING, PADDING, PADDING, PADDING);
         llo.setGravity(Gravity.CENTER);
         llo.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-        if(position % 5 == 0)
-        {
+        if (position % 5 == 0) {
             ImageView imgType = new ImageView(context);
             TextView txtType = new TextView(context);
 
@@ -113,8 +105,7 @@ public class HelpAdapter extends BaseAdapter
 
             int packImg, packType;
 
-            switch(position / 4)
-            {
+            switch (position / 4) {
                 case 0: //Fire
                     packImg = R.drawable.fire_icon;
                     packType = R.string.fire_types_underlined;
@@ -137,9 +128,7 @@ public class HelpAdapter extends BaseAdapter
 
             llo.addView(imgType);
             llo.addView(txtType);
-        }
-        else
-        {
+        } else {
             TextView txtEffectiveness = new TextView(context);
             txtEffectiveness.setTextSize(TEXT_SIZE);
             txtEffectiveness.setTextColor(Color.BLACK);
@@ -149,20 +138,13 @@ public class HelpAdapter extends BaseAdapter
             int typePosition = position % 5 - 1;
 
             //TODO Optimize for readability.
-            if(position >= 1 && position <= 4)
-            {
+            if (position >= 1 && position <= 4) {
                 resourceID = fireStringResources.get(typePosition);
-            }
-            else if(position >= 6 && position <= 9)
-            {
+            } else if (position >= 6 && position <= 9) {
                 resourceID = earthStringResources.get(typePosition);
-            }
-            else if(position >= 11 && position <= 14)
-            {
+            } else if (position >= 11 && position <= 14) {
                 resourceID = airStringResources.get(typePosition);
-            }
-            else //position >= 16 && position <= 20
-            {
+            } else { //position >= 16 && position <= 20
                 resourceID = waterStringResources.get(typePosition);
             }
 

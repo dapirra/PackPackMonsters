@@ -54,7 +54,6 @@ public final class PacPacMonstersContract//Contract class, allows easier way to 
 //        public final static String COLUMN_IMAGE = "image";//Picture of monster, might need to remove...
     }
 
-
     public static final class ItemsEntry implements BaseColumns//Data table for items, Do we have to add to it????
     {
         public final static String TABLE_NAME = "Items";

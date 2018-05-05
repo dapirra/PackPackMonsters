@@ -16,9 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:titleTextColor="@android:color/white"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:theme="@style/MainToolbar">
+            app:theme="@style/MainToolbar"
+            app:titleTextColor="@android:color/white">
 
         </android.support.v7.widget.Toolbar>
 
@@ -30,78 +30,67 @@
                 android:id="@+id/main_clo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/main_clo_margin_top"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <Button
-                    android:id="@+id/main_btn_top_left"
-                    android:layout_width="0dp"
+                    android:id="@+id/main_btn_first"
+                    android:layout_width="@dimen/main_btn_width"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/main_btn_margin_vertical"
-                    android:layout_marginLeft="@dimen/main_btn_margin_horizontal_between_parent"
-                    android:layout_marginRight="@dimen/main_btn_margin_horizontal"
-                    android:layout_marginTop="@dimen/main_btn_margin_vertical_between_parent"
+                    android:layout_marginTop="@dimen/main_btn_margin_vertical"
                     android:text="@string/battle"
                     android:textAllCaps="false"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/main_btn_text_size"
-                    app:layout_constraintBottom_toTopOf="@id/main_btn_bot_left"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/main_btn_top_right"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/main_btn_top_right"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/main_btn_margin_vertical"
-                    android:layout_marginLeft="@dimen/main_btn_margin_horizontal"
-                    android:layout_marginRight="@dimen/main_btn_margin_horizontal_between_parent"
-                    android:layout_marginTop="@dimen/main_btn_margin_vertical_between_parent"
-                    android:text="@string/items"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/main_btn_text_size"
-                    app:layout_constraintBottom_toTopOf="@id/main_btn_bot_right"
-                    app:layout_constraintLeft_toRightOf="@id/main_btn_top_left"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/main_btn_bot_left"
-                    android:layout_width="0dp"
+                    android:id="@+id/main_btn_second"
+                    android:layout_width="@dimen/main_btn_width"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/main_btn_margin_vertical_between_parent"
-                    android:layout_marginLeft="@dimen/main_btn_margin_horizontal_between_parent"
-                    android:layout_marginRight="@dimen/main_btn_margin_horizontal"
+                    android:layout_marginBottom="@dimen/main_btn_margin_vertical"
                     android:layout_marginTop="@dimen/main_btn_margin_vertical"
                     android:text="@string/packdex"
                     android:textAllCaps="false"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/main_btn_text_size"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/main_btn_bot_right"
-                    app:layout_constraintTop_toBottomOf="@id/main_btn_top_left" />
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_btn_first" />
 
                 <Button
-                    android:id="@+id/main_btn_bot_right"
-                    android:layout_width="0dp"
+                    android:id="@+id/main_btn_third"
+                    android:layout_width="@dimen/main_btn_width"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/main_btn_margin_vertical_between_parent"
-                    android:layout_marginLeft="@dimen/main_btn_margin_horizontal"
-                    android:layout_marginRight="@dimen/main_btn_margin_horizontal_between_parent"
+                    android:layout_marginBottom="@dimen/main_btn_margin_vertical"
+                    android:layout_marginTop="@dimen/main_btn_margin_vertical"
+                    android:text="@string/items"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/main_btn_text_size"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_btn_second" />
+
+                <Button
+                    android:id="@+id/main_btn_fourth"
+                    android:layout_width="@dimen/main_btn_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/main_btn_margin_vertical"
                     android:layout_marginTop="@dimen/main_btn_margin_vertical"
                     android:text="@string/faq"
                     android:textAllCaps="false"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/main_btn_text_size"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/main_btn_bot_left"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/main_btn_top_right" />
+                    app:layout_constraintTop_toBottomOf="@id/main_btn_third" />
 
             </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>
@@ -119,7 +108,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-
     <TextView
         android:id="@+id/text_view_test2"
         android:layout_width="wrap_content"
@@ -130,7 +118,6 @@
         android:text="Test for Monsters database"
         tools:layout_editor_absoluteX="163dp"
         tools:layout_editor_absoluteY="35dp" />
-
 
     <TextView
         android:id="@+id/text_view_test4"
@@ -143,7 +130,4 @@
         android:layout_marginLeft="37dp"
         android:layout_marginStart="37dp"
         android:text="Test for Items Database" />
-
-
-
 </RelativeLayout>-->

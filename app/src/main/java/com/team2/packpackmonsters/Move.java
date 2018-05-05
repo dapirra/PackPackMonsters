@@ -52,13 +52,11 @@ public class Move {
         isBuff = buff;
     }
 
-    public boolean getBasicMove()
-    {
+    public boolean getBasicMove() {
         return basicMove;
     }
 
-    public void setBasicMove(boolean basicMove)
-    {
+    public void setBasicMove(boolean basicMove) {
         this.basicMove = basicMove;
     }
 }

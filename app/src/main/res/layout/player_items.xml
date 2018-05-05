@@ -75,7 +75,7 @@
             android:layout_marginBottom="@dimen/player_items_margin_vertical"
             android:layout_marginTop="@dimen/player_items_margin_vertical"
             android:gravity="center"
-            android:text="@string/instakill"
+            android:text="@string/finish_him"
             android:textColor="@android:color/black"
             android:textSize="@dimen/player_items_txt_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
