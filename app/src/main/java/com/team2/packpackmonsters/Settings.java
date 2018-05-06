@@ -21,15 +21,21 @@ public class Settings {
     public static ArrayList<Monster> playerMonsters;
     public static ArrayList<Monster> opponentMonsters;
     public static SharedPreferences prefs;
-    public static final Statistics STATISTICS = new Statistics();
+
+    public static final class STATISTICS {
+        public static String name;
+        public static int wins;
+        public static int losses;
+        public static int surrenders;
+    }
 
     public static void loadData(Context context) {
 
         prefs = context.getSharedPreferences("app", Context.MODE_PRIVATE);
-        STATISTICS.setName(prefs.getString("name", null));
-        STATISTICS.setWins(prefs.getInt("wins", 0));
-        STATISTICS.setLosses(prefs.getInt("losses", 0));
-        STATISTICS.setSurrenders(prefs.getInt("surrenders", 0));
+        STATISTICS.name = prefs.getString("name", null);
+        STATISTICS.wins = prefs.getInt("wins", 0);
+        STATISTICS.losses = prefs.getInt("losses", 0);
+        STATISTICS.surrenders = prefs.getInt("surrenders", 0);
 
         SQLiteDatabase db = (new AllMonstersDb(context)).getReadableDatabase();
         Cursor c = db.query(PacPacMonstersContract.PacPacMonsterEntry.TABLE_NAME, null, null, null, null, null, null);
@@ -65,9 +71,9 @@ public class Settings {
     }
 
     public static void saveData() {
-        prefs.edit().putString("name", STATISTICS.getName()).apply();
-        prefs.edit().putInt("wins", STATISTICS.getWins()).apply();
-        prefs.edit().putInt("losses", STATISTICS.getLosses()).apply();
-        prefs.edit().putInt("surrenders", STATISTICS.getSurrenders()).apply();
+        prefs.edit().putString("name", STATISTICS.name).apply();
+        prefs.edit().putInt("wins", STATISTICS.wins).apply();
+        prefs.edit().putInt("losses", STATISTICS.losses).apply();
+        prefs.edit().putInt("surrenders", STATISTICS.surrenders).apply();
     }
 }

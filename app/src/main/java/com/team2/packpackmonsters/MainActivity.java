@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -35,17 +36,17 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewUsername;
     private MonstersInfo MonsterOne;
     private DrawerLayout drawer;
+    private View navView;
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        // TODO Figure out how to get the textviews
-//        if (drawer != null) {
-//            ((TextView) drawer.findViewById(R.id.main_nav_win)).setText(Settings.STATISTICS.wins + "");
-//            ((TextView) drawer.findViewById(R.id.main_nav_lose)).setText(Settings.STATISTICS.losses + "");
-//            ((TextView) drawer.findViewById(R.id.main_nav_surrender)).setText(Settings.STATISTICS.surrenders + "");
-//        }
+        if (navView != null) {
+            ((TextView) navView.findViewById(R.id.main_nav_win)).setText(Settings.STATISTICS.wins + "");
+            ((TextView) navView.findViewById(R.id.main_nav_lose)).setText(Settings.STATISTICS.losses + "");
+            ((TextView) navView.findViewById(R.id.main_nav_surrender)).setText(Settings.STATISTICS.surrenders + "");
+        }
     }
 
     @Override
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         drawer = findViewById(R.id.main_dwr);
+        navView = ((NavigationView) findViewById(R.id.main_nav)).getHeaderView(0);
 
         initializeToolbar();
         initializeListeners();
