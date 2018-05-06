@@ -32,7 +32,7 @@ public class Settings {
     public static void loadData(Context context) {
 
         prefs = context.getSharedPreferences("app", Context.MODE_PRIVATE);
-        STATISTICS.name = prefs.getString("name", null);
+        STATISTICS.name = prefs.getString("name", "");
         STATISTICS.wins = prefs.getInt("wins", 0);
         STATISTICS.losses = prefs.getInt("losses", 0);
         STATISTICS.surrenders = prefs.getInt("surrenders", 0);

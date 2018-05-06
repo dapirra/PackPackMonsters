@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -16,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -38,11 +41,23 @@ public class MainActivity extends AppCompatActivity {
     private MonstersInfo MonsterOne;
     private DrawerLayout drawer;
     private View navView;
+    private MediaPlayer musicPlayer;
 
     @Override
     protected void onResume() {
         super.onResume();
         updateStatisticsDrawer();
+
+        if (Settings.STATISTICS.name.equals("")) {
+            startActivity(new Intent(this, NameActivity.class));
+        } else {
+            setTitle("Welcome Back " + Settings.STATISTICS.name + "!");
+        }
+
+        if (musicPlayer == null) {
+            musicPlayer = MediaPlayer.create(this, R.raw.main_menu_music);
+        }
+        musicPlayer.start();
     }
 
     @Override
@@ -51,15 +66,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Settings.loadData(this);
 
-        if (Settings.STATISTICS.name == null) {
-            startActivity(new Intent(this, NameActivity.class));
-        }
-
         drawer = findViewById(R.id.main_dwr);
         navView = ((NavigationView) findViewById(R.id.main_nav)).getHeaderView(0);
 
         initializeToolbar();
         initializeListeners();
+
+        final WebView webView = findViewById(R.id.webview);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.setHorizontalScrollBarEnabled(false);
+        webView.setVerticalScrollBarEnabled(false);
+        webView.loadUrl("file:///android_asset/canvas_geometry_panorama.html");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (musicPlayer.isPlaying()) {
+            musicPlayer.pause();
+        }
     }
 
     @Override
@@ -245,6 +271,8 @@ public class MainActivity extends AppCompatActivity {
     private class MainBtnOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            musicPlayer.pause();
+            musicPlayer.seekTo(0);
             switch (v.getId()) {
                 case R.id.main_btn_first:
                     startActivity(new Intent(v.getContext(), BattleActivity.class));

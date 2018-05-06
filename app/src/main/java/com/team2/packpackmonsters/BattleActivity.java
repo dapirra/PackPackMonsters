@@ -3,6 +3,7 @@ package com.team2.packpackmonsters;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -51,6 +52,7 @@ public class BattleActivity extends AppCompatActivity {
     private boolean playerIsSelectingAnotherMonster;
     private boolean itemSelected;
     private boolean reviveSelected;
+    private MediaPlayer musicPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,15 @@ public class BattleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_battle);
         setTitle(R.string.battle_activity_title);
         Settings.loadData(this);
+
+        musicPlayer = MediaPlayer.create(this, R.raw.battle);
+        musicPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                musicPlayer.start();
+            }
+        });
+        musicPlayer.start();
 
         initializeViews();
 
@@ -94,6 +105,12 @@ public class BattleActivity extends AppCompatActivity {
         btnParty.callOnClick();
 
         Toast.makeText(this, "Select a party member.", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        musicPlayer.stop();
     }
 
     private void initializeViews() {
@@ -209,12 +226,7 @@ public class BattleActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (isInitialPartySelection) {
-            Toast.makeText(this, "You must select a party member first.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (battleVfp.getDisplayedChild() == 0 || playerIsSelectingAnotherMonster) {
+        if (battleVfp.getDisplayedChild() == 0 || playerIsSelectingAnotherMonster || isInitialPartySelection) {
             showRunAlertDialog();
         } else {
             battleVfp.setDisplayedChild(0);

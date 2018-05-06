@@ -32,7 +32,7 @@
             android:id="@+id/ind_pack_txt_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
             android:gravity="center"
             android:text="@string/pack"
             android:textColor="@android:color/black"
@@ -45,7 +45,7 @@
             android:id="@+id/ind_pack_txt_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
             android:gravity="center"
             android:text="@string/type_with_colon"
             android:textColor="@android:color/black"
@@ -70,13 +70,13 @@
             android:id="@+id/ind_pack_txt_health_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
             android:gravity="center"
             android:text="@string/base_health_with_colon"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_type" />
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_type_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_health"
@@ -92,6 +92,32 @@
             app:layout_constraintTop_toTopOf="@id/ind_pack_txt_health_label" />
 
         <TextView
+            android:id="@+id/ind_pack_txt_description_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_large"
+            android:gravity="center"
+            android:text="@string/description_with_underline"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/ind_pack_text_size"
+            app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_health_label" />
+
+        <TextView
+            android:id="@+id/ind_pack_txt_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
+            android:gravity="center"
+            android:paddingLeft="@dimen/ind_pack_padding"
+            android:paddingRight="@dimen/ind_pack_padding"
+            android:text="@string/default_move_description"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/ind_pack_text_size_small"
+            app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_description_label" />
+
+        <TextView
             android:id="@+id/ind_pack_txt_moves_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,13 +128,13 @@
             android:textSize="@dimen/ind_pack_text_size"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_health_label" />
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_description" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_1_bullet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
             android:gravity="center"
             android:text="@string/bullet"
             android:textColor="@android:color/black"
@@ -133,7 +159,7 @@
             android:id="@+id/ind_pack_txt_move_1_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
             android:gravity="center"
             android:text="@string/type_with_colon"
             android:textColor="@android:color/black"
@@ -155,16 +181,41 @@
             app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_1_type_label" />
 
         <TextView
+            android:id="@+id/ind_pack_txt_move_1_damage_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
+            android:gravity="center"
+            android:text="@string/damage_with_colon"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/ind_pack_text_size"
+            app:layout_constraintLeft_toLeftOf="@id/ind_pack_txt_move_1"
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_1_type_label" />
+
+        <TextView
+            android:id="@+id/ind_pack_txt_move_1_damage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ind_pack_margin_horizontal"
+            android:gravity="center"
+            android:text="@string/default_damage_text"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/ind_pack_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_1_damage_label"
+            app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_1_damage_label"
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_1_damage_label" />
+
+        <TextView
             android:id="@+id/ind_pack_txt_move_2_bullet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_medium"
             android:gravity="center"
             android:text="@string/bullet"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_1_type_label" />
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_1_damage_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_2"
@@ -183,7 +234,7 @@
             android:id="@+id/ind_pack_txt_move_2_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
             android:gravity="center"
             android:text="@string/type_with_colon"
             android:textColor="@android:color/black"
@@ -205,16 +256,41 @@
             app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_2_type_label" />
 
         <TextView
+            android:id="@+id/ind_pack_txt_move_2_damage_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
+            android:gravity="center"
+            android:text="@string/damage_with_colon"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/ind_pack_text_size"
+            app:layout_constraintLeft_toLeftOf="@id/ind_pack_txt_move_2"
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_2_type_label" />
+
+        <TextView
+            android:id="@+id/ind_pack_txt_move_2_damage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ind_pack_margin_horizontal"
+            android:gravity="center"
+            android:text="@string/default_damage_text"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/ind_pack_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_2_damage_label"
+            app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_2_damage_label"
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_2_damage_label" />
+
+        <TextView
             android:id="@+id/ind_pack_txt_move_3_bullet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_medium"
             android:gravity="center"
             android:text="@string/bullet"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_2_type_label" />
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_2_damage_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_3"
@@ -233,7 +309,7 @@
             android:id="@+id/ind_pack_txt_move_3_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
             android:gravity="center"
             android:text="@string/type_with_colon"
             android:textColor="@android:color/black"
@@ -255,16 +331,41 @@
             app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_3_type_label" />
 
         <TextView
+            android:id="@+id/ind_pack_txt_move_3_damage_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
+            android:gravity="center"
+            android:text="@string/damage_with_colon"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/ind_pack_text_size"
+            app:layout_constraintLeft_toLeftOf="@id/ind_pack_txt_move_3"
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_3_type_label" />
+
+        <TextView
+            android:id="@+id/ind_pack_txt_move_3_damage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ind_pack_margin_horizontal"
+            android:gravity="center"
+            android:text="@string/default_damage_text"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/ind_pack_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_3_damage_label"
+            app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_3_damage_label"
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_3_damage_label" />
+
+        <TextView
             android:id="@+id/ind_pack_txt_move_4_bullet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_medium"
             android:gravity="center"
             android:text="@string/bullet"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_gdl"
-            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_3_type_label" />
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_3_damage_label" />
 
         <TextView
             android:id="@+id/ind_pack_txt_move_4"
@@ -283,13 +384,11 @@
             android:id="@+id/ind_pack_txt_move_4_type_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/ind_pack_margin_vertical_large"
-            android:layout_marginTop="@dimen/ind_pack_margin_vertical"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
             android:gravity="center"
             android:text="@string/type_with_colon"
             android:textColor="@android:color/black"
             android:textSize="@dimen/ind_pack_text_size"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/ind_pack_txt_move_4"
             app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_4_bullet" />
 
@@ -305,6 +404,33 @@
             app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_4_type_label"
             app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_4_type_label"
             app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_4_type_label" />
+
+        <TextView
+            android:id="@+id/ind_pack_txt_move_4_damage_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/ind_pack_margin_vertical_large"
+            android:layout_marginTop="@dimen/ind_pack_margin_vertical_small"
+            android:gravity="center"
+            android:text="@string/damage_with_colon"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/ind_pack_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/ind_pack_txt_move_4"
+            app:layout_constraintTop_toBottomOf="@id/ind_pack_txt_move_4_type_label" />
+
+        <TextView
+            android:id="@+id/ind_pack_txt_move_4_damage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ind_pack_margin_horizontal"
+            android:gravity="center"
+            android:text="@string/default_damage_text"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/ind_pack_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/ind_pack_txt_move_4_damage_label"
+            app:layout_constraintLeft_toRightOf="@id/ind_pack_txt_move_4_damage_label"
+            app:layout_constraintTop_toTopOf="@id/ind_pack_txt_move_4_damage_label" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
