@@ -5,4 +5,9 @@
         android:id="@+id/main_menu_reset"
         android:title="Reset Statistics"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/main_menu_change_name"
+        android:title="Change your name"
+        app:showAsAction="never" />
 </menu>

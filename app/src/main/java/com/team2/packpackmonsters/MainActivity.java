@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 updateStatisticsDrawer();
                 Settings.saveData();
                 break;
+            case R.id.main_menu_change_name:
+                startActivity(new Intent(this, NameActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
