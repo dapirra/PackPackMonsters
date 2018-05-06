@@ -445,7 +445,7 @@ public class BattleActivity extends AppCompatActivity {
                         break test;
                     }
                 }
-                Toast.makeText(BattleActivity.this, "You have no monsters to revive", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BattleActivity.this, "You have no monstersList to revive", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.player_items_clo_second: // Finish Him
                 currentOpponentMonster.setCurrentHp(1);
@@ -483,6 +483,8 @@ public class BattleActivity extends AppCompatActivity {
                 getString(android.R.string.ok),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        Settings.STATISTICS.surrenders++;
+                        Settings.saveData();
                         goToResultActivity(false);
                     }
                 },
@@ -617,6 +619,8 @@ public class BattleActivity extends AppCompatActivity {
                         return;
                     }
                 }
+                Settings.STATISTICS.losses++;
+                Settings.saveData();
                 goToResultActivity(false);
             }
         }

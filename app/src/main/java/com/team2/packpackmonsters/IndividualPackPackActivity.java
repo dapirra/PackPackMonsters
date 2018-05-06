@@ -13,44 +13,43 @@ public class IndividualPackPackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_pack_pack);
 
-        String monster = getIntent().getStringExtra(MONSTER_KEY);
+        int position = getIntent().getIntExtra(MONSTER_KEY, -1);
+        Monster currentMonster = Settings.packDexMonsters.get(position);
 
         TextView txtName = findViewById(R.id.ind_pack_txt_name);
-        txtName.setText(monster);
-
-        //TODO Fill in info based on monster passed to this activity.
+        txtName.setText(currentMonster.getName());
 
         ImageView img = findViewById(R.id.ind_pack_img);
-        //img.setImageDrawable();
+        img.setImageResource(currentMonster.getImage());
 
         TextView txtType = findViewById(R.id.ind_pack_txt_type);
-        //txtType.setText();
+        txtType.setText(currentMonster.getTypeString());
 
         TextView txtHealth = findViewById(R.id.ind_pack_txt_health);
-        //txtHealth.setText();
+        txtHealth.setText(Integer.toString(currentMonster.getMaxHp()));
 
         TextView txtMove1 = findViewById(R.id.ind_pack_txt_move_1);
-        //txtMove1.setText();
+        txtMove1.setText(currentMonster.getMoves().get(0).getName());
 
         TextView txtMove1Type = findViewById(R.id.ind_pack_txt_move_1_type);
-        //txtMove1Type.setText();
+        txtMove1Type.setText("Elemental");
 
         TextView txtMove2 = findViewById(R.id.ind_pack_txt_move_2);
-        //txtMove2.setText();
+        txtMove2.setText(currentMonster.getMoves().get(1).getName());
 
         TextView txtMove2Type = findViewById(R.id.ind_pack_txt_move_2_type);
-        //txtMove2Type.setText();
+        txtMove2Type.setText("Ultimate");
 
         TextView txtMove3 = findViewById(R.id.ind_pack_txt_move_3);
-        //txtMove3.setText();
+        txtMove3.setText(currentMonster.getMoves().get(2).getName());
 
         TextView txtMove3Type = findViewById(R.id.ind_pack_txt_move_3_type);
-        //txtMove3Type.setText();
+        txtMove3Type.setText("Special");
 
         TextView txtMove4 = findViewById(R.id.ind_pack_txt_move_4);
-        //txtMove4.setText();
+        txtMove4.setText(currentMonster.getMoves().get(3).getName());
 
         TextView txtMove4Type = findViewById(R.id.ind_pack_txt_move_4_type);
-        //txtMove4Type.setText();
+        txtMove4Type.setText("Basic");
     }
 }
