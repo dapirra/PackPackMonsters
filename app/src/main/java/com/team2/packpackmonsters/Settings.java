@@ -21,19 +21,23 @@ public class Settings {
     public static ArrayList<Monster> playerMonsters;
     public static ArrayList<Monster> opponentMonsters;
     public static SharedPreferences prefs;
-    public static final Statistics STATISTICS = new Statistics();
+
+    public static final class STATISTICS {
+        public static String name;
+        public static int wins;
+        public static int losses;
+        public static int surrenders;
+    }
 
     public static void loadData(Context context) {
 
         prefs = context.getSharedPreferences("app", Context.MODE_PRIVATE);
-        STATISTICS.setName(prefs.getString("name", null));
-        STATISTICS.setWins(prefs.getInt("wins", 0));
-        STATISTICS.setLosses(prefs.getInt("losses", 0));
-        STATISTICS.setSurrenders(prefs.getInt("surrenders", 0));
+        STATISTICS.name = prefs.getString("name", null);
+        STATISTICS.wins = prefs.getInt("wins", 0);
+        STATISTICS.losses = prefs.getInt("losses", 0);
+        STATISTICS.surrenders = prefs.getInt("surrenders", 0);
 
-        AllMonstersDb monstersDb = new AllMonstersDb(context);
-        monstersDb.setForcedUpgrade();
-        SQLiteDatabase db = monstersDb.getReadableDatabase();
+        SQLiteDatabase db = (new AllMonstersDb(context)).getReadableDatabase();
         Cursor c = db.query(PacPacMonstersContract.PacPacMonsterEntry.TABLE_NAME, null, null, null, null, null, null);
         allMonsters = new ArrayList<>();
         packDexMonsters = new ArrayList<>();
@@ -41,17 +45,16 @@ public class Settings {
 
         while (c.moveToNext()) {
             moves = new ArrayList<>();
-            moves.add(new Move(c.getString(5), c.getString(6), c.getInt(7), c.getInt(8) == 1, false));
-            moves.add(new Move(c.getString(9), c.getString(10), c.getInt(11), c.getInt(12) == 1, false));
-            moves.add(new Move(c.getString(13), c.getString(14), c.getInt(15), c.getInt(16) == 1, false));
-            moves.add(new Move(c.getString(17), c.getString(18), c.getInt(19), c.getInt(20) == 1, true));
+            moves.add(new Move(c.getString(5), c.getString(6), c.getInt(7), 1));
+            moves.add(new Move(c.getString(8), c.getString(9), c.getInt(10), 2));
+            moves.add(new Move(c.getString(11), c.getString(12), c.getInt(13), 3));
+            moves.add(new Move(c.getString(14), c.getString(15), c.getInt(16), 4));
 
             Monster m = new Monster(
                     c.getString(1),
                     c.getString(2),
                     c.getInt(3),
                     c.getInt(4),
-                    null,
                     moves
             );
 
@@ -68,9 +71,9 @@ public class Settings {
     }
 
     public static void saveData() {
-        prefs.edit().putString("name", STATISTICS.getName()).apply();
-        prefs.edit().putInt("wins", STATISTICS.getWins()).apply();
-        prefs.edit().putInt("losses", STATISTICS.getLosses()).apply();
-        prefs.edit().putInt("surrenders", STATISTICS.getSurrenders()).apply();
+        prefs.edit().putString("name", STATISTICS.name).apply();
+        prefs.edit().putInt("wins", STATISTICS.wins).apply();
+        prefs.edit().putInt("losses", STATISTICS.losses).apply();
+        prefs.edit().putInt("surrenders", STATISTICS.surrenders).apply();
     }
 }

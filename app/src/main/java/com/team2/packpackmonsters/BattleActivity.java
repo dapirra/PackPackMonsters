@@ -380,6 +380,7 @@ public class BattleActivity extends AppCompatActivity {
         if (currentPlayerMonster.isDead()) {
             if (reviveSelected) {
                 currentPlayerMonster.setCurrentHp(currentPlayerMonster.getMaxHp());
+                currentPlayerMonster.setUltimateUsed(false);
                 reviveSelected = false;
             } else {
                 Toast.makeText(BattleActivity.this, "Pick another monster", Toast.LENGTH_SHORT).show();
@@ -571,7 +572,13 @@ public class BattleActivity extends AppCompatActivity {
                     currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(0));
                     break;
                 case R.id.moves_btn_top_right:
-                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(1));
+                    if (currentPlayerMonster.isUltimateUsed()) {
+                        Toast.makeText(BattleActivity.this, "You monster can only use their ultimate once", Toast.LENGTH_SHORT).show();
+                        isEnemyTurn = false;
+                        return;
+                    } else {
+                        currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(1));
+                    }
                     break;
                 case R.id.moves_btn_bot_left:
                     currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(3));

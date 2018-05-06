@@ -8,16 +8,13 @@ public class Move {
     private String name;
     private String description;
     private int damage;
-    private boolean isBuff;
-    private boolean basicMove;
+    private int moveType;
 
-    public Move(String name, String description, int damage, boolean isBuff, boolean basicMove) {
-
+    public Move(String name, String description, int damage, int moveType) {
         this.name = name;
         this.description = description;
         this.damage = damage;
-        this.isBuff = isBuff;
-        this.basicMove = basicMove;
+        this.moveType = moveType;
     }
 
     public String getName() {
@@ -40,23 +37,19 @@ public class Move {
         return damage;
     }
 
-    public void setDamage(int damage) {
-        this.damage = damage;
+    public boolean isElementalMove() {
+        return moveType == 1;
     }
 
-    public boolean isBuff() {
-        return isBuff;
+    public boolean isUltimateMove() {
+        return moveType == 2;
     }
 
-    public void setBuff(boolean buff) {
-        isBuff = buff;
+    public boolean isSpecialMove() {
+        return moveType == 3;
     }
 
-    public boolean getBasicMove() {
-        return basicMove;
-    }
-
-    public void setBasicMove(boolean basicMove) {
-        this.basicMove = basicMove;
+    public boolean isBasicMove() {
+        return this.moveType == 4;
     }
 }
