@@ -18,9 +18,7 @@ public class NameActivity extends AppCompatActivity {
 
         nameEdit = findViewById(R.id.name_edit);
 
-        if (Settings.STATISTICS.name != null) {
-            nameEdit.setText(Settings.STATISTICS.name);
-        }
+        nameEdit.setText(Settings.STATISTICS.name);
 
         nameEdit.setOnEditorActionListener(new NameEditOnEditorActionListener());
     }

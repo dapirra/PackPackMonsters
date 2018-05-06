@@ -48,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         updateStatisticsDrawer();
 
+        if (Settings.STATISTICS.name.equals("")) {
+            startActivity(new Intent(this, NameActivity.class));
+        } else {
+            setTitle("Welcome Back " + Settings.STATISTICS.name + "!");
+        }
+
         if (musicPlayer == null) {
             musicPlayer = MediaPlayer.create(this, R.raw.main_menu_music);
         }
@@ -60,17 +66,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Settings.loadData(this);
 
-        if (Settings.STATISTICS.name == null) {
-            startActivity(new Intent(this, NameActivity.class));
-        }
-
         drawer = findViewById(R.id.main_dwr);
         navView = ((NavigationView) findViewById(R.id.main_nav)).getHeaderView(0);
 
         initializeToolbar();
         initializeListeners();
 
-        WebView webView = findViewById(R.id.webview);
+        final WebView webView = findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webView.setHorizontalScrollBarEnabled(false);
