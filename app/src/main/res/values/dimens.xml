@@ -29,7 +29,8 @@
     <dimen name="moves_btn_margin_horizontal">4dp</dimen>
     <dimen name="player_items_margin_vertical">8dp</dimen>
     <dimen name="player_items_img_margin_horizontal">4dp</dimen>
-    <dimen name="ind_pack_margin_vertical">8dp</dimen>
+    <dimen name="ind_pack_margin_vertical_small">8dp</dimen>
+    <dimen name="ind_pack_margin_vertical_medium">16dp</dimen>
     <dimen name="ind_pack_margin_vertical_large">32dp</dimen>
     <dimen name="ind_pack_margin_horizontal">8dp</dimen>
     <dimen name="ind_pack_margin_horizontal_short">4dp</dimen>
@@ -46,6 +47,7 @@
     <dimen name="pack_padding">8dp</dimen>
     <dimen name="help_lst_padding">12dp</dimen>
     <dimen name="help_padding">8dp</dimen>
+    <dimen name="ind_pack_padding">12dp</dimen>
 
     <dimen name="party_img_width">80dp</dimen>
     <dimen name="party_img_height">80dp</dimen>
@@ -92,6 +94,7 @@
     <dimen name="moves_btn_text_size">24sp</dimen>
     <dimen name="pack_text_size">24sp</dimen>
     <dimen name="ind_pack_text_size">24sp</dimen>
+    <dimen name="ind_pack_text_size_small">18sp</dimen>
     <dimen name="battle_result_text_size">24sp</dimen>
     <dimen name="main_nav_text_size">24sp</dimen>
     <dimen name="help_text_size">24sp</dimen>

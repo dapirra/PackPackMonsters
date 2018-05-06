@@ -29,6 +29,8 @@
     <string name="surrenders_with_colon">Surrenders:</string>
     <string name="type_with_colon">Type:</string>
     <string name="type">Type</string>
+    <string name="description_with_underline"><u>Description</u></string>
+    <string name="damage_with_colon">Damage:</string>
 
     <string name="fire_types_underlined"><u>Fire Types</u></string>
     <string name="earth_types_underlined"><u>Earth Types</u></string>
@@ -45,6 +47,8 @@
     <string name="default_type_text">-</string>
     <string name="default_health_text">-</string>
     <string name="default_move_text">Move</string>
+    <string name="default_move_description">-</string>
+    <string name="default_damage_text">-</string>
     <string name="default_stat_text">-</string>
     <string name="default_item_name">Item</string>
     <string name="default_item_description">Description</string>
