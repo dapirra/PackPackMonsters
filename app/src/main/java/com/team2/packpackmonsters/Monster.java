@@ -15,74 +15,57 @@ public class Monster {
     private int maxHp;
     private int currentHp;
     private int type;
-    private String imagePath;
     private ArrayList<Move> moves;
     private int image;
     private String typeString;
 
-    public Monster(String name, String description, int maxHp, int type, String imagePath, ArrayList<Move> moves) {
+    public Monster(String name, String description, int maxHp, int type, ArrayList<Move> moves) {
         this.name = name;
         this.description = description;
         this.maxHp = maxHp;
         this.currentHp = maxHp;
         this.type = type;
-        this.imagePath = imagePath;
-        this.moves = moves;
-        figureOutType();
-        figureOutImage();
-    }
-
-    public Monster(String name, String description, int maxHp, int currentHp, int type, String imagePath, ArrayList<Move> moves) {
-        this.name = name;
-        this.description = description;
-        this.maxHp = maxHp;
-        this.currentHp = currentHp;
-        this.type = type;
-        this.imagePath = imagePath;
         this.moves = moves;
         figureOutType();
         figureOutImage();
     }
 
     public void doMove(Monster opponent, Move selectedMove) {
-        if (!selectedMove.isBuff()) {
-            if (!selectedMove.getBasicMove()) {
-                if (this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.WATER) {
-                    damageDealt = selectedMove.getDamage() - 2;
-                    opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
-                } else if (this.getType() == PacPacMonsterEntry.WATER && opponent.getType() == PacPacMonsterEntry.FIRE) {
-                    damageDealt = selectedMove.getDamage() + 2;
-                    opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
-                } else if (this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.EARTH) {
-                    damageDealt = selectedMove.getDamage() + 2;
-                    opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
-                } else if (this.getType() == PacPacMonsterEntry.EARTH && opponent.getType() == PacPacMonsterEntry.FIRE) {
-                    damageDealt = selectedMove.getDamage() - 2;
-                    opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
-                } else if (this.getType() == PacPacMonsterEntry.WIND && opponent.getType() == PacPacMonsterEntry.WATER) {
-                    damageDealt = selectedMove.getDamage() + 2;
-                    opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
-                } else if (this.getType() == PacPacMonsterEntry.WATER && opponent.getType() == PacPacMonsterEntry.WIND) {
-                    damageDealt = selectedMove.getDamage() - 2;
-                    opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
-                } else if (this.getType() == PacPacMonsterEntry.EARTH && opponent.getType() == PacPacMonsterEntry.WIND) {
-                    damageDealt = selectedMove.getDamage() + 2;
-                    opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
-                } else if (this.getType() == PacPacMonsterEntry.WIND && opponent.getType() == PacPacMonsterEntry.EARTH) {
-                    damageDealt = selectedMove.getDamage() - 2;
-                    opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
-                } else {
-                    damageDealt = selectedMove.getDamage();
-                    opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
-                }
+        if (!selectedMove.getBasicMove()) {
+            if (this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.WATER) {
+                damageDealt = selectedMove.getDamage() - 2;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
+            } else if (this.getType() == PacPacMonsterEntry.WATER && opponent.getType() == PacPacMonsterEntry.FIRE) {
+                damageDealt = selectedMove.getDamage() + 2;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
+            } else if (this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.EARTH) {
+                damageDealt = selectedMove.getDamage() + 2;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
+            } else if (this.getType() == PacPacMonsterEntry.EARTH && opponent.getType() == PacPacMonsterEntry.FIRE) {
+                damageDealt = selectedMove.getDamage() - 2;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
+            } else if (this.getType() == PacPacMonsterEntry.WIND && opponent.getType() == PacPacMonsterEntry.WATER) {
+                damageDealt = selectedMove.getDamage() + 2;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
+            } else if (this.getType() == PacPacMonsterEntry.WATER && opponent.getType() == PacPacMonsterEntry.WIND) {
+                damageDealt = selectedMove.getDamage() - 2;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
+            } else if (this.getType() == PacPacMonsterEntry.EARTH && opponent.getType() == PacPacMonsterEntry.WIND) {
+                damageDealt = selectedMove.getDamage() + 2;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
+            } else if (this.getType() == PacPacMonsterEntry.WIND && opponent.getType() == PacPacMonsterEntry.EARTH) {
+                damageDealt = selectedMove.getDamage() - 2;
+                opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
             } else {
                 damageDealt = selectedMove.getDamage();
                 opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
             }
         } else {
-            // TODO Figure out what to do for buffs
+            damageDealt = selectedMove.getDamage();
+            opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
         }
 
+        // Prevent hp from going below 0
         if (opponent.getCurrentHp() < 0) {
             opponent.setCurrentHp(0);
         }
@@ -137,7 +120,7 @@ public class Monster {
 
     @Override
     public Monster clone() {
-        return new Monster(name, description, maxHp, type, imagePath, moves);
+        return new Monster(name, description, maxHp, type, moves);
     }
 
     private void figureOutImage() {

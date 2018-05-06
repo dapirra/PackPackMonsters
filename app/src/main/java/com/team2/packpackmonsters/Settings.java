@@ -31,9 +31,7 @@ public class Settings {
         STATISTICS.setLosses(prefs.getInt("losses", 0));
         STATISTICS.setSurrenders(prefs.getInt("surrenders", 0));
 
-        AllMonstersDb monstersDb = new AllMonstersDb(context);
-        monstersDb.setForcedUpgrade();
-        SQLiteDatabase db = monstersDb.getReadableDatabase();
+        SQLiteDatabase db = (new AllMonstersDb(context)).getReadableDatabase();
         Cursor c = db.query(PacPacMonstersContract.PacPacMonsterEntry.TABLE_NAME, null, null, null, null, null, null);
         allMonsters = new ArrayList<>();
         packDexMonsters = new ArrayList<>();
@@ -41,17 +39,16 @@ public class Settings {
 
         while (c.moveToNext()) {
             moves = new ArrayList<>();
-            moves.add(new Move(c.getString(5), c.getString(6), c.getInt(7), c.getInt(8) == 1, false));
-            moves.add(new Move(c.getString(9), c.getString(10), c.getInt(11), c.getInt(12) == 1, false));
-            moves.add(new Move(c.getString(13), c.getString(14), c.getInt(15), c.getInt(16) == 1, false));
-            moves.add(new Move(c.getString(17), c.getString(18), c.getInt(19), c.getInt(20) == 1, true));
+            moves.add(new Move(c.getString(5), c.getString(6), c.getInt(7), false));
+            moves.add(new Move(c.getString(8), c.getString(9), c.getInt(10), false));
+            moves.add(new Move(c.getString(11), c.getString(12), c.getInt(13), false));
+            moves.add(new Move(c.getString(14), c.getString(15), c.getInt(16), true));
 
             Monster m = new Monster(
                     c.getString(1),
                     c.getString(2),
                     c.getInt(3),
                     c.getInt(4),
-                    null,
                     moves
             );
 
