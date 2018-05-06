@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -41,12 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        if (navView != null) {
-            ((TextView) navView.findViewById(R.id.main_nav_win)).setText(Settings.STATISTICS.wins + "");
-            ((TextView) navView.findViewById(R.id.main_nav_lose)).setText(Settings.STATISTICS.losses + "");
-            ((TextView) navView.findViewById(R.id.main_nav_surrender)).setText(Settings.STATISTICS.surrenders + "");
-        }
+        updateStatisticsDrawer();
     }
 
     @Override
@@ -66,7 +62,38 @@ public class MainActivity extends AppCompatActivity {
         initializeListeners();
     }
 
-    /*@Override
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawer.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.main_menu_reset:
+                Settings.STATISTICS.wins = 0;
+                Settings.STATISTICS.losses = 0;
+                Settings.STATISTICS.surrenders = 0;
+                updateStatisticsDrawer();
+                Settings.saveData();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void updateStatisticsDrawer() {
+        if (navView != null) {
+            ((TextView) navView.findViewById(R.id.main_nav_win)).setText(Settings.STATISTICS.wins + "");
+            ((TextView) navView.findViewById(R.id.main_nav_lose)).setText(Settings.STATISTICS.losses + "");
+            ((TextView) navView.findViewById(R.id.main_nav_surrender)).setText(Settings.STATISTICS.surrenders + "");
+        }
+    }
+
+/*@Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -184,18 +211,6 @@ public class MainActivity extends AppCompatActivity {
 
         long newRowId = db.insert(PacPacMonstersContract.UserProfileEntry.TABLE_NAME, null, values);//Actually inserts
         //the data                  ^^^The name of the table inserted                                       ^^Values object
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) //User clicked on menu item statistics menu
-    {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawer.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-
     }
 
     private void initializeToolbar() {
