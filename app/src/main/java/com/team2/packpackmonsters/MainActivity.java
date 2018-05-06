@@ -7,12 +7,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -38,11 +40,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewUsername;
     private MonstersInfo MonsterOne;
     private DrawerLayout drawer;
+    private View navView;
     private MediaPlayer musicPlayer;
 
     @Override
     protected void onResume() {
         super.onResume();
+        updateStatisticsDrawer();
+
         if (musicPlayer == null) {
             musicPlayer = MediaPlayer.create(this, R.raw.main_menu_music);
         }
@@ -55,11 +60,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Settings.loadData(this);
 
-        if (Settings.loadName() == null) {
+        if (Settings.STATISTICS.name == null) {
             startActivity(new Intent(this, NameActivity.class));
         }
 
         drawer = findViewById(R.id.main_dwr);
+        navView = ((NavigationView) findViewById(R.id.main_nav)).getHeaderView(0);
 
         initializeToolbar();
         initializeListeners();
@@ -80,7 +86,41 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*@Override
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawer.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.main_menu_reset:
+                Settings.STATISTICS.wins = 0;
+                Settings.STATISTICS.losses = 0;
+                Settings.STATISTICS.surrenders = 0;
+                updateStatisticsDrawer();
+                Settings.saveData();
+                break;
+            case R.id.main_menu_change_name:
+                startActivity(new Intent(this, NameActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void updateStatisticsDrawer() {
+        if (navView != null) {
+            ((TextView) navView.findViewById(R.id.main_nav_win)).setText(Settings.STATISTICS.wins + "");
+            ((TextView) navView.findViewById(R.id.main_nav_lose)).setText(Settings.STATISTICS.losses + "");
+            ((TextView) navView.findViewById(R.id.main_nav_surrender)).setText(Settings.STATISTICS.surrenders + "");
+        }
+    }
+
+/*@Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -198,18 +238,6 @@ public class MainActivity extends AppCompatActivity {
 
         long newRowId = db.insert(PacPacMonstersContract.UserProfileEntry.TABLE_NAME, null, values);//Actually inserts
         //the data                  ^^^The name of the table inserted                                       ^^Values object
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) //User clicked on menu item statistics menu
-    {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawer.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-
     }
 
     private void initializeToolbar() {

@@ -380,6 +380,7 @@ public class BattleActivity extends AppCompatActivity {
         if (currentPlayerMonster.isDead()) {
             if (reviveSelected) {
                 currentPlayerMonster.setCurrentHp(currentPlayerMonster.getMaxHp());
+                currentPlayerMonster.setUltimateUsed(false);
                 reviveSelected = false;
             } else {
                 Toast.makeText(BattleActivity.this, "Pick another monster", Toast.LENGTH_SHORT).show();
@@ -445,7 +446,7 @@ public class BattleActivity extends AppCompatActivity {
                         break test;
                     }
                 }
-                Toast.makeText(BattleActivity.this, "You have no monsters to revive", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BattleActivity.this, "You have no monstersList to revive", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.player_items_clo_second: // Finish Him
                 currentOpponentMonster.setCurrentHp(1);
@@ -483,6 +484,8 @@ public class BattleActivity extends AppCompatActivity {
                 getString(android.R.string.ok),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        Settings.STATISTICS.surrenders++;
+                        Settings.saveData();
                         goToResultActivity(false);
                     }
                 },
@@ -569,7 +572,13 @@ public class BattleActivity extends AppCompatActivity {
                     currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(0));
                     break;
                 case R.id.moves_btn_top_right:
-                    currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(1));
+                    if (currentPlayerMonster.isUltimateUsed()) {
+                        Toast.makeText(BattleActivity.this, "You monster can only use their ultimate once", Toast.LENGTH_SHORT).show();
+                        isEnemyTurn = false;
+                        return;
+                    } else {
+                        currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(1));
+                    }
                     break;
                 case R.id.moves_btn_bot_left:
                     currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(3));
@@ -617,6 +626,8 @@ public class BattleActivity extends AppCompatActivity {
                         return;
                     }
                 }
+                Settings.STATISTICS.losses++;
+                Settings.saveData();
                 goToResultActivity(false);
             }
         }

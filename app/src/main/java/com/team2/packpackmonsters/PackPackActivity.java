@@ -31,7 +31,7 @@ public class PackPackActivity extends AppCompatActivity {
                 TextView txtPack = (TextView) llo.getChildAt(1);
 
                 Intent intent = new Intent(view.getContext(), IndividualPackPackActivity.class);
-                intent.putExtra(IndividualPackPackActivity.MONSTER_KEY, txtPack.getText());
+                intent.putExtra(IndividualPackPackActivity.MONSTER_KEY, position);
 
                 startActivity(intent);
             }
