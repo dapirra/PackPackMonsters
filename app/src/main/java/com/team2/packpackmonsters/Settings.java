@@ -45,10 +45,10 @@ public class Settings {
 
         while (c.moveToNext()) {
             moves = new ArrayList<>();
-            moves.add(new Move(c.getString(5), c.getString(6), c.getInt(7), false));
-            moves.add(new Move(c.getString(8), c.getString(9), c.getInt(10), false));
-            moves.add(new Move(c.getString(11), c.getString(12), c.getInt(13), false));
-            moves.add(new Move(c.getString(14), c.getString(15), c.getInt(16), true));
+            moves.add(new Move(c.getString(5), c.getString(6), c.getInt(7), 1));
+            moves.add(new Move(c.getString(8), c.getString(9), c.getInt(10), 2));
+            moves.add(new Move(c.getString(11), c.getString(12), c.getInt(13), 3));
+            moves.add(new Move(c.getString(14), c.getString(15), c.getInt(16), 4));
 
             Monster m = new Monster(
                     c.getString(1),

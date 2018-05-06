@@ -18,6 +18,7 @@ public class Monster {
     private ArrayList<Move> moves;
     private int image;
     private String typeString;
+    private boolean ultimateUsed;
 
     public Monster(String name, String description, int maxHp, int type, ArrayList<Move> moves) {
         this.name = name;
@@ -31,7 +32,7 @@ public class Monster {
     }
 
     public void doMove(Monster opponent, Move selectedMove) {
-        if (!selectedMove.getBasicMove()) {
+        if (!selectedMove.isBasicMove()) {
             if (this.getType() == PacPacMonsterEntry.FIRE && opponent.getType() == PacPacMonsterEntry.WATER) {
                 damageDealt = selectedMove.getDamage() - 2;
                 opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
@@ -63,6 +64,10 @@ public class Monster {
         } else {
             damageDealt = selectedMove.getDamage();
             opponent.setCurrentHp(opponent.getCurrentHp() - damageDealt);
+        }
+
+        if (selectedMove.isUltimateMove()) {
+            ultimateUsed = true;
         }
 
         // Prevent hp from going below 0
@@ -144,5 +149,13 @@ public class Monster {
 
     public int getImage() {
         return this.image;
+    }
+
+    public boolean isUltimateUsed() {
+        return ultimateUsed;
+    }
+
+    public void setUltimateUsed(boolean ultimateUsed) {
+        this.ultimateUsed = ultimateUsed;
     }
 }
