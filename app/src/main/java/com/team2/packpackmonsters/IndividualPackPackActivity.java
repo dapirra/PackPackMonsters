@@ -12,6 +12,7 @@ public class IndividualPackPackActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_individual_pack_pack);
+        Settings.loadData(this);
 
         int position = getIntent().getIntExtra(MONSTER_KEY, -1);
         Monster currentMonster = Settings.packDexMonsters.get(position);
