@@ -139,7 +139,7 @@ public class Monster {
             case "Dyurt": this.image = R.drawable.dyurt; break;
             case "Ignaight": this.image = R.drawable.ignaight; break;
             case "Kwayk": this.image = R.drawable.kwayk; break;
-            case "Pevero": this.image = R.drawable.pevero; break;
+            case "Peyero": this.image = R.drawable.peyero; break;
             case "Rakh": this.image = R.drawable.rakh; break;
             case "Vaypour": this.image = R.drawable.vaypour; break;
             case "Whoush": this.image = R.drawable.whoush; break;
