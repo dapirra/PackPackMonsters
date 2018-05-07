@@ -10,7 +10,6 @@ public class HelpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
-        setTitle(R.string.help_activity_title);
 
         ListView helpLst = findViewById(R.id.help_lst);
         helpLst.setAdapter(new HelpAdapter(this));

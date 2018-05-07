@@ -21,20 +21,27 @@
         <activity
             android:name=".BattleActivity"
             android:configChanges="orientation|screenSize"
+            android:label="@string/battle_activity_title"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ItemsActivity"
+            android:label="@string/items_activity_title"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".NameActivity" />
         <activity
             android:name=".PackPackActivity"
+            android:label="@string/pack_pack_activity_title"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".IndividualPackPackActivity"
+            android:label="@string/pack_pack_activity_title"
             android:parentActivityName=".PackPackActivity" />
         <activity
             android:name=".HelpActivity"
+            android:label="@string/help_activity_title"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".BattleResultActivity" />
+        <activity
+            android:name=".BattleResultActivity"
+            android:parentActivityName=".MainActivity" />
     </application>
 </manifest>

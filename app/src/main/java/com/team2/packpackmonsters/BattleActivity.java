@@ -61,7 +61,6 @@ public class BattleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
-        setTitle(R.string.battle_activity_title);
         Settings.loadData(this);
         Settings.STATISTICS.surrenders++;
         Settings.saveData();

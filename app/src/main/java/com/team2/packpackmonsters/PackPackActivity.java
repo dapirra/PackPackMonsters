@@ -15,7 +15,7 @@ public class PackPackActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pack_pack);
-        setTitle(R.string.pack_pack_activity_title);
+        Settings.loadData(this);
 
         ListView packLst = findViewById(R.id.pack_lst);
         packLst.setOnItemClickListener(new PackLstOnItemClickListener());
