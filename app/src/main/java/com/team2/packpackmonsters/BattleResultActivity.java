@@ -19,14 +19,7 @@ public class BattleResultActivity extends AppCompatActivity {
 
         boolean result = getIntent().getBooleanExtra(WINNER_KEY, false);
 
-        if (result) {
-            Settings.STATISTICS.wins++;
-            Settings.saveData();
-            musicPlayer = MediaPlayer.create(this, R.raw.win);
-        } else {
-            musicPlayer = MediaPlayer.create(this, R.raw.lose);
-        }
-
+        musicPlayer = MediaPlayer.create(this, result ? R.raw.win : R.raw.lose);
         musicPlayer.start();
 
         ((TextView) findViewById(R.id.battle_result_txt)).setText(
@@ -55,7 +48,7 @@ public class BattleResultActivity extends AppCompatActivity {
     private class HomeBtnOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(v.getContext(), MainActivity.class));
+            startActivity(new Intent(BattleResultActivity.this, MainActivity.class));
         }
     }
 }

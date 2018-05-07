@@ -53,6 +53,8 @@ public class BattleActivity extends AppCompatActivity {
     private boolean itemSelected;
     private boolean reviveSelected;
     private MediaPlayer musicPlayer;
+    private TextView yourMoveTxt;
+    private TextView enemyMoveTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,8 @@ public class BattleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_battle);
         setTitle(R.string.battle_activity_title);
         Settings.loadData(this);
+        Settings.STATISTICS.surrenders++;
+        Settings.saveData();
 
         musicPlayer = MediaPlayer.create(this, R.raw.battle);
         musicPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -176,6 +180,9 @@ public class BattleActivity extends AppCompatActivity {
         partyTxtsName.add((TextView) findViewById(R.id.party_txt_first_name));
         partyTxtsName.add((TextView) findViewById(R.id.party_txt_second_name));
         partyTxtsName.add((TextView) findViewById(R.id.party_txt_third_name));
+
+        yourMoveTxt = findViewById(R.id.your_move_text);
+        enemyMoveTxt = findViewById(R.id.enemy_move_text);
     }
 
     private void initializeListeners() {
@@ -367,10 +374,9 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     private void goToResultActivity(boolean isWinner) {
-        Intent intent = new Intent(this, BattleResultActivity.class);
-        intent.putExtra(BattleResultActivity.WINNER_KEY, isWinner);
-
-        startActivity(intent);
+        yourMoveTxt.setVisibility(View.INVISIBLE);
+        startActivity(new Intent(this, BattleResultActivity.class)
+                .putExtra(BattleResultActivity.WINNER_KEY, isWinner));
     }
 
     private void onSuccessfulPartySelection(View v) {
@@ -420,6 +426,11 @@ public class BattleActivity extends AppCompatActivity {
 
         if (isInitialPartySelection) {
             currentOpponentMonster = opponentMonsters.get(0);
+            if (Math.random() > 0.5) {
+                new EnemyMove().execute();
+            } else {
+                yourMoveTxt.setVisibility(View.VISIBLE);
+            }
         } else {
             new EnemyMove().execute();
         }
@@ -496,8 +507,6 @@ public class BattleActivity extends AppCompatActivity {
                 getString(android.R.string.ok),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Settings.STATISTICS.surrenders++;
-                        Settings.saveData();
                         goToResultActivity(false);
                     }
                 },
@@ -539,6 +548,9 @@ public class BattleActivity extends AppCompatActivity {
             } else if (!opponentMonsters.get(2).isDead()) {
                 currentOpponentMonster = opponentMonsters.get(2);
             } else {
+                Settings.STATISTICS.surrenders--;
+                Settings.STATISTICS.wins++;
+                Settings.saveData();
                 goToResultActivity(true);
                 return;
             }
@@ -607,6 +619,12 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     private class EnemyMove extends AsyncTask<Void, Void, Move> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            enemyMoveTxt.setVisibility(View.VISIBLE);
+            yourMoveTxt.setVisibility(View.INVISIBLE);
+        }
 
         @Override
         protected Move doInBackground(Void... voids) {
@@ -629,6 +647,8 @@ public class BattleActivity extends AppCompatActivity {
             partyTxtsCurrentHealth.get(currentPlayerMonsterIndex).setText(currentPlayerMonster.getCurrentHp() + "");
 
             isEnemyTurn = false;
+            enemyMoveTxt.setVisibility(View.INVISIBLE);
+            yourMoveTxt.setVisibility(View.VISIBLE);
 
             if (currentPlayerMonster.isDead()) {
                 for (Monster m : playerMonsters) {
@@ -638,6 +658,7 @@ public class BattleActivity extends AppCompatActivity {
                         return;
                     }
                 }
+                Settings.STATISTICS.surrenders--;
                 Settings.STATISTICS.losses++;
                 Settings.saveData();
                 goToResultActivity(false);
