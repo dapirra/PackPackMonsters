@@ -1,6 +1,6 @@
 -- Fire Monsters
 
-insert into Monsters values (null, "Pevero", "This monster tries to fight fire with fire, making it deadly!", 16, 1,
+insert into Monsters values (null, "Peyero", "This monster tries to fight fire with fire, making it deadly!", 16, 1,
 "Fire Ball", "Basic fire attack. Strong against earth monsters.", 5,
 "Forest Fire", "Ultimate fire attack. Severely damages earth monsters.", 10,
 "Fire Up", "Special fire attack.", 8,

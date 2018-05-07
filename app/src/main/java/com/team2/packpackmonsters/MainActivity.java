@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         initializeToolbar();
         initializeListeners();
 
-        final WebView webView = findViewById(R.id.webview);
+        WebView webView = findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webView.setHorizontalScrollBarEnabled(false);
