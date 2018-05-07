@@ -62,6 +62,8 @@ public class BattleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_battle);
         setTitle(R.string.battle_activity_title);
         Settings.loadData(this);
+        Settings.STATISTICS.surrenders++;
+        Settings.saveData();
 
         musicPlayer = MediaPlayer.create(this, R.raw.battle);
         musicPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -113,7 +115,6 @@ public class BattleActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         musicPlayer.stop();
-        yourMoveTxt.setVisibility(View.INVISIBLE);
     }
 
     private void initializeViews() {
@@ -373,10 +374,9 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     private void goToResultActivity(boolean isWinner) {
-        Intent intent = new Intent(this, BattleResultActivity.class);
-        intent.putExtra(BattleResultActivity.WINNER_KEY, isWinner);
-
-        startActivity(intent);
+        yourMoveTxt.setVisibility(View.INVISIBLE);
+        startActivity(new Intent(this, BattleResultActivity.class)
+                .putExtra(BattleResultActivity.WINNER_KEY, isWinner));
     }
 
     private void onSuccessfulPartySelection(View v) {
@@ -507,8 +507,6 @@ public class BattleActivity extends AppCompatActivity {
                 getString(android.R.string.ok),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Settings.STATISTICS.surrenders++;
-                        Settings.saveData();
                         goToResultActivity(false);
                     }
                 },
@@ -550,6 +548,9 @@ public class BattleActivity extends AppCompatActivity {
             } else if (!opponentMonsters.get(2).isDead()) {
                 currentOpponentMonster = opponentMonsters.get(2);
             } else {
+                Settings.STATISTICS.surrenders--;
+                Settings.STATISTICS.wins++;
+                Settings.saveData();
                 goToResultActivity(true);
                 return;
             }
@@ -657,6 +658,7 @@ public class BattleActivity extends AppCompatActivity {
                         return;
                     }
                 }
+                Settings.STATISTICS.surrenders--;
                 Settings.STATISTICS.losses++;
                 Settings.saveData();
                 goToResultActivity(false);
