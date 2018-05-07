@@ -26,6 +26,13 @@ public class BattleResultActivity extends AppCompatActivity {
                 result ? R.string.victory_text : R.string.lose_text);
 
         findViewById(R.id.battle_result_btn).setOnClickListener(new HomeBtnOnClickListener());
+
+        findViewById(R.id.play_again_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BattleResultActivity.this, BattleActivity.class));
+            }
+        });
     }
 
     @Override
