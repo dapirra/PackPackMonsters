@@ -591,8 +591,6 @@ public class BattleActivity extends AppCompatActivity {
                 return;
             }
 
-            isEnemyTurn = true;
-
             switch (v.getId()) {
                 case R.id.moves_btn_top_left:
                     currentPlayerMonster.doMove(currentOpponentMonster, currentPlayerMonster.getMoves().get(0));
@@ -624,6 +622,7 @@ public class BattleActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            isEnemyTurn = true;
             enemyMoveTxt.setVisibility(View.VISIBLE);
             yourMoveTxt.setVisibility(View.INVISIBLE);
         }
