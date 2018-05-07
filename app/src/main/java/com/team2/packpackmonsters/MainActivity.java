@@ -1,6 +1,8 @@
 package com.team2.packpackmonsters;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -101,11 +103,20 @@ public class MainActivity extends AppCompatActivity {
                 drawer.openDrawer(GravityCompat.START);
                 return true;
             case R.id.main_menu_reset:
-                Settings.STATISTICS.wins = 0;
-                Settings.STATISTICS.losses = 0;
-                Settings.STATISTICS.surrenders = 0;
-                updateStatisticsDrawer();
-                Settings.saveData();
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to reset your statistics?")
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Settings.STATISTICS.wins = 0;
+                                Settings.STATISTICS.losses = 0;
+                                Settings.STATISTICS.surrenders = 0;
+                                updateStatisticsDrawer();
+                                Settings.saveData();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .show();
                 break;
             case R.id.main_menu_change_name:
                 startActivity(new Intent(this, NameActivity.class));
