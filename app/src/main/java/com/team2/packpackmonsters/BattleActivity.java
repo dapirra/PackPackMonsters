@@ -426,7 +426,11 @@ public class BattleActivity extends AppCompatActivity {
 
         if (isInitialPartySelection) {
             currentOpponentMonster = opponentMonsters.get(0);
-            yourMoveTxt.setVisibility(View.VISIBLE);
+            if (Math.random() > 0.5) {
+                new EnemyMove().execute();
+            } else {
+                yourMoveTxt.setVisibility(View.VISIBLE);
+            }
         } else {
             new EnemyMove().execute();
         }
