@@ -11,6 +11,7 @@ import android.support.constraint.ConstraintSet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -425,6 +426,8 @@ public class BattleActivity extends AppCompatActivity {
         lastPartyCloSelected = v;
 
         if (isInitialPartySelection) {
+            battleImgs.get(0).startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_from_left));
+            battleImgs.get(1).startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_from_right));
             currentOpponentMonster = opponentMonsters.get(0);
             if (Math.random() > 0.5) {
                 new EnemyMove().execute();
