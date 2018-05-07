@@ -53,6 +53,8 @@ public class BattleActivity extends AppCompatActivity {
     private boolean itemSelected;
     private boolean reviveSelected;
     private MediaPlayer musicPlayer;
+    private TextView yourMoveTxt;
+    private TextView enemyMoveTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,7 @@ public class BattleActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         musicPlayer.stop();
+        yourMoveTxt.setVisibility(View.INVISIBLE);
     }
 
     private void initializeViews() {
@@ -176,6 +179,9 @@ public class BattleActivity extends AppCompatActivity {
         partyTxtsName.add((TextView) findViewById(R.id.party_txt_first_name));
         partyTxtsName.add((TextView) findViewById(R.id.party_txt_second_name));
         partyTxtsName.add((TextView) findViewById(R.id.party_txt_third_name));
+
+        yourMoveTxt = findViewById(R.id.your_move_text);
+        enemyMoveTxt = findViewById(R.id.enemy_move_text);
     }
 
     private void initializeListeners() {
@@ -420,6 +426,7 @@ public class BattleActivity extends AppCompatActivity {
 
         if (isInitialPartySelection) {
             currentOpponentMonster = opponentMonsters.get(0);
+            yourMoveTxt.setVisibility(View.VISIBLE);
         } else {
             new EnemyMove().execute();
         }
@@ -607,6 +614,12 @@ public class BattleActivity extends AppCompatActivity {
     }
 
     private class EnemyMove extends AsyncTask<Void, Void, Move> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            enemyMoveTxt.setVisibility(View.VISIBLE);
+            yourMoveTxt.setVisibility(View.INVISIBLE);
+        }
 
         @Override
         protected Move doInBackground(Void... voids) {
@@ -629,6 +642,8 @@ public class BattleActivity extends AppCompatActivity {
             partyTxtsCurrentHealth.get(currentPlayerMonsterIndex).setText(currentPlayerMonster.getCurrentHp() + "");
 
             isEnemyTurn = false;
+            enemyMoveTxt.setVisibility(View.INVISIBLE);
+            yourMoveTxt.setVisibility(View.VISIBLE);
 
             if (currentPlayerMonster.isDead()) {
                 for (Monster m : playerMonsters) {
