@@ -681,15 +681,19 @@ public class BattleActivity extends AppCompatActivity {
                     battleVfp.setDisplayedChild(1);
                     break;
                 case R.id.battle_btn_top_right: //Items
-                    if (itemSelected) {
-                        Toast.makeText(BattleActivity.this, "You already used your item", Toast.LENGTH_SHORT).show();
-                    } else {
-                        battleVfp.setDisplayedChild(2);
-                        Toast.makeText(BattleActivity.this, "You can only use 1 item", Toast.LENGTH_SHORT).show();
+                    if (!isEnemyTurn) {
+                        if (itemSelected) {
+                            Toast.makeText(BattleActivity.this, "You already used your item", Toast.LENGTH_SHORT).show();
+                        } else {
+                            battleVfp.setDisplayedChild(2);
+                            Toast.makeText(BattleActivity.this, "You can only use 1 item", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     break;
                 case R.id.battle_btn_bot_left: //Party
-                    battleVfp.setDisplayedChild(3);
+                    if (!isEnemyTurn) {
+                        battleVfp.setDisplayedChild(3);
+                    }
                     break;
                 case R.id.battle_btn_bot_right: //Run
                     showRunAlertDialog();
